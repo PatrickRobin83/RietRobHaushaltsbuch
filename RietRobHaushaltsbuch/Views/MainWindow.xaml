@@ -1,0 +1,34 @@
+﻿<mah:MetroWindow x:Class="RietRobHaushaltsbuch.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:mahApps="clr-namespace:MahApps;assembly=MahApps.Metro"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        Title="{Binding Title}" Height="350" Width="525">
+    <Grid x:Name="LayoutRoot">
+        <DockPanel LastChildFill="True" HorizontalAlignment="Stretch" Name="DockPanel" VerticalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ContentControl  prism:RegionManager.RegionName="MainRegion" HorizontalAlignment="Stretch"  
+                                 VerticalAlignment="Stretch"/>
+            </StackPanel>
+        </DockPanel>
+        <Button Height="50" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20"
+                Command="{Binding OpenFlyOutCommand}" Background="{DynamicResource MahApps.Brushes.Accent2}" BorderThickness="0">
+            <Button.Content>
+                <fa:ImageAwesome Height="50" Width="50" Foreground="White" Icon="Bars"/>
+            </Button.Content>
+        </Button>
+        <mah:Flyout Width="200" Position="Left" IsOpen="{Binding FlyOutOpen}" Theme="Adapt">
+            <ListBox x:Name="ListBox" DisplayMemberPath="DisplayName">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding CalculatorChangedCommand}" CommandParameter="{Binding ElementName=ListBox, Path=SelectedItem}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
+        </mah:Flyout>
+    </Grid>
+</mah:MetroWindow>
