@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RietRobHaushaltsbuch", "RietRobHaushaltsbuch\RietRobHaushaltsbuch.csproj", "{21656D2E-CB30-46E5-ACC6-A94E48EA2400}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RietRobHaushaltbuch.Core", "RietRobHaushaltbuch.Core\RietRobHaushaltbuch.Core.csproj", "{C96ED1FA-E594-4E9D-8596-CE499F1710BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RietRobHaushaltsbuch.Core", "RietRobHaushaltsbuch.Core\RietRobHaushaltsbuch.Core.csproj", "{C96ED1FA-E594-4E9D-8596-CE499F1710BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RietRobHaushaltsbuch.Modules.CarRefuelTracker", "Modules\RietRobHaushaltsbuch.Modules.CarRefuelTracker\RietRobHaushaltsbuch.Modules.CarRefuelTracker.csproj", "{14FD534A-FC79-443F-92E7-2B658F415C22}"
 EndProject
