@@ -56,7 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Styles\MahBindings.xaml">
+    <Page Include="Style\MahBindings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,6 +108,14 @@
     <PackageReference Include="Prism.Unity" Version="7.2.0.1422" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Modules\RietRobHaushaltsbuch.Modules.CarRefuelTracker\RietRobHaushaltsbuch.Modules.CarRefuelTracker.csproj">
+      <Project>{14FD534A-FC79-443F-92E7-2B658F415C22}</Project>
+      <Name>RietRobHaushaltsbuch.Modules.CarRefuelTracker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Modules\RietRobHaushaltsbuch.Modules.OverView\RietRobHaushaltsbuch.Modules.OverView.csproj">
+      <Project>{31B619D7-4A91-4CB2-B79E-88DEFCAF454D}</Project>
+      <Name>RietRobHaushaltsbuch.Modules.OverView</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RietRobHaushaltsbuch.Core\RietRobHaushaltsbuch.Core.csproj">
       <Project>{C96ED1FA-E594-4E9D-8596-CE499F1710BD}</Project>
       <Name>RietRobHaushaltsbuch.Core</Name>

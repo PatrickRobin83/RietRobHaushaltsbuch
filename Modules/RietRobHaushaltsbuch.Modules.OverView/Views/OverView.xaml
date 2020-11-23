@@ -1,13 +1,13 @@
-﻿<UserControl x:Class="RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views.ViewA"
+﻿<UserControl x:Class="RietRobHaushaltsbuch.Modules.OverView.Views.OverView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views"
+             xmlns:local="clr-namespace:RietRobHaushaltsbuch.Modules.OverView.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:prism="http://prismlibrary.com/"
-             prism:ViewModelLocator.AutoWireViewModel="True">
+             prism:ViewModelLocator.AutoWireViewModel="True" >
     <Grid>
         <TextBlock Text="{Binding Message}"
                        HorizontalAlignment="Center"

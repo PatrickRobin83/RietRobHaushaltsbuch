@@ -1,8 +1,10 @@
 ﻿using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views;
 using Prism.Ioc;
 using Prism.Modularity;
+using Prism.Mvvm;
 using Prism.Regions;
 using RietRobHaushaltbuch.Core;
+using RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker
 {
@@ -17,12 +19,14 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(ViewA));
+            ////ToDo: Remove
+            _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(CarRefuelTrackerOverviewView));
+            
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            
+            ViewModelLocationProvider.Register<CarRefuelTrackerOverviewView, CarRefuelTrackerOverviewViewModel>();
         }
     }
 }

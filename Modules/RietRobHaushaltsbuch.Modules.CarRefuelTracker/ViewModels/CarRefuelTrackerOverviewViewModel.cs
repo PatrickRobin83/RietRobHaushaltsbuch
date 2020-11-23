@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
-    public class ViewAViewModel : BindableBase
+    public class CarRefuelTrackerOverviewViewModel : BindableBase
     {
         private string _message;
         public string Message
@@ -17,9 +17,9 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             set { SetProperty(ref _message, value); }
         }
 
-        public ViewAViewModel()
+        public CarRefuelTrackerOverviewViewModel()
         {
-            Message = "View A from your Prism Module";
+            Message = "Hello from CarRefuelTrackerOverviewView";
         }
     }
 }

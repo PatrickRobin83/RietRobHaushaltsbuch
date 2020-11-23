@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RietRobHaushaltsbuch.Core",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RietRobHaushaltsbuch.Modules.CarRefuelTracker", "Modules\RietRobHaushaltsbuch.Modules.CarRefuelTracker\RietRobHaushaltsbuch.Modules.CarRefuelTracker.csproj", "{14FD534A-FC79-443F-92E7-2B658F415C22}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{500047E1-5C11-4783-A2AA-15AB6DEEE27D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RietRobHaushaltsbuch.Modules.OverView", "Modules\RietRobHaushaltsbuch.Modules.OverView\RietRobHaushaltsbuch.Modules.OverView.csproj", "{31B619D7-4A91-4CB2-B79E-88DEFCAF454D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,9 +31,17 @@ Global
 		{14FD534A-FC79-443F-92E7-2B658F415C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14FD534A-FC79-443F-92E7-2B658F415C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14FD534A-FC79-443F-92E7-2B658F415C22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31B619D7-4A91-4CB2-B79E-88DEFCAF454D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31B619D7-4A91-4CB2-B79E-88DEFCAF454D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31B619D7-4A91-4CB2-B79E-88DEFCAF454D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31B619D7-4A91-4CB2-B79E-88DEFCAF454D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{14FD534A-FC79-443F-92E7-2B658F415C22} = {500047E1-5C11-4783-A2AA-15AB6DEEE27D}
+		{31B619D7-4A91-4CB2-B79E-88DEFCAF454D} = {500047E1-5C11-4783-A2AA-15AB6DEEE27D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8C8C7458-7C8B-4050-B541-18DF4D030150}

@@ -3,32 +3,46 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:mahApps="clr-namespace:MahApps;assembly=MahApps.Metro"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:core="clr-namespace:RietRobHaushaltbuch.Core;assembly=RietRobHaushaltbuch.Core"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="350" Width="525">
+        Title="{Binding Title}" Height="{Binding Height}" Width="{Binding Width}">
+
     <Grid x:Name="LayoutRoot">
-        <DockPanel LastChildFill="True" HorizontalAlignment="Stretch" Name="DockPanel" VerticalAlignment="Stretch">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ContentControl  prism:RegionManager.RegionName="MainRegion" HorizontalAlignment="Stretch"  
-                                 VerticalAlignment="Stretch"/>
-            </StackPanel>
-        </DockPanel>
         <Button Height="50" Width="50" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="20"
-                Command="{Binding OpenFlyOutCommand}" Background="{DynamicResource MahApps.Brushes.Accent2}" BorderThickness="0">
+                Command="{Binding OpenFlyOutCommand}" BorderThickness="0">
             <Button.Content>
                 <fa:ImageAwesome Height="50" Width="50" Foreground="White" Icon="Bars"/>
             </Button.Content>
         </Button>
         <mah:Flyout Width="200" Position="Left" IsOpen="{Binding FlyOutOpen}" Theme="Adapt">
-            <ListBox x:Name="ListBox" DisplayMemberPath="DisplayName">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="SelectionChanged">
-                        <i:InvokeCommandAction Command="{Binding OpenViewCommand}" CommandParameter="{Binding ElementName=ListBox, Path=SelectedItem}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-            </ListBox>
+            <StackPanel>
+                <Button Command="{Binding OpenViewCommand}" CommandParameter="OverView" MaxWidth="200" MinWidth="200">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal" Width="200" HorizontalAlignment="Left">
+                            <fa:ImageAwesome Icon="Tachometer" Height="30" Margin="0,0,10,0" Foreground="White"/>
+                            <Label FontSize="14" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
+                                   Content="OverView"/>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding OpenViewCommand}" CommandParameter="CarRefuelTrackerOverviewView">
+                    <Button.Content>
+                            <StackPanel Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="Car" Height="30" Margin="0,0,10,0" Foreground="White"/>
+                            <Label FontSize="14"  VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
+                                   Content="CarRefuelTracker"></Label>
+                            </StackPanel>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
         </mah:Flyout>
+        <DockPanel LastChildFill="True" HorizontalAlignment="Stretch" Name="DockPanel" VerticalAlignment="Stretch">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ContentControl  prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" HorizontalAlignment="Stretch"  
+                                 VerticalAlignment="Stretch"/>
+            </StackPanel>
+        </DockPanel>
     </Grid>
 </mah:MetroWindow>
