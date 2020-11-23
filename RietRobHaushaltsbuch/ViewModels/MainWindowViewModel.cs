@@ -39,15 +39,13 @@ namespace RietRobHaushaltsbuch.ViewModels
         }
 
         public DelegateCommand OpenFlyOutCommand { get; set; }
-        private DelegateCommand<string> _openViewCommand;
-
         public DelegateCommand<string> OpenViewCommand { get; set; }
+        public DelegateCommand CloseApplicationCommand { get; set; }
 
         public MainWindowViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }
-
         private void OpenFlyOut()
         {
             FlyOutOpen = true;
@@ -59,6 +57,12 @@ namespace RietRobHaushaltsbuch.ViewModels
         {
             OpenFlyOutCommand = new DelegateCommand(OpenFlyOut);
             OpenViewCommand = new DelegateCommand<string>(OpenView);
+            CloseApplicationCommand = new DelegateCommand(CloseApplication);
+        }
+
+        private void CloseApplication()
+        {
+            Environment.Exit(0);
         }
 
         private void OpenView(string parameter)
@@ -66,6 +70,7 @@ namespace RietRobHaushaltsbuch.ViewModels
             if(string.IsNullOrEmpty(parameter))
                 throw new ArgumentNullException();
             _regionManager.RequestNavigate(RegionNames.MainRegion, parameter);
+            FlyOutOpen = false;
         }
 
         #endregion

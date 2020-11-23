@@ -16,33 +16,41 @@
                 <fa:ImageAwesome Height="50" Width="50" Foreground="White" Icon="Bars"/>
             </Button.Content>
         </Button>
-        <mah:Flyout Width="200" Position="Left" IsOpen="{Binding FlyOutOpen}" Theme="Adapt">
+        <ContentControl  prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" HorizontalAlignment="Left"  
+                         VerticalAlignment="Top" Margin="100,20,0,0"/>
+        <mah:Flyout Width="200" Position="Left" IsOpen="{Binding FlyOutOpen}" Theme="Adapt" CloseButtonVisibility="Hidden">
             <StackPanel>
-                <Button Command="{Binding OpenViewCommand}" CommandParameter="OverView" MaxWidth="200" MinWidth="200">
+                <Button Command="{Binding OpenViewCommand}" CommandParameter="OverView"
+                        HorizontalContentAlignment="Left">
                     <Button.Content>
-                        <StackPanel Orientation="Horizontal" Width="200" HorizontalAlignment="Left">
-                            <fa:ImageAwesome Icon="Tachometer" Height="30" Margin="0,0,10,0" Foreground="White"/>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="Tachometer" Height="40" Margin="0,0,20,0" Foreground="White" Width="40"/>
                             <Label FontSize="14" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
                                    Content="OverView"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Command="{Binding OpenViewCommand}" CommandParameter="CarRefuelTrackerOverviewView">
+                <Button Command="{Binding OpenViewCommand}" CommandParameter="CarRefuelTrackerOverviewView"
+                        HorizontalContentAlignment="Left">
                     <Button.Content>
-                            <StackPanel Orientation="Horizontal">
-                            <fa:ImageAwesome Icon="Car" Height="30" Margin="0,0,10,0" Foreground="White"/>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="Car" Height="40" Margin="0,0,20,0" Foreground="White" Width="40"/>
                             <Label FontSize="14"  VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
                                    Content="CarRefuelTracker"></Label>
-                            </StackPanel>
+                        </StackPanel>
+                    </Button.Content>
+                </Button>
+                <Button Command="{Binding CloseApplicationCommand}"
+                        HorizontalContentAlignment="Left">
+                    <Button.Content>
+                        <StackPanel Orientation="Horizontal">
+                            <fa:ImageAwesome Icon="WindowClose" Height="40" Margin="0,0,20,0" Foreground="White" Width="40"/>
+                            <Label FontSize="14" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
+                                   Content="Close"/>
+                        </StackPanel>
                     </Button.Content>
                 </Button>
             </StackPanel>
         </mah:Flyout>
-        <DockPanel LastChildFill="True" HorizontalAlignment="Stretch" Name="DockPanel" VerticalAlignment="Stretch">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                <ContentControl  prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" HorizontalAlignment="Stretch"  
-                                 VerticalAlignment="Stretch"/>
-            </StackPanel>
-        </DockPanel>
     </Grid>
 </mah:MetroWindow>

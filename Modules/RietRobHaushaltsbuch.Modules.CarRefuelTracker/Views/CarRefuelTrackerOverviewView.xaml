@@ -4,11 +4,48 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:prism="http://prismlibrary.com/"
+             
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="32" Text="{Binding Message}" Foreground="Red"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="32" Text="{Binding Title}"/>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Vertical" Grid.ColumnSpan="2" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Label Content="Angelegte Fahrzeuge" 
+                   VerticalAlignment="Center" 
+                   HorizontalAlignment="Center" 
+                   FontSize="20"/>
+            <DataGrid Margin="5,0,5,0"
+                      ItemsSource="{Binding Path=AvailableCars}"
+                      AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" 
+                      CanUserResizeRows="False" SelectedItem="{Binding Path=SelectedCarModel, Mode=TwoWay}"  
+                      SelectionMode="Single" CanUserSortColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header=" Marke " IsReadOnly="True" Binding="{Binding Brand}"/>
+                    <DataGridTextColumn Header=" Model " IsReadOnly="True" Binding="{Binding ModelType}"/>
+                    <DataGridTextColumn Header=" Treibstoffart " IsReadOnly="True" Binding="{Binding FuelType}"/>
+                    <DataGridCheckBoxColumn Header="Ist Aktiv" IsReadOnly="True"  Binding="{Binding IsActive}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Button Command="{Binding CreateCarCommand}" Height="25" Content="Create Car" Margin="10,35,0,0"/>
+            <Button Command="{Binding EditCarCommand}" Height="25" Content="Edit Car" Margin="10,5,0,0"/>
+            <Button Command="{Binding DeleteCarCommand}" Height="25" Content="Delete Car" Margin="10,5,0,0" />
+        </StackPanel>
     </Grid>
 </UserControl>

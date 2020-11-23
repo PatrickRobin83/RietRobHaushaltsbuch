@@ -21,6 +21,7 @@ namespace RietRobHaushaltbuch.Core
         #region Properties
 
         public static string MainRegion = "MainRegion";
+        public static string TopRegion = "TopRegion";
 
         #endregion
 

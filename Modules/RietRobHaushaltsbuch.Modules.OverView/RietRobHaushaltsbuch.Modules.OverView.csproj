@@ -33,9 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Prism">
-      <HintPath>C:\Users\p.robin.IMMERSION7\.nuget\packages\prism.core\8.0.0.1909\lib\net47\Prism.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -93,10 +90,16 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="FontAwesome.WPF">
+      <Version>4.7.0.9</Version>
+    </PackageReference>
+    <PackageReference Include="MahApps.Metro">
+      <Version>2.3.4</Version>
+    </PackageReference>
     <PackageReference Include="Prism.Core">
       <Version>8.0.0.1909</Version>
     </PackageReference>
-    <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
+    <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

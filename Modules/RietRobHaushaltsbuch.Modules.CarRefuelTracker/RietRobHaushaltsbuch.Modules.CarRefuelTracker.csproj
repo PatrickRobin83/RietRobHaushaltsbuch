@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CarRefuelTrackerModule.cs" />
+    <Compile Include="DataAccess\SQLiteDataAccess.cs" />
+    <Compile Include="Models\BrandModel.cs" />
+    <Compile Include="Models\CarModel.cs" />
+    <Compile Include="Models\EntryModel.cs" />
+    <Compile Include="Models\FuelTypeModel.cs" />
+    <Compile Include="Models\ModelTypeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -84,10 +90,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Dapper">
+      <Version>2.0.78</Version>
+    </PackageReference>
+    <PackageReference Include="FontAwesome.WPF">
+      <Version>4.7.0.9</Version>
+    </PackageReference>
+    <PackageReference Include="MahApps.Metro">
+      <Version>2.3.4</Version>
+    </PackageReference>
     <PackageReference Include="Prism.Core">
       <Version>7.2.0.1422</Version>
     </PackageReference>
     <PackageReference Include="Prism.Wpf" Version="7.2.0.1422" />
+    <PackageReference Include="System.Data.SQLite">
+      <Version>1.0.113.6</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

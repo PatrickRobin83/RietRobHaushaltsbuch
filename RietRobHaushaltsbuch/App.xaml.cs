@@ -2,7 +2,7 @@
 using Prism.Ioc;
 using Prism.Modularity;
 using System.Windows;
-using Prism.Regions;
+using Prism.Unity;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker;
 using RietRobHaushaltsbuch.Modules.OverView;
 
@@ -11,7 +11,7 @@ namespace RietRobHaushaltsbuch
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App
+    public partial class App : PrismApplication
     {
         protected override Window CreateShell()
         {
@@ -26,14 +26,8 @@ namespace RietRobHaushaltsbuch
         {
 
             //ToDo: Register the Modules here!
-            moduleCatalog.AddModule<CarRefuelTrackerModule>();
             moduleCatalog.AddModule<OverViewModule>();
+            moduleCatalog.AddModule<CarRefuelTrackerModule>();
         }
-
-        protected override void ConfigureRegionAdapterMappings(RegionAdapterMappings regionAdapterMappings)
-        {
-            base.ConfigureRegionAdapterMappings(regionAdapterMappings);
-        }
-
     }
 }

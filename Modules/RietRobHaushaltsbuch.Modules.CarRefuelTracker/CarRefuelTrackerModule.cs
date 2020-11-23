@@ -19,14 +19,14 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            ////ToDo: Remove
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(CarRefuelTrackerOverviewView));
-            
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
             ViewModelLocationProvider.Register<CarRefuelTrackerOverviewView, CarRefuelTrackerOverviewViewModel>();
+           
+
         }
     }
 }
