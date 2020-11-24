@@ -115,6 +115,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             CarDetailsView carDetailsView = new CarDetailsView();
             carDetailsView.DataContext = new CarDetailsViewModel(SelectedCarModel, _eventAggregator);
+            carDetailsView.SaveWindowPosition = true;
             carDetailsView.ShowDialog();
         }
 
@@ -129,6 +130,8 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             CarDetailsView carDetailsView = new CarDetailsView();
             carDetailsView.DataContext = new CarDetailsViewModel(_eventAggregator);
+            carDetailsView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            carDetailsView.SaveWindowPosition = true;
             carDetailsView.ShowDialog();
         }
         #endregion

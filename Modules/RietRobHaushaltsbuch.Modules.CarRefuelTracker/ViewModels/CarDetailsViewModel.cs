@@ -104,6 +104,35 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             _eventAggregator = eventAggregator;
             RegisterCommands();
+            Initilize();
+        }
+        public CarDetailsViewModel(CarModel carModel, IEventAggregator eventAggregator)
+        {
+            _eventAggregator = eventAggregator;
+            RegisterCommands();
+            CarModel = carModel;
+            DataToControls();
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void DataToControls()
+        {
+            AvailableBrands = new ObservableCollection<BrandModel>(SQLiteDataAccess.LoadAllBrands());
+            AvailableFuelTypes = new ObservableCollection<FuelTypeModel>(SQLiteDataAccess.LoadAllFuelTypes());
+            Id = CarModel.Id;
+            IsActive = CarModel.IsActive;
+            SelectedBrand = CarModel.Brand;
+            AvailableCarModels = new ObservableCollection<ModelTypeModel>(SQLiteDataAccess.ModelsFromBrands(SelectedBrand.Id));
+            SelectedModelType = CarModel.ModelType;
+            SelectedFuelType = CarModel.FuelType;
+            Entries = CarModel.Entries;
+        }
+
+        private void Initilize()
+        {
             CarModel = new CarModel();
             AvailableFuelTypes = new ObservableCollection<FuelTypeModel>(SQLiteDataAccess.LoadAllFuelTypes());
             AvailableBrands = new ObservableCollection<BrandModel>(SQLiteDataAccess.LoadAllBrands());
@@ -125,33 +154,9 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             }
 
             IsActive = true;
-            
-        }
-        public CarDetailsViewModel(CarModel carModel, IEventAggregator eventAggregator)
-        {
-            _eventAggregator = eventAggregator;
-            RegisterCommands();
-            CarModel = carModel;
-            DataToControls();
+
         }
 
-        private void DataToControls()
-        {   
-            AvailableBrands = new ObservableCollection<BrandModel>(SQLiteDataAccess.LoadAllBrands());
-            AvailableFuelTypes = new ObservableCollection<FuelTypeModel>(SQLiteDataAccess.LoadAllFuelTypes());
-            Id = CarModel.Id;
-            IsActive = CarModel.IsActive;
-            SelectedBrand = CarModel.Brand;
-            AvailableCarModels = new ObservableCollection<ModelTypeModel>(SQLiteDataAccess.ModelsFromBrands(SelectedBrand.Id));
-            SelectedModelType = CarModel.ModelType;
-            SelectedFuelType = CarModel.FuelType;
-            Entries = CarModel.Entries;
-        }
-
-
-        #endregion
-
-        #region Methods
         private void RegisterCommands()
         {
             SaveCarCommand = new DelegateCommand(SaveCar);
@@ -169,6 +174,8 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             AddBrandView addBrandView = new AddBrandView();
             addBrandView.DataContext = new AddBrandViewModel();
+            addBrandView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            addBrandView.SaveWindowPosition = true;
             addBrandView.ShowDialog();
         }
 
