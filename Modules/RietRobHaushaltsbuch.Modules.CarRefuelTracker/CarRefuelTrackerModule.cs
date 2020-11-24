@@ -19,13 +19,16 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
-            _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(CarRefuelTrackerOverviewView));
+            _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(CarRefuelTrackerOverView));
+            _regionManager.RegisterViewWithRegion(RegionNames.CarEntryOverViewRegion, typeof(CarRefuelTrackerCarEntryOverView));
         }
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            ViewModelLocationProvider.Register<CarRefuelTrackerOverviewView, CarRefuelTrackerOverviewViewModel>();
-           
+           ViewModelLocationProvider.Register<CarRefuelTrackerOverView, CarRefuelTrackerOverviewViewModel>();
+           ViewModelLocationProvider.Register<CarRefuelTrackerCarEntryOverView, CarRefuelTrackerCarEntryOverViewModel>();
+           ViewModelLocationProvider.Register<CarDetailsView, CarDetailsViewModel>();
+           containerRegistry.RegisterForNavigation<CarRefuelTrackerCarEntryOverView>();
 
         }
     }

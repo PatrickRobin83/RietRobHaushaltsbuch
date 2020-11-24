@@ -122,7 +122,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             {
                 using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    cnn.Query($"UPDATE Car SET isActive = 0");
+                    cnn.Query($"UPDATE Car SET isActive = 0 WHERE id = @id ", carToDelete);
                 }
             }
             catch (SQLiteException ex)

@@ -30,7 +30,7 @@
                         </StackPanel>
                     </Button.Content>
                 </Button>
-                <Button Command="{Binding OpenViewCommand}" CommandParameter="CarRefuelTrackerOverviewView"
+                <Button Command="{Binding OpenViewCommand}" CommandParameter="CarRefuelTrackerOverView"
                         HorizontalContentAlignment="Left">
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">

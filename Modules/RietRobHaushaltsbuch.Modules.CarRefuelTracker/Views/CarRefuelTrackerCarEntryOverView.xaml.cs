@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views
 {
     /// <summary>
-    /// Interaktionslogik für CarRefuelTrackerOverviewView.xaml
+    /// Interaktionslogik für CarRefuelTrackerCarEntryOverView.xaml
     /// </summary>
-    public partial class CarRefuelTrackerOverviewView : UserControl
+    public partial class CarRefuelTrackerCarEntryOverView : UserControl
     {
-        public CarRefuelTrackerOverviewView()
+        public CarRefuelTrackerCarEntryOverView()
         {
             InitializeComponent();
         }
