@@ -103,18 +103,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="FontAwesome.WPF">
-      <Version>4.7.0.9</Version>
-    </PackageReference>
-    <PackageReference Include="MahApps.Metro">
-      <Version>2.3.4</Version>
-    </PackageReference>
-    <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
-    <PackageReference Include="Prism.Wpf">
-      <Version>8.0.0.1909</Version>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Modules\RietRobHaushaltsbuch.Modules.CarRefuelTracker\RietRobHaushaltsbuch.Modules.CarRefuelTracker.csproj">
       <Project>{14FD534A-FC79-443F-92E7-2B658F415C22}</Project>
       <Name>RietRobHaushaltsbuch.Modules.CarRefuelTracker</Name>
@@ -127,6 +115,20 @@
       <Project>{C96ED1FA-E594-4E9D-8596-CE499F1710BD}</Project>
       <Name>RietRobHaushaltsbuch.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.WPF">
+      <Version>4.7.0.9</Version>
+    </PackageReference>
+    <PackageReference Include="MahApps.Metro">
+      <Version>2.3.4</Version>
+    </PackageReference>
+    <PackageReference Include="Prism.Unity">
+      <Version>8.0.0.1909</Version>
+    </PackageReference>
+    <PackageReference Include="Prism.Wpf">
+      <Version>8.0.0.1909</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -75,7 +75,9 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             RegisterCommands();
             _eventAggregator.GetEvent<EditCarEvent>().Subscribe(CarCreated);
         }
+        #endregion
 
+        #region Methods
         private void CarCreated(string parameter)
         {
             if (parameter.Equals("CarSaved") || parameter.Equals("Cancel"))
@@ -129,8 +131,8 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             carDetailsView.DataContext = new CarDetailsViewModel(_eventAggregator);
             carDetailsView.ShowDialog();
         }
-
         #endregion
+
 
         #region Commands
 

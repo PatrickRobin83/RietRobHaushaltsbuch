@@ -167,7 +167,9 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void AddBrand()
         {
-            // ToDo: Open AddBrandDialog 
+            AddBrandView addBrandView = new AddBrandView();
+            addBrandView.DataContext = new AddBrandViewModel();
+            addBrandView.ShowDialog();
         }
 
         private void CloseCarDetails()
