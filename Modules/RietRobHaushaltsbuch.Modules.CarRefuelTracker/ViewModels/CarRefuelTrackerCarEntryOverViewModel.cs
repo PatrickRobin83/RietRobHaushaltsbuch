@@ -91,7 +91,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         public CarRefuelTrackerCarEntryOverViewModel(CarModel carModel, IEventAggregator ea)
         {
-            ea.GetEvent<CarModelSendEvent>().Subscribe(HandleCarModelSelection);
+            ea.GetEvent<ObjectEvent>().Subscribe(HandleCarModelSelection);
         }
 
         private void HandleCarModelSelection(object selectedCarModel)

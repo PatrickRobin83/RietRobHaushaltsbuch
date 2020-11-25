@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommonServiceLocator">
+      <HintPath>C:\Users\p.robin.IMMERSION7\.nuget\packages\commonservicelocator\2.0.4\lib\net47\CommonServiceLocator.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
@@ -70,11 +73,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\AddBrandViewModel.cs" />
+    <Compile Include="ViewModels\AddModelTypeViewModel.cs" />
     <Compile Include="ViewModels\CarDetailsViewModel.cs" />
     <Compile Include="ViewModels\CarRefuelTrackerCarEntryOverViewModel.cs" />
     <Compile Include="ViewModels\CarRefuelTrackerOverviewViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\AddBrandView.xaml.cs">
       <DependentUpon>AddBrandView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddModelTypeView.xaml.cs">
+      <DependentUpon>AddModelTypeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CarDetailsView.xaml.cs">
       <DependentUpon>CarDetailsView.xaml</DependentUpon>
@@ -102,6 +110,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="CommonServiceLocator">
+      <Version>2.0.4</Version>
+    </PackageReference>
     <PackageReference Include="Dapper">
       <Version>2.0.78</Version>
     </PackageReference>
@@ -123,6 +134,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AddBrandView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddModelTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

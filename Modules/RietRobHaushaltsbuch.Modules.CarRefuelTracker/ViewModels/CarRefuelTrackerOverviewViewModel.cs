@@ -73,7 +73,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             Title = "CarRefuelTracker Overview";
             AvailableCars = new ObservableCollection<CarModel>(SQLiteDataAccess.LoadCars());
             RegisterCommands();
-            _eventAggregator.GetEvent<EditCarEvent>().Subscribe(CarCreated);
+            _eventAggregator.GetEvent<NewsEvent>().Subscribe(CarCreated);
         }
         #endregion
 
@@ -101,7 +101,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             {
                 IsCarModelSelected = true;
                 Visibility = true;
-                _eventAggregator.GetEvent<CarModelSendEvent>().Publish(SelectedCarModel);
+                _eventAggregator.GetEvent<ObjectEvent>().Publish(SelectedCarModel);
 
             }
             else

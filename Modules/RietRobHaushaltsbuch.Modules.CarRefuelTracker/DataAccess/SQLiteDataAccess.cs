@@ -144,7 +144,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             {
                 using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    allBrands = cnn.Query<BrandModel>("SELECT * FROM Brand").ToList();
+                    allBrands = cnn.Query<BrandModel>("SELECT * FROM Brand ORDER BY Brandname ASC").ToList();
                     return allBrands;
                 }
             }
@@ -233,7 +233,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             {
                 using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    carModels = cnn.Query<ModelTypeModel>($"SELECT * FROM Model WHERE {brandId} = brandId").ToList();
+                    carModels = cnn.Query<ModelTypeModel>($"SELECT * FROM Model WHERE {brandId} = brandId ORDER BY Modelname ASC").ToList();
 
                     return carModels;
                 }
@@ -307,7 +307,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             {
                 using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    fuelTypesList = cnn.Query<FuelTypeModel>($"SELECT * FROM TypeOfFuel").ToList();
+                    fuelTypesList = cnn.Query<FuelTypeModel>($"SELECT * FROM TypeOfFuel ORDER BY TypeOfFuel ASC").ToList();
 
                     return fuelTypesList;
                 }
@@ -473,11 +473,5 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
         #endregion
 
         #endregion
-
-        #region EventHandler
-
-        #endregion
-
-
     }
 }

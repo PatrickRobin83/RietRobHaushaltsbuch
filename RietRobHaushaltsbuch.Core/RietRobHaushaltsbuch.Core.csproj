@@ -58,8 +58,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CarModelSendEvent.cs" />
-    <Compile Include="EditCarEvent.cs" />
+    <Compile Include="Interfaces\IViewModelHelper.cs" />
+    <Compile Include="ObjectEvent.cs" />
+    <Compile Include="NewsEvent.cs" />
     <Compile Include="Interfaces\ICloseWindows.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

@@ -29,7 +29,8 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker
            ViewModelLocationProvider.Register<CarRefuelTrackerCarEntryOverView, CarRefuelTrackerCarEntryOverViewModel>();
            ViewModelLocationProvider.Register<CarDetailsView, CarDetailsViewModel>();
            ViewModelLocationProvider.Register<AddBrandView, AddBrandViewModel>();
-           containerRegistry.RegisterForNavigation<CarRefuelTrackerCarEntryOverView>();
+           ViewModelLocationProvider.Register<AddModelTypeView, AddModelTypeViewModel>();
+            containerRegistry.RegisterForNavigation<CarRefuelTrackerCarEntryOverView>();
 
         }
     }

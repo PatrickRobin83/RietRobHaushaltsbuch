@@ -18,7 +18,7 @@
         </Button>
         <ContentControl  prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" HorizontalAlignment="Left"  
                          VerticalAlignment="Top" Margin="100,20,0,0"/>
-        <mah:Flyout Width="200" Position="Left" IsOpen="{Binding FlyOutOpen}" Theme="Adapt" CloseButtonVisibility="Hidden">
+        <mah:Flyout Width="200" Position="Left" IsOpen="{Binding FlyOutOpen}" Theme="Adapt" CloseButtonVisibility="Visible">
             <StackPanel>
                 <Button Command="{Binding OpenViewCommand}" CommandParameter="OverView"
                         HorizontalContentAlignment="Left">

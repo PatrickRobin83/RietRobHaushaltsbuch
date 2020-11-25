@@ -13,13 +13,19 @@
 using System;
 using System.Windows;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
+using RietRobHaushaltbuch.Core;
 using RietRobHaushaltbuch.Core.Interfaces;
+using RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess;
+using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
-    public class AddBrandViewModel : BindableBase, ICloseWindows
+    public class AddBrandViewModel : ViewModelBase, IViewModelHelper
     {
+        private readonly IEventAggregator _eventAggregator;
+
         #region Fields
 
         private int _height = 180;
@@ -57,21 +63,22 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         #region Constructor
 
-        public AddBrandViewModel()
+        public AddBrandViewModel(IEventAggregator eventAggregator)
         {
+            _eventAggregator = eventAggregator;
             RegisterCommands();
         }
         #endregion
 
         #region Methods
 
-        private void RegisterCommands()
+        public void RegisterCommands()
         {
             AddBrandCommand = new DelegateCommand(AddBrand).ObservesProperty(() => HasCharacters);
             TextChangedCommand = new DelegateCommand(BrandTextChanged).ObservesProperty(() => HasCharacters);
             CancelAddBrandCommand = new DelegateCommand(CancelAddBrand);
-
         }
+
         private void CancelAddBrand()
         {
             Close?.Invoke();
@@ -89,8 +96,10 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         }
         private void AddBrand()
         {
-            // ToDo: Add the CarBrand to the Database
-            MessageBox.Show("Brand added");
+            BrandModel modelToAdd = new BrandModel();
+            modelToAdd.BrandName = TxtBrandName;
+            modelToAdd.Id = SQLiteDataAccess.AddBrand(modelToAdd).Id;
+            _eventAggregator.GetEvent<ObjectEvent>().Publish(modelToAdd);
             Close?.Invoke();
         }
         #endregion
@@ -101,9 +110,5 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         public DelegateCommand TextChangedCommand { get; set; }
         #endregion
 
-        #region Implementation of ICloseWindows
-        public Action Close { get; set; }
-
-        #endregion
     }
 }

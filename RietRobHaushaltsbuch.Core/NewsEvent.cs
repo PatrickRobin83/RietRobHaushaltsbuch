@@ -14,7 +14,7 @@ using Prism.Events;
 
 namespace RietRobHaushaltbuch.Core
 {
-    public class EditCarEvent : PubSubEvent<string>
+    public class NewsEvent : PubSubEvent<string>
     {
         #region Fields
 
