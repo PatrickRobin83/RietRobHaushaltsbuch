@@ -12,18 +12,23 @@
 
 using System;
 using System.Collections.ObjectModel;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using RietRobHaushaltbuch.Core;
+using RietRobHaushaltbuch.Core.Interfaces;
+using RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models;
+using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
-    public class CarRefuelTrackerCarEntryOverViewModel : BindableBase
+    public class CarRefuelTrackerCarEntryOverViewModel : BaseViewModel, IViewModelHelper
     {
         #region Fields
 
         private ObservableCollection<EntryModel> _allEntrysForSelectedCar;
+        private IEventAggregator _eventAggregator;
         private CarModel _carModel;
         private string _averagePricePerLiter;
         private string _averageFuelAmount;
@@ -31,6 +36,20 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         private string _averageDrivenDistance;
         private string _averageConsumption;
         private string _averageCosts;
+        private EntryModel _selectedEntryModel;
+        private bool _isEntryModelSelected;
+
+        public bool IsEntryModelSelected
+        {
+            get { return _isEntryModelSelected; }
+            set { SetProperty(ref _isEntryModelSelected, value); }
+        }
+
+        public EntryModel SelectedEntryModel
+        {
+            get { return _selectedEntryModel; }
+            set { SetProperty(ref _selectedEntryModel, value); }
+        }
 
         #endregion
 
@@ -91,7 +110,9 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         public CarRefuelTrackerCarEntryOverViewModel(CarModel carModel, IEventAggregator ea)
         {
-            ea.GetEvent<ObjectEvent>().Subscribe(HandleCarModelSelection);
+            _eventAggregator = ea;
+            RegisterCommands();
+            _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleCarModelSelection);
         }
 
         private void HandleCarModelSelection(object selectedCarModel)
@@ -99,8 +120,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             if (selectedCarModel.GetType() == typeof(CarModel))
             {
                 CarModel = (CarModel)selectedCarModel;
-                AllEntrysForSelectedCar =
-                    new ObservableCollection<EntryModel>(DataAccess.SQLiteDataAccess.LoadEntrysForCar(CarModel.Id));
+                AllEntrysForSelectedCar = new ObservableCollection<EntryModel>(DataAccess.SQLiteDataAccess.LoadEntrysForCar(CarModel.Id));
                 CarModel.Entries = AllEntrysForSelectedCar;
                 CalculateAverages();
             }
@@ -182,6 +202,54 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             }
             #endregion
         }
+
+        public void RegisterCommands()
+        {
+            AddEntryCommand = new DelegateCommand(AddEntry);
+            EditEntryCommand = new DelegateCommand(EditEntry).ObservesCanExecute(() => IsEntryModelSelected);
+            DeleteEntryCommand = new DelegateCommand(DeleteEntry).ObservesCanExecute(() => IsEntryModelSelected);
+            EntrySelectionChangedCommand = new DelegateCommand(EntrySelectionChanged);
+        }
+
+        private void EntrySelectionChanged()
+        {
+            if (SelectedEntryModel != null)
+            {
+                IsEntryModelSelected = true;
+            }
+            else
+            {
+                IsEntryModelSelected = false;
+            }
+        }
+
+        private void DeleteEntry()
+        {
+            SQLiteDataAccess.DeleteEntryFromDatabase(SelectedEntryModel);
+        }
+
+        private void EditEntry()
+        {
+            //ToDo: Open the EntryDetailsView and fill the fields with the values from selected entryModel. After changing values safe in Database
+            _eventAggregator.GetEvent<ObjectEvent>().Publish(SelectedEntryModel);
+        }
+
+        private void AddEntry()
+        {
+            EntryDetailsView entryDetailsView = new EntryDetailsView();
+            entryDetailsView.DataContext = new EntryDetailsViewModel();
+            entryDetailsView.ShowDialog();
+            // ToDo: Open EntryDetailsView with empty fields to fill in and safe the entry in Database
+        }
+        #endregion
+
+        #region Commands
+
+        public DelegateCommand AddEntryCommand { get; set; }
+        public DelegateCommand EditEntryCommand { get; set; }
+        public DelegateCommand DeleteEntryCommand { get; set; }
+        public DelegateCommand EntrySelectionChangedCommand { get; set; }
+
         #endregion
 
     }

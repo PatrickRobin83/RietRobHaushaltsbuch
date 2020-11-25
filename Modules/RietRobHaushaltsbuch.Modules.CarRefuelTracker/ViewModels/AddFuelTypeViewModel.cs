@@ -1,8 +1,8 @@
 ﻿/*
  * -----------------------------------------------------------------------------
  *	 
- *   Filename		:   AddBrandViewModel.cs
- *   Date			:   2020-11-24 13:43:58
+ *   Filename		:   AddFuelTypeViewModel.cs
+ *   Date			:   2020-11-25 14:44:59
  *   All rights reserved
  * 
  * -----------------------------------------------------------------------------
@@ -19,27 +19,33 @@ using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
-    public class AddBrandViewModel : BaseViewModel, IViewModelHelper
+    public class AddFuelTypeViewModel : BaseViewModel, IViewModelHelper
     {
-        private readonly IEventAggregator _eventAggregator;
-
         #region Fields
-
+        private readonly IEventAggregator _eventAggregator;
+        private bool _hasCharacters;
         private int _height = 180;
         private int _width = 380;
-        private string _txtBrandName;
-        private bool _hasCharacters = false;
-
+        private string _title = "Kraftstoffart hinzufügen";
+        private string _txtFuelTypeName;
         #endregion
 
         #region Properties
-
         public bool HasCharacters
         {
             get { return _hasCharacters; }
             set { SetProperty(ref _hasCharacters, value); }
         }
-
+        public string TxtFuelTypeName
+        {
+            get { return _txtFuelTypeName; }
+            set { SetProperty(ref _txtFuelTypeName, value); }
+        }
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
         public int Width
         {
             get { return _width; }
@@ -50,17 +56,11 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             get { return _height; }
             set { SetProperty(ref _height, value); }
         }
-        public string TxtBrandName
-        {
-            get { return _txtBrandName; }
-            set { SetProperty(ref _txtBrandName, value); }
-        }
-
         #endregion
 
         #region Constructor
 
-        public AddBrandViewModel(IEventAggregator eventAggregator)
+        public AddFuelTypeViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
             RegisterCommands();
@@ -68,21 +68,15 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         #endregion
 
         #region Methods
-
         public void RegisterCommands()
         {
-            AddBrandCommand = new DelegateCommand(AddBrand).ObservesProperty(() => HasCharacters);
-            TextChangedCommand = new DelegateCommand(BrandTextChanged).ObservesProperty(() => HasCharacters);
-            CancelAddBrandCommand = new DelegateCommand(CancelAddBrand);
+            AddFuelTypeCommand = new DelegateCommand(AddFuelType).ObservesProperty(() => HasCharacters); ;
+            CancelAddFuelTypeCommand = new DelegateCommand(CancelAddFuel);
+            TextChangedCommand = new DelegateCommand(TextChanged).ObservesProperty(() => HasCharacters);
         }
-
-        private void CancelAddBrand()
+        private void TextChanged()
         {
-            Close?.Invoke();
-        }
-        public void BrandTextChanged()
-        {
-            if (!string.IsNullOrWhiteSpace(TxtBrandName) && TxtBrandName.Length >= 2)
+            if (!string.IsNullOrWhiteSpace(TxtFuelTypeName) && TxtFuelTypeName.Length >= 2)
             {
                 HasCharacters = true;
             }
@@ -91,21 +85,24 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
                 HasCharacters = false;
             }
         }
-        private void AddBrand()
+        private void CancelAddFuel()
         {
-            BrandModel modelToAdd = new BrandModel();
-            modelToAdd.BrandName = TxtBrandName;
-            modelToAdd.Id = SQLiteDataAccess.AddBrand(modelToAdd).Id;
-            _eventAggregator.GetEvent<ObjectEvent>().Publish(modelToAdd);
+            Close?.Invoke();
+        }
+        private void AddFuelType()
+        {
+            FuelTypeModel fuelTypeModelToAdd = new FuelTypeModel();
+            fuelTypeModelToAdd.TypeOfFuel = TxtFuelTypeName;
+            fuelTypeModelToAdd.Id = SQLiteDataAccess.AddFuelType(fuelTypeModelToAdd).Id;
+            _eventAggregator.GetEvent<ObjectEvent>().Publish(fuelTypeModelToAdd);
             Close?.Invoke();
         }
         #endregion
 
         #region Commands
-        public DelegateCommand AddBrandCommand { get; set; }
-        public DelegateCommand CancelAddBrandCommand { get; set; }
+        public DelegateCommand AddFuelTypeCommand { get; set; }
+        public DelegateCommand CancelAddFuelTypeCommand { get; set; }
         public DelegateCommand TextChangedCommand { get; set; }
         #endregion
-
     }
 }

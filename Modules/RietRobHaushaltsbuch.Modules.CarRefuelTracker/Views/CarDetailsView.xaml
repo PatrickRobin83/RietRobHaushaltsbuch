@@ -78,9 +78,9 @@
                               SelectedValuePath="Id" DisplayMemberPath="TypeOfFuel" IsSynchronizedWithCurrentItem="True"
                               Width="140"/>
 
-                    <Button x:Name="AddFuelType" Margin="5,0,0,0" Width="80" 
+                    <Button Command="{Binding AddFuelTypeCommand}" Margin="5,0,0,0" Width="80" 
                             Content="Kraftstoff +" VerticalAlignment="Center" />
-                    <Button x:Name="RemoveFuelType" Margin="5,0,0,0" Width="80" 
+                    <Button Command="{Binding RemoveFuelTypeCommand}" Margin="5,0,0,0" Width="80" 
                             Content="Kraftstoff -" VerticalAlignment="Center" />
                 </StackPanel>
             </StackPanel>

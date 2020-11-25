@@ -10,16 +10,16 @@
  * @Version      1.0.0
  */
 
-using System.Windows;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
+using RietRobHaushaltbuch.Core;
 using RietRobHaushaltbuch.Core.Interfaces;
+using RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
-    public class AddModelTypeViewModel : ViewModelBase, IViewModelHelper
+    public class AddModelTypeViewModel : BaseViewModel, IViewModelHelper
     {
 
 
@@ -95,8 +95,11 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void AddModelType()
         {
-            MessageBox.Show($"Model to Brand {_brandModel.BrandName} added");
-            //ToDo: implement the Logic to add a Model to Database and Update the ListBox in CarDetailsView
+            ModelTypeModel modelType = new ModelTypeModel();
+            modelType.ModelName = TxtModelName;
+            modelType.Id = SQLiteDataAccess.AddModel(modelType, _brandModel).Id;
+            _eventAggregator.GetEvent<ObjectEvent>().Publish(modelType);
+            Close?.Invoke();
         }
 
         private void AddModelCanceled()

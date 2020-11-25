@@ -129,14 +129,24 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             SelectedModelType = CarModel.ModelType;
             SelectedFuelType = CarModel.FuelType;
             Entries = CarModel.Entries;
-            _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleBrandObject);
+            _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleObjectEvent);
         }
 
-        private void HandleBrandObject(object model)
+        private void HandleObjectEvent(object model)
         {
             if (model.GetType() == typeof(BrandModel))
             {
                 RefreshBrandModelList();
+            }
+
+            if (model.GetType() == typeof(ModelTypeModel))
+            {
+                RefreshCarModelList();
+            }
+
+            if (model.GetType() == typeof(FuelTypeModel))
+            {
+                RefreshFuelTypeList();
             }
         }
 
@@ -164,7 +174,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
                 SelectedFuelType = AvailableFuelTypes.First();
             }
             IsActive = true;
-            _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleBrandObject);
+            _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleObjectEvent);
 
         }
 
@@ -194,7 +204,9 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         }
         private void AddFuelType()
         {
-            throw new NotImplementedException();
+            AddFuelTypeView addFuelTypeView = new AddFuelTypeView();
+            addFuelTypeView.DataContext = new AddFuelTypeViewModel(_eventAggregator);
+            addFuelTypeView.ShowDialog();
         }
         private void RemoveFuelType()
         {

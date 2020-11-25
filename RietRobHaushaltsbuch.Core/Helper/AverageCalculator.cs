@@ -1,8 +1,8 @@
 ﻿/*
  * -----------------------------------------------------------------------------
  *	 
- *   Filename		:   ViewModelBase.cs
- *   Date			:   2020-11-25 10:57:22
+ *   Filename		:   AverageCalculator.cs
+ *   Date			:   2020-11-25 14:40:23
  *   All rights reserved
  * 
  * -----------------------------------------------------------------------------
@@ -10,17 +10,11 @@
  * @Version      1.0.0
  */
 
-using System;
-using CommonServiceLocator;
-using Prism.Events;
-using Prism.Mvvm;
-using RietRobHaushaltbuch.Core.Interfaces;
-
-namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
+namespace RietRobHaushaltbuch.Core.Helper
 {
-    public class ViewModelBase : BindableBase, ICloseWindows
+    public static class AverageCalculator
     {
-
+        
 
         #region Fields
 
@@ -31,13 +25,12 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         #endregion
 
         #region Constructor
-        
+
         #endregion
 
         #region Methods
 
         #endregion
 
-        public Action Close { get; set; }
     }
 }
