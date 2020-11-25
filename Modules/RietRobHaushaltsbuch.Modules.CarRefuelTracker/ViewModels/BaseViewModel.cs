@@ -11,7 +11,6 @@
  */
 
 using System;
-using CommonServiceLocator;
 using Prism.Events;
 using Prism.Mvvm;
 using RietRobHaushaltbuch.Core.Interfaces;

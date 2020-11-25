@@ -20,7 +20,7 @@
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center" 
                        FontSize="20"/>
-                <DataGrid Margin="5,0,5,0" MaxHeight="200"
+                <DataGrid Margin="5,0,5,0" MaxHeight="160" MinHeight="160"
                           ItemsSource="{Binding Path=AllEntrysForSelectedCar, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                           AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" 
                           CanUserResizeRows="False" SelectedItem="{Binding Path=SelectedEntryModel, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -32,7 +32,7 @@
                     </b:Interaction.Triggers>
                     <DataGrid.Columns>
                         <DataGridTextColumn Header=" Datum " IsReadOnly="True" Binding="{Binding EntryDate}" SortDirection="Descending"/>
-                        <DataGridTextColumn Header=" Preis pro Liter in € " IsReadOnly="True" Binding="{Binding PricePerLiter}"/>
+                        <DataGridTextColumn Header=" Preis pro Liter in € " IsReadOnly="True" Binding="{Binding PricePerLiter} "/>
                         <DataGridTextColumn Header=" Abgabemenge in Liter " IsReadOnly="True" Binding="{Binding AmountOffuel}"/>
                         <DataGridTextColumn Header=" Gesasmtkosten in € " IsReadOnly="True" Binding="{Binding TotalAmount}"/>
                         <DataGridTextColumn Header=" Gefahrene Kiolometer " IsReadOnly="True" Binding="{Binding DrivenDistance}"/>
@@ -45,7 +45,7 @@
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
                     <TextBlock Margin="10,0,0,0" Text="Ø Preis/Liter: "/>
                     <TextBox IsReadOnly="True" Text="{Binding AveragePricePerLiter}" 
-                         Width="50" TextAlignment="Right" />
+                         Width="40" TextAlignment="Right" />
                     <TextBlock Margin="10,0,0,0" Text="getankte Menge: "/>
                     <TextBox IsReadOnly="True" Text="{Binding AverageFuelAmount}" 
                          Width="50" TextAlignment="Right" />
@@ -54,7 +54,7 @@
                          Width="50" TextAlignment="Right" />
                     <TextBlock Margin="10,0,0,0" Text="gefahrene km: "/>
                     <TextBox IsReadOnly="True" Text="{Binding AverageDrivenDistance}" 
-                         Width="50" TextAlignment="Right" />
+                         Width="55" TextAlignment="Right" />
                     <TextBlock Margin="10,0,0,0" Text="Ø Verbrauch: "/>
                     <TextBox IsReadOnly="True" Text="{Binding AverageConsumption}" 
                          Width="50" TextAlignment="Right" />

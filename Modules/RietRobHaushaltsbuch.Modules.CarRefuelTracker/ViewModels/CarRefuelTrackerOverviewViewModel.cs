@@ -97,10 +97,10 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void CarSelectionChanged()
         {
-            if (SelectedCarModel != null)
+            if (SelectedCarModel != null )
             {
-                IsCarModelSelected = true;
                 Visibility = true;
+                IsCarModelSelected = true;
                 _eventAggregator.GetEvent<ObjectEvent>().Publish(SelectedCarModel);
 
             }

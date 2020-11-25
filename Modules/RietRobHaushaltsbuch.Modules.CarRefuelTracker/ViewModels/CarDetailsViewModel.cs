@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.ObjectModel;
-using System.Dynamic;
 using System.Linq;
 using System.Windows;
 using Prism.Commands;
@@ -130,6 +129,15 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             SelectedFuelType = CarModel.FuelType;
             Entries = CarModel.Entries;
             _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleObjectEvent);
+            _eventAggregator.GetEvent<NewsEvent>().Subscribe(HandleNewsEvents);
+        }
+
+        private void HandleNewsEvents(string parameter)
+        {
+            if (parameter.Equals("EntryClosed"))
+            {
+                Entries = new ObservableCollection<EntryModel>(SQLiteDataAccess.LoadEntrysForCar(Id));
+            }
         }
 
         private void HandleObjectEvent(object model)

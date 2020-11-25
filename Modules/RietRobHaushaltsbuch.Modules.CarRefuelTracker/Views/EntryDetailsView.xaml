@@ -20,31 +20,51 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Datum: " Width="200" FontSize="20" />
-                <mah:DateTimePicker SelectedDateTime="{Binding SelectedDate}" SelectedDateFormat="Short"  Width="250">
+                <mah:DateTimePicker Width="250" FontSize="20" IsDropDownOpen="{Binding IsOpen}" 
+                                    SelectedDateTime="{Binding SelectedDate,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
+                                    IsClockVisible="False" IsTodayHighlighted="True" SelectedTimeFormat="Short"
+                                    SelectedDateFormat="Short" Culture="DE-de">
                     <b:Interaction.Triggers>
-                        <b:EventTrigger EventName="SelectionChanged">
-                            <b:InvokeCommandAction Command="{Binding DateSelectionChangedCommand}"/>
+                        <b:EventTrigger EventName="SelectedDateTimeChanged">
+                            <prism:InvokeCommandAction Command="{Binding SelectedDateTimeChangedCommand}"/>
                         </b:EventTrigger>
                     </b:Interaction.Triggers>
                 </mah:DateTimePicker>
-
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Preis / Liter in €: " Width="200" FontSize="20" />
-                <TextBox x:Name="PricePerLiter" FontSize="20"  Width="250"/>
+                <TextBox Text="{Binding PricePerLiter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="20"  Width="250">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="TextChanged">
+                            <b:InvokeCommandAction Command="{Binding TextboxChangedCommand}" CommandParameter="PricePerLiter"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Getankte Menge in l: " Width="200" FontSize="20" />
-                <TextBox Text="{Binding AmountOfFuel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="20"  Width="250"/>
+                <TextBox Text="{Binding AmountOfFuel, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="20"  Width="250">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="TextChanged">
+                            <b:InvokeCommandAction Command="{Binding TextboxChangedCommand}" CommandParameter="AmountOfFuel"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </TextBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Strecke in km: " Width="200" FontSize="20" />
-                <TextBox Text="{Binding DrivenDistance, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="20"  Width="250"/>
+                <TextBox Text="{Binding DrivenDistance, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" FontSize="20"  Width="250">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="TextChanged">
+                            <b:InvokeCommandAction Command="{Binding TextboxChangedCommand}" CommandParameter="PricePerLiter"/>
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                </TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,20,0,0">
-                <Button x:Name="CancelEntryDetailsView" Margin="0,0,10,0" Content="Abbrechen"/>
-                <Button x:Name="SaveEntry" Margin="10,0,0,0" Content="Speichern" />
+                <Button Command="{Binding CancelAddEntryCommand}" Margin="0,0,10,0" Content="Abbrechen"/>
+                <Button Command="{Binding AddEntryCommand}" Margin="10,0,0,0" Content="Speichern" />
             </StackPanel>
 
         </StackPanel>

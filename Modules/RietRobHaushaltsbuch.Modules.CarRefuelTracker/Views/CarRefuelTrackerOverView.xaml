@@ -38,7 +38,7 @@
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center" 
                        FontSize="20"/>
-                <DataGrid Margin="5,0,5,0"
+                <DataGrid Margin="5,0,5,0" MaxHeight="130" MinHeight="130"
                           ItemsSource="{Binding Path=AvailableCars}"
                           AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" 
                           CanUserResizeRows="False" SelectedItem="{Binding Path=SelectedCarModel, Mode=TwoWay}"  

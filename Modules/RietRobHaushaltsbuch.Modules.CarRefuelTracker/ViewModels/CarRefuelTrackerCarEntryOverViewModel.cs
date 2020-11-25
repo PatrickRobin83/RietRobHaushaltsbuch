@@ -113,6 +113,24 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             _eventAggregator = ea;
             RegisterCommands();
             _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleCarModelSelection);
+            _eventAggregator.GetEvent<NewsEvent>().Subscribe(HandleEntryEvent);
+        }
+        #endregion
+
+        #region Methods
+
+        private void HandleEntryEvent(string entryEvent)
+        {
+            if (entryEvent.Equals("EntryClosed"))
+            {
+                UpdateEntryList();
+            }
+        }
+
+        private void UpdateEntryList()
+        {
+            AllEntrysForSelectedCar = new ObservableCollection<EntryModel>(SQLiteDataAccess.LoadEntrysForCar(CarModel.Id));
+            CalculateAverages();
         }
 
         private void HandleCarModelSelection(object selectedCarModel)
@@ -120,15 +138,11 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             if (selectedCarModel.GetType() == typeof(CarModel))
             {
                 CarModel = (CarModel)selectedCarModel;
-                AllEntrysForSelectedCar = new ObservableCollection<EntryModel>(DataAccess.SQLiteDataAccess.LoadEntrysForCar(CarModel.Id));
+                UpdateEntryList();
                 CarModel.Entries = AllEntrysForSelectedCar;
-                CalculateAverages();
             }
         }
 
-        #endregion
-
-        #region Methods
         public void CalculateAverages()
         {
             double tmpPricePerLiter = 0;
@@ -159,7 +173,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             }
             if (!double.IsNaN(Math.Round(tmpFuelAmount, 2)))
             {
-                AverageFuelAmount = Convert.ToString(Math.Round(tmpFuelAmount / AllEntrysForSelectedCar.Count, 2));
+                AverageFuelAmount = Convert.ToString(Math.Round(tmpFuelAmount,2));
             }
             else
             {
@@ -168,7 +182,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
             if (!double.IsNaN(Math.Round(tmpRefuelCosts, 2)))
             {
-                AverageRefuelCosts = Convert.ToString(Math.Round(tmpRefuelCosts / AllEntrysForSelectedCar.Count, 2));
+                AverageRefuelCosts = Convert.ToString(Math.Round(tmpRefuelCosts, 2));
             }
             else
             {
@@ -177,7 +191,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
             if (!double.IsNaN(Math.Round(tmpDrivenDistance, 2)))
             {
-                AverageDrivenDistance = Convert.ToString(Math.Round(tmpDrivenDistance / AllEntrysForSelectedCar.Count, 2));
+                AverageDrivenDistance = Convert.ToString(Math.Round(tmpDrivenDistance,0));
             }
             else
             {
@@ -226,25 +240,25 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         private void DeleteEntry()
         {
             SQLiteDataAccess.DeleteEntryFromDatabase(SelectedEntryModel);
+            UpdateEntryList();
         }
 
         private void EditEntry()
         {
-            //ToDo: Open the EntryDetailsView and fill the fields with the values from selected entryModel. After changing values safe in Database
-            _eventAggregator.GetEvent<ObjectEvent>().Publish(SelectedEntryModel);
+            EntryDetailsView entryDetailsView = new EntryDetailsView();
+            entryDetailsView.DataContext = new EntryDetailsViewModel(_eventAggregator, CarModel, SelectedEntryModel);
+            entryDetailsView.ShowDialog();
         }
 
         private void AddEntry()
         {
             EntryDetailsView entryDetailsView = new EntryDetailsView();
-            entryDetailsView.DataContext = new EntryDetailsViewModel();
+            entryDetailsView.DataContext = new EntryDetailsViewModel(_eventAggregator, CarModel);
             entryDetailsView.ShowDialog();
-            // ToDo: Open EntryDetailsView with empty fields to fill in and safe the entry in Database
         }
         #endregion
 
         #region Commands
-
         public DelegateCommand AddEntryCommand { get; set; }
         public DelegateCommand EditEntryCommand { get; set; }
         public DelegateCommand DeleteEntryCommand { get; set; }
