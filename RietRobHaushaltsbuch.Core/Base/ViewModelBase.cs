@@ -8,12 +8,14 @@
 * @author Patrick Robin <support@rietrob.de>
 */
 
+using System;
 using Prism.Mvvm;
+using RietRobHaushaltbuch.Core.Interfaces;
 
-namespace RietRobHaushaltsbuch.ViewModels.Base
+namespace RietRobHaushaltbuch.Core.Base
 
 {
-    public abstract class ViewModelBase : BindableBase
+    public abstract class ViewModelBase : BindableBase, ICloseWindows
     {
 
         #region Fields
@@ -35,11 +37,14 @@ namespace RietRobHaushaltsbuch.ViewModels.Base
 
         #region Methods
 
-        protected virtual void RegisterCommands() { }
+        public virtual void RegisterCommands() { }
 
         public virtual void RegisterCollections() { }
 
         #endregion
 
+        #region Implementation of ICloseWindows
+        public Action Close { get; set; }
+        #endregion
     }
 }

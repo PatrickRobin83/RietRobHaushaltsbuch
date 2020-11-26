@@ -8,14 +8,16 @@ using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 using RietRobHaushaltbuch.Core;
+using RietRobHaushaltbuch.Core.Base;
 using RietRobHaushaltbuch.Core.DataAccess;
 using RietRobHaushaltbuch.Core.Events;
+using RietRobHaushaltbuch.Core.Interfaces;
 using RietRobHaushaltbuch.Core.Models;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
-    public class CarRefuelTrackerOverviewViewModel : BindableBase
+    public class CarRefuelTrackerOverviewViewModel : ViewModelBase, IViewModelHelper
     {
         #region Fields
 
@@ -84,7 +86,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             }
         }
 
-        private void RegisterCommands()
+        public override void RegisterCommands()
         {
             CreateCarCommand = new DelegateCommand(CreateCar);
             CarSelectionChangedCommand = new DelegateCommand(CarSelectionChanged);

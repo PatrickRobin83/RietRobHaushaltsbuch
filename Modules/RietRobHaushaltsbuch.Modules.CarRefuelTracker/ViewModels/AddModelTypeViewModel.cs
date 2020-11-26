@@ -12,16 +12,15 @@
 
 using Prism.Commands;
 using Prism.Events;
-using RietRobHaushaltbuch.Core;
+using RietRobHaushaltbuch.Core.Base;
 using RietRobHaushaltbuch.Core.DataAccess;
 using RietRobHaushaltbuch.Core.Events;
 using RietRobHaushaltbuch.Core.Interfaces;
 using RietRobHaushaltbuch.Core.Models;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels.Base;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
-    public class AddModelTypeViewModel : BaseViewModel, IViewModelHelper
+    public class AddModelTypeViewModel : ViewModelBase, IViewModelHelper
     {
 
 
@@ -88,7 +87,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         #endregion
 
         #region Methods
-        public void RegisterCommands()
+        public override void RegisterCommands()
         {
            TextChangedCommand = new DelegateCommand(TextChanged).ObservesProperty(() => HasCharacters); ;
            CancelAddModelCommand = new DelegateCommand(AddModelCanceled);

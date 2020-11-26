@@ -12,16 +12,15 @@
 
 using Prism.Commands;
 using Prism.Events;
-using RietRobHaushaltbuch.Core;
+using RietRobHaushaltbuch.Core.Base;
 using RietRobHaushaltbuch.Core.DataAccess;
 using RietRobHaushaltbuch.Core.Events;
 using RietRobHaushaltbuch.Core.Interfaces;
 using RietRobHaushaltbuch.Core.Models;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels.Base;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
-    public class AddFuelTypeViewModel : BaseViewModel, IViewModelHelper
+    public class AddFuelTypeViewModel : ViewModelBase, IViewModelHelper
     {
         #region Fields
         private readonly IEventAggregator _eventAggregator;
@@ -70,7 +69,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         #endregion
 
         #region Methods
-        public void RegisterCommands()
+        public override void RegisterCommands()
         {
             AddFuelTypeCommand = new DelegateCommand(AddFuelType).ObservesProperty(() => HasCharacters); ;
             CancelAddFuelTypeCommand = new DelegateCommand(CancelAddFuel);

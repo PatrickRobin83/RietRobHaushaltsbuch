@@ -5,7 +5,7 @@ using Prism.Commands;
 using Prism.Mvvm;
 using Prism.Regions;
 using RietRobHaushaltbuch.Core;
-using RietRobHaushaltsbuch.ViewModels.Base;
+using RietRobHaushaltbuch.Core.Base;
 
 namespace RietRobHaushaltsbuch.ViewModels
 {
@@ -53,7 +53,7 @@ namespace RietRobHaushaltsbuch.ViewModels
 
         #region Overrides of ViewModelBase
 
-        protected override void RegisterCommands()
+        public override void RegisterCommands()
         {
             OpenFlyOutCommand = new DelegateCommand(OpenFlyOut);
             OpenViewCommand = new DelegateCommand<string>(OpenView);

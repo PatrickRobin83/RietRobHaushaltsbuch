@@ -72,7 +72,6 @@
     <Compile Include="ViewModels\CarDetailsViewModel.cs" />
     <Compile Include="ViewModels\CarRefuelTrackerCarEntryOverViewModel.cs" />
     <Compile Include="ViewModels\CarRefuelTrackerOverviewViewModel.cs" />
-    <Compile Include="ViewModels\Base\BaseViewModel.cs" />
     <Compile Include="ViewModels\EntryDetailsViewModel.cs" />
     <Compile Include="Views\AddBrandView.xaml.cs">
       <DependentUpon>AddBrandView.xaml</DependentUpon>

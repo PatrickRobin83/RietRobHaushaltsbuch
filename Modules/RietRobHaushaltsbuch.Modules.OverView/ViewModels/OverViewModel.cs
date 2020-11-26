@@ -1,8 +1,10 @@
 ﻿using Prism.Mvvm;
+using RietRobHaushaltbuch.Core.Base;
+using RietRobHaushaltbuch.Core.Interfaces;
 
 namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
 {
-    public class OverViewModel : BindableBase
+    public class OverViewModel : ViewModelBase, IViewModelHelper
     {
         private string _message;
         public string Message

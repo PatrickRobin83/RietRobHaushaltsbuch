@@ -87,6 +87,7 @@
     <Compile Include="..\.shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Base\ViewModelBase.cs" />
     <Compile Include="DataAccess\Base\BaseSqLiteDataAccess.cs" />
     <Compile Include="DataAccess\SQLiteDataAccessCarRefuelTrackerModule.cs" />
     <Compile Include="Enum\LogState.cs" />

@@ -10,23 +10,22 @@
  * @Version      1.0.0
  */
 
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
-using RietRobHaushaltbuch.Core;
+using RietRobHaushaltbuch.Core.Base;
 using RietRobHaushaltbuch.Core.DataAccess;
 using RietRobHaushaltbuch.Core.Events;
 using RietRobHaushaltbuch.Core.Interfaces;
 using RietRobHaushaltbuch.Core.Models;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views;
+using System;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
-    public class CarDetailsViewModel : BindableBase, ICloseWindows
+    public class CarDetailsViewModel : ViewModelBase, IViewModelHelper
     {
 
         #region Fields
@@ -103,13 +102,11 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         public CarDetailsViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            RegisterCommands();
             Initialize();
         }
         public CarDetailsViewModel(CarModel carModel, IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            RegisterCommands();
             CarModel = carModel;
             DataToControls();
         }
@@ -159,8 +156,6 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             }
         }
 
-        
-
         private void Initialize()
         {
             CarModel = new CarModel();
@@ -187,7 +182,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         }
 
-        private void RegisterCommands()
+        public override void RegisterCommands()
         {
             SaveCarCommand = new DelegateCommand(SaveCar);
             CloseCarDetailsCommand = new DelegateCommand(CloseCarDetails);
@@ -311,6 +306,5 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         public DelegateCommand AddFuelTypeCommand { get; set; }
         public DelegateCommand RemoveFuelTypeCommand { get; set; }
 
-        public Action Close { get; set; }
     }
 }

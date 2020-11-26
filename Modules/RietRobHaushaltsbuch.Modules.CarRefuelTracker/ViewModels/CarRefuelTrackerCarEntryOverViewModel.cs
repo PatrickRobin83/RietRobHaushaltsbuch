@@ -10,23 +10,20 @@
  * @Version      1.0.0
  */
 
-using System;
-using System.Collections.ObjectModel;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
-using RietRobHaushaltbuch.Core;
+using RietRobHaushaltbuch.Core.Base;
 using RietRobHaushaltbuch.Core.DataAccess;
 using RietRobHaushaltbuch.Core.Events;
 using RietRobHaushaltbuch.Core.Helper;
 using RietRobHaushaltbuch.Core.Interfaces;
 using RietRobHaushaltbuch.Core.Models;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels.Base;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views;
+using System.Collections.ObjectModel;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
-    public class CarRefuelTrackerCarEntryOverViewModel : BaseViewModel, IViewModelHelper
+    public class CarRefuelTrackerCarEntryOverViewModel : ViewModelBase, IViewModelHelper
     {
         #region Fields
 
@@ -114,7 +111,6 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         public CarRefuelTrackerCarEntryOverViewModel(IEventAggregator ea)
         {
             _eventAggregator = ea;
-            RegisterCommands();
             _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleCarModelSelection);
             _eventAggregator.GetEvent<NewsEvent>().Subscribe(HandleEntryEvent);
         }
@@ -156,7 +152,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             AverageCostsOfHundredKilometer = AverageCalculator.CalculateTotalAverageCostsOfHundredKilometer(AllEntrysForSelectedCar);
         }
 
-        public void RegisterCommands()
+        public override void RegisterCommands()
         {
             AddEntryCommand = new DelegateCommand(AddEntry);
             EditEntryCommand = new DelegateCommand(EditEntry).ObservesCanExecute(() => IsEntryModelSelected);
