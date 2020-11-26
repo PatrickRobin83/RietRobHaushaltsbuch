@@ -28,18 +28,9 @@ namespace RietRobHaushaltbuch.Core.Base
 
         #region Constructor
 
-        public ViewModelBase()
-        {
-            RegisterCommands();
-        }
-
         #endregion
 
         #region Methods
-
-        public virtual void RegisterCommands() { }
-
-        public virtual void RegisterCollections() { }
 
         #endregion
 

@@ -15,7 +15,15 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
 
         public OverViewModel()
         {
-            Message = "OverView from your OverView Module";
+            Message = "Message from your OverView Module";
+            RegisterCommands();
         }
+
+        #region Implementation of IViewModelHelper
+        public void RegisterCommands()
+        {
+            //ToDO: Initalize here the DelegateCommands
+        }
+        #endregion
     }
 }

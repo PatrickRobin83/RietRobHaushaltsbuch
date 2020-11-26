@@ -10,6 +10,7 @@
  * @Version      1.0.0
  */
 
+using System.Windows.Controls;
 using Prism.Events;
 
 namespace RietRobHaushaltbuch.Core.Interfaces
@@ -17,5 +18,6 @@ namespace RietRobHaushaltbuch.Core.Interfaces
     public interface IViewModelHelper
     {
         void  RegisterCommands();
+        
     }
 }
