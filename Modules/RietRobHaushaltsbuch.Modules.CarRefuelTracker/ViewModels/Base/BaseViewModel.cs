@@ -1,8 +1,8 @@
 ﻿/*
  * -----------------------------------------------------------------------------
  *	 
- *   Filename		:   EditCarEvent.cs
- *   Date			:   2020-11-24 13:24:20
+ *   Filename		:   ViewModelBase.cs
+ *   Date			:   2020-11-25 10:57:22
  *   All rights reserved
  * 
  * -----------------------------------------------------------------------------
@@ -10,11 +10,13 @@
  * @Version      1.0.0
  */
 
-using Prism.Events;
+using System;
+using Prism.Mvvm;
+using RietRobHaushaltbuch.Core.Interfaces;
 
-namespace RietRobHaushaltbuch.Core
+namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels.Base
 {
-    public class NewsEvent : PubSubEvent<string>
+    public class BaseViewModel : BindableBase, ICloseWindows
     {
         #region Fields
 
@@ -29,7 +31,9 @@ namespace RietRobHaushaltbuch.Core
         #endregion
 
         #region Methods
-
+        public Action Close { get; set; }
         #endregion
+
+
     }
 }

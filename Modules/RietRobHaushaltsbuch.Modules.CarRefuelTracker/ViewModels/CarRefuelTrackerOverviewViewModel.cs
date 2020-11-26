@@ -8,16 +8,15 @@ using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 using RietRobHaushaltbuch.Core;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models;
+using RietRobHaushaltbuch.Core.DataAccess;
+using RietRobHaushaltbuch.Core.Events;
+using RietRobHaushaltbuch.Core.Models;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
     public class CarRefuelTrackerOverviewViewModel : BindableBase
     {
-        private readonly IRegionManager _regionManager;
-
         #region Fields
 
         private IEventAggregator _eventAggregator;
@@ -66,12 +65,11 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         #region Contstructor
 
-        public CarRefuelTrackerOverviewViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
+        public CarRefuelTrackerOverviewViewModel(IEventAggregator eventAggregator)
         {
-            _regionManager = regionManager;
             _eventAggregator = eventAggregator;
             Title = "CarRefuelTracker Overview";
-            AvailableCars = new ObservableCollection<CarModel>(SQLiteDataAccess.LoadCars());
+            AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars());
             RegisterCommands();
             _eventAggregator.GetEvent<NewsEvent>().Subscribe(CarCreated);
         }
@@ -82,7 +80,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             if (parameter.Equals("CarSaved") || parameter.Equals("Cancel"))
             {
-                AvailableCars = new ObservableCollection<CarModel>(SQLiteDataAccess.LoadCars());
+                AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars());
             }
         }
 
@@ -113,25 +111,28 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void EditCar()
         {
-            CarDetailsView carDetailsView = new CarDetailsView();
-            carDetailsView.DataContext = new CarDetailsViewModel(SelectedCarModel, _eventAggregator);
-            carDetailsView.SaveWindowPosition = true;
+            CarDetailsView carDetailsView = new CarDetailsView
+            {
+                DataContext = new CarDetailsViewModel(SelectedCarModel, _eventAggregator), SaveWindowPosition = true
+            };
             carDetailsView.ShowDialog();
         }
 
         private void DeleteCar()
         {
-            SQLiteDataAccess.DeleteCar(SelectedCarModel);
-            AvailableCars = new ObservableCollection<CarModel>(SQLiteDataAccess.LoadCars());
+            SqLiteDataAccessCarRefuelTrackerModule.DeleteCar(SelectedCarModel);
+            AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars());
             SelectedCarModel = AvailableCars.FirstOrDefault();
         }
 
         private void CreateCar()
         {
-            CarDetailsView carDetailsView = new CarDetailsView();
-            carDetailsView.DataContext = new CarDetailsViewModel(_eventAggregator);
-            carDetailsView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            carDetailsView.SaveWindowPosition = true;
+            CarDetailsView carDetailsView = new CarDetailsView
+            {
+                DataContext = new CarDetailsViewModel(_eventAggregator),
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                SaveWindowPosition = true
+            };
             carDetailsView.ShowDialog();
         }
         #endregion

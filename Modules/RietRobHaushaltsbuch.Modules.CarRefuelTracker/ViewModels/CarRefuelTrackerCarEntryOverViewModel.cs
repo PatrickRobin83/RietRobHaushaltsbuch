@@ -16,9 +16,12 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using RietRobHaushaltbuch.Core;
+using RietRobHaushaltbuch.Core.DataAccess;
+using RietRobHaushaltbuch.Core.Events;
+using RietRobHaushaltbuch.Core.Helper;
 using RietRobHaushaltbuch.Core.Interfaces;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models;
+using RietRobHaushaltbuch.Core.Models;
+using RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels.Base;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
@@ -31,11 +34,11 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         private IEventAggregator _eventAggregator;
         private CarModel _carModel;
         private string _averagePricePerLiter;
-        private string _averageFuelAmount;
-        private string _averageRefuelCosts;
-        private string _averageDrivenDistance;
+        private string _totalFuelAmount;
+        private string _totalRefuelCosts;
+        private string _totalDrivenDistance;
         private string _averageConsumption;
-        private string _averageCosts;
+        private string _averageCostsOfHundredKilometer;
         private EntryModel _selectedEntryModel;
         private bool _isEntryModelSelected;
 
@@ -61,10 +64,10 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             set { SetProperty(ref _allEntrysForSelectedCar, value); }
         }
 
-        public string AverageCosts
+        public string AverageCostsOfHundredKilometer
         {
-            get { return _averageCosts; }
-            set { SetProperty(ref _averageCosts, value); }
+            get { return _averageCostsOfHundredKilometer; }
+            set { SetProperty(ref _averageCostsOfHundredKilometer, value); }
         }
 
         public string AverageConsumption
@@ -73,22 +76,22 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             set { SetProperty(ref _averageConsumption, value); }
         }
 
-        public string AverageDrivenDistance
+        public string TotalDrivenDistance
         {
-            get { return _averageDrivenDistance; }
-            set { SetProperty(ref _averageDrivenDistance, value); }
+            get { return _totalDrivenDistance; }
+            set { SetProperty(ref _totalDrivenDistance, value); }
         }
 
-        public string AverageRefuelCosts
+        public string TotalRefuelCosts
         {
-            get { return _averageRefuelCosts; }
-            set { SetProperty(ref _averageRefuelCosts, value); }
+            get { return _totalRefuelCosts; }
+            set { SetProperty(ref _totalRefuelCosts, value); }
         }
 
-        public string AverageFuelAmount
+        public string TotalFuelAmount
         {
-            get { return _averageFuelAmount; }
-            set { SetProperty(ref _averageFuelAmount, value); }
+            get { return _totalFuelAmount; }
+            set { SetProperty(ref _totalFuelAmount, value); }
         }
 
         public string AveragePricePerLiter
@@ -108,7 +111,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         #region Constructor
 
-        public CarRefuelTrackerCarEntryOverViewModel(CarModel carModel, IEventAggregator ea)
+        public CarRefuelTrackerCarEntryOverViewModel(IEventAggregator ea)
         {
             _eventAggregator = ea;
             RegisterCommands();
@@ -129,7 +132,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void UpdateEntryList()
         {
-            AllEntrysForSelectedCar = new ObservableCollection<EntryModel>(SQLiteDataAccess.LoadEntrysForCar(CarModel.Id));
+            AllEntrysForSelectedCar = new ObservableCollection<EntryModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadEntrysForCar(CarModel.Id));
             CalculateAverages();
         }
 
@@ -145,76 +148,12 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         public void CalculateAverages()
         {
-            double tmpPricePerLiter = 0;
-            double tmpFuelAmount = 0;
-            double tmpRefuelCosts = 0;
-            double tmpDrivenDistance = 0;
-            double tmpConsumption = 0;
-            double tmpCosts = 0;
-
-            foreach (EntryModel entryModel in AllEntrysForSelectedCar)
-            {
-                tmpPricePerLiter += Convert.ToDouble(entryModel.PricePerLiter);
-                tmpFuelAmount += Convert.ToDouble(entryModel.AmountOffuel);
-                tmpRefuelCosts += Convert.ToDouble(entryModel.TotalAmount);
-                tmpDrivenDistance += Convert.ToDouble(entryModel.DrivenDistance);
-                tmpConsumption += Convert.ToDouble(entryModel.ConsumptationPerHundredKilometer);
-                tmpCosts += Convert.ToDouble(entryModel.CostPerHundredKilometer);
-            }
-            #region double.IsNan Validation
-
-            if (!double.IsNaN(Math.Round(tmpPricePerLiter / AllEntrysForSelectedCar.Count, 3)))
-            {
-                AveragePricePerLiter = Convert.ToString(Math.Round(tmpPricePerLiter / AllEntrysForSelectedCar.Count, 3));
-            }
-            else
-            {
-                AveragePricePerLiter = "0";
-            }
-            if (!double.IsNaN(Math.Round(tmpFuelAmount, 2)))
-            {
-                AverageFuelAmount = Convert.ToString(Math.Round(tmpFuelAmount,2));
-            }
-            else
-            {
-                AverageFuelAmount = "0";
-            }
-
-            if (!double.IsNaN(Math.Round(tmpRefuelCosts, 2)))
-            {
-                AverageRefuelCosts = Convert.ToString(Math.Round(tmpRefuelCosts, 2));
-            }
-            else
-            {
-                AverageRefuelCosts = "0";
-            }
-
-            if (!double.IsNaN(Math.Round(tmpDrivenDistance, 2)))
-            {
-                AverageDrivenDistance = Convert.ToString(Math.Round(tmpDrivenDistance,0));
-            }
-            else
-            {
-                AverageDrivenDistance = "0";
-            }
-
-            if (!double.IsNaN(Math.Round(tmpConsumption / AllEntrysForSelectedCar.Count, 2)))
-            {
-                AverageConsumption = Convert.ToString(Math.Round(tmpConsumption / AllEntrysForSelectedCar.Count, 2));
-            }
-            else
-            {
-                AverageConsumption = "0";
-            }
-            if (!double.IsNaN(Math.Round(tmpCosts / AllEntrysForSelectedCar.Count, 2)))
-            {
-                AverageCosts = Convert.ToString(Math.Round(tmpCosts / AllEntrysForSelectedCar.Count, 2));
-            }
-            else
-            {
-                AverageCosts = "0";
-            }
-            #endregion
+            AveragePricePerLiter = AverageCalculator.CalculateAveragePricePerLiter(AllEntrysForSelectedCar);
+            TotalFuelAmount = AverageCalculator.CalculateTotalFuelAmount(AllEntrysForSelectedCar);
+            TotalRefuelCosts = AverageCalculator.CalculateTotalRefuelCosts(AllEntrysForSelectedCar);
+            TotalDrivenDistance = AverageCalculator.CalculateTotalDrivenDistance(AllEntrysForSelectedCar);
+            AverageConsumption = AverageCalculator.CalculateTotalAverageConsumption(AllEntrysForSelectedCar);
+            AverageCostsOfHundredKilometer = AverageCalculator.CalculateTotalAverageCostsOfHundredKilometer(AllEntrysForSelectedCar);
         }
 
         public void RegisterCommands()
@@ -239,21 +178,25 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void DeleteEntry()
         {
-            SQLiteDataAccess.DeleteEntryFromDatabase(SelectedEntryModel);
+            SqLiteDataAccessCarRefuelTrackerModule.DeleteEntryFromDatabase(SelectedEntryModel);
             UpdateEntryList();
         }
 
         private void EditEntry()
         {
-            EntryDetailsView entryDetailsView = new EntryDetailsView();
-            entryDetailsView.DataContext = new EntryDetailsViewModel(_eventAggregator, CarModel, SelectedEntryModel);
+            EntryDetailsView entryDetailsView = new EntryDetailsView
+            {
+                DataContext = new EntryDetailsViewModel(_eventAggregator, CarModel, SelectedEntryModel)
+            };
             entryDetailsView.ShowDialog();
         }
 
         private void AddEntry()
         {
-            EntryDetailsView entryDetailsView = new EntryDetailsView();
-            entryDetailsView.DataContext = new EntryDetailsViewModel(_eventAggregator, CarModel);
+            EntryDetailsView entryDetailsView = new EntryDetailsView
+            {
+                DataContext = new EntryDetailsViewModel(_eventAggregator, CarModel)
+            };
             entryDetailsView.ShowDialog();
         }
         #endregion

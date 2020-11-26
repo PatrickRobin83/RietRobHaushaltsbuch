@@ -13,9 +13,11 @@
 using Prism.Commands;
 using Prism.Events;
 using RietRobHaushaltbuch.Core;
+using RietRobHaushaltbuch.Core.DataAccess;
+using RietRobHaushaltbuch.Core.Events;
 using RietRobHaushaltbuch.Core.Interfaces;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models;
+using RietRobHaushaltbuch.Core.Models;
+using RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels.Base;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
@@ -95,9 +97,8 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void AddModelType()
         {
-            ModelTypeModel modelType = new ModelTypeModel();
-            modelType.ModelName = TxtModelName;
-            modelType.Id = SQLiteDataAccess.AddModel(modelType, _brandModel).Id;
+            ModelTypeModel modelType = new ModelTypeModel {ModelName = TxtModelName};
+            modelType.Id = SqLiteDataAccessCarRefuelTrackerModule.AddModel(modelType, _brandModel).Id;
             _eventAggregator.GetEvent<ObjectEvent>().Publish(modelType);
             Close?.Invoke();
         }

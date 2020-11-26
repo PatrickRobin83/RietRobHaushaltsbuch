@@ -1,8 +1,8 @@
 ﻿/*
  * -----------------------------------------------------------------------------
  *	 
- *   Filename		:   CarModelSendEventAggregationProvider.cs
- *   Date			:   2020-11-24 12:25:04
+ *   Filename		:   EditCarEvent.cs
+ *   Date			:   2020-11-24 13:24:20
  *   All rights reserved
  * 
  * -----------------------------------------------------------------------------
@@ -12,9 +12,9 @@
 
 using Prism.Events;
 
-namespace RietRobHaushaltbuch.Core
+namespace RietRobHaushaltbuch.Core.Events
 {
-    public class ObjectEvent : PubSubEvent<object>
+    public class NewsEvent : PubSubEvent<string>
     {
         #region Fields
 

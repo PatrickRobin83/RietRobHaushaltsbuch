@@ -1,6 +1,6 @@
 ﻿/*
 *----------------------------------------------------------------------------------
-*          Filename:	SQLiteDataAccess.cs
+*          Filename:	SQLiteDataAccessCarRefuelTrackerModule.cs
 *          Date:        2020.11.23 21:27:45
 *          All rights reserved
 *
@@ -15,13 +15,15 @@ using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using Dapper;
-using RietRobHaushaltbuch.Core;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models;
+using RietRobHaushaltbuch.Core.DataAccess.Base;
+using RietRobHaushaltbuch.Core.Enum;
+using RietRobHaushaltbuch.Core.Helper;
+using RietRobHaushaltbuch.Core.Models;
 
-namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
+namespace RietRobHaushaltbuch.Core.DataAccess
 
 {
-    public class SQLiteDataAccess
+    public class SqLiteDataAccessCarRefuelTrackerModule : BaseSqLiteDataAccess
     {
 
         #region Fields
@@ -64,6 +66,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
                 }
                 catch (SQLiteException ex)
                 {
+                    LogHelper.WriteToLog(ex.Message,LogState.Error);
                     return new List<CarModel>();
                 }
             }
@@ -87,7 +90,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("SaveCar Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
                 return new CarModel();
             }
 
@@ -109,7 +112,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("UpdateCar Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
             }
         }
         /// <summary>
@@ -127,7 +130,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("DeleteCar Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
             }
         }
         #endregion
@@ -139,6 +142,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
         /// <returns>List of BrandModel</returns>
         public static List<BrandModel> LoadAllBrands()
         {
+            // ReSharper disable once RedundantAssignment
             List<BrandModel> allBrands = new List<BrandModel>();
             try
             {
@@ -150,7 +154,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("LoadAllBrand Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
                 return new List<BrandModel>();
             }
         }
@@ -177,7 +181,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("AddBrand Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
                 return new BrandModel();
             }
         }
@@ -214,10 +218,9 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("RemoveBrandFromDatabase Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
             }
         }
-
         #endregion
 
         #region Model Operations
@@ -240,7 +243,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("ModelsFromBrand Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
                 return new List<ModelTypeModel>();
             }
         }
@@ -267,7 +270,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("AddModel Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
                 return new ModelTypeModel();
             }
         }
@@ -287,14 +290,12 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("RemoveModelTypeFromDatabase", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
             }
         }
-
         #endregion
 
         #region FuelType Operations
-
         /// <summary>
         /// Loads all FuelTypeModels from Database an return them in a list
         /// </summary>
@@ -314,7 +315,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("LoadAllFuelTypes Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
                 return new List<FuelTypeModel>();
             }
         }
@@ -343,7 +344,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("AddFuelTypeError", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
                 return new FuelTypeModel();
             }
         }
@@ -363,10 +364,9 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-               //LogHelper.WriteToLog("RemoveFuelTypeFromDatabase Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
             }
         }
-
         #endregion
 
         #region Entry Operations
@@ -389,7 +389,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("LoadEntrysForCar Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
                 return new List<EntryModel>();
             }
         }
@@ -414,7 +414,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("SaveEntryInDatabase Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
                 return new EntryModel();
             }
         }
@@ -436,7 +436,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("UpdateEntryInDatabase Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
             }
         }
         /// <summary>
@@ -454,21 +454,8 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess
             }
             catch (SQLiteException ex)
             {
-                //LogHelper.WriteToLog("DeleteEntryFromDatabase Error", LogState.Error);
+                LogHelper.WriteToLog(ex.Message, LogState.Error);
             }
-        }
-
-        #endregion
-
-        #region Private Methods
-        /// <summary>
-        /// Reads the Connection String from the App.config
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>The Connection String from App.config</returns>
-        private static string LoadConnectionString(string id = "CarRefuelTracker")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
         #endregion
 

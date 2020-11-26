@@ -15,9 +15,12 @@ using System.Runtime.Versioning;
 using Prism.Commands;
 using Prism.Events;
 using RietRobHaushaltbuch.Core;
+using RietRobHaushaltbuch.Core.DataAccess;
+using RietRobHaushaltbuch.Core.Events;
+using RietRobHaushaltbuch.Core.Helper;
 using RietRobHaushaltbuch.Core.Interfaces;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models;
+using RietRobHaushaltbuch.Core.Models;
+using RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels.Base;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
@@ -93,6 +96,10 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         }
 
+        #endregion
+
+        #region Methods
+
         private void Initialize()
         {
             if (_entryModel != null)
@@ -113,9 +120,6 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             }
         }
 
-        #endregion
-
-        #region Methods
         public void RegisterCommands()
         {
             SelectedDateTimeChangedCommand = new DelegateCommand(DateChanged).ObservesProperty(() => SelectedDate);
@@ -126,13 +130,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void AddEntry()
         {
-            double tmpAmountFuel;
-            double tmpPricePerLiter;
-            double tmpDrivenDistance;
-            double consumption;
-            double totalAmount;
-            double costPerHundred;
-            
+
             if (_entryModel.Id != 0)
             {
                 _entryModel.Id = Id;
@@ -140,20 +138,16 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
                 _entryModel.PricePerLiter = PricePerLiter;
                 _entryModel.AmountOffuel = AmountOfFuel;
                 _entryModel.DrivenDistance = DrivenDistance;
-                tmpAmountFuel = Convert.ToDouble(AmountOfFuel);
-                tmpPricePerLiter = Convert.ToDouble(PricePerLiter);
-                tmpDrivenDistance = Convert.ToDouble(DrivenDistance);
-                consumption = tmpAmountFuel / tmpDrivenDistance * 100;
-                totalAmount = tmpPricePerLiter * tmpAmountFuel;
-                costPerHundred = totalAmount / tmpDrivenDistance * 100;
-                consumption = Math.Round(consumption, 2);
-                totalAmount = Math.Round(totalAmount, 2);
-                costPerHundred = Math.Round(costPerHundred, 2);
-                _entryModel.ConsumptationPerHundredKilometer = consumption.ToString();
-                _entryModel.CostPerHundredKilometer = costPerHundred.ToString();
-                _entryModel.TotalAmount = totalAmount.ToString();
 
-                SQLiteDataAccess.UpdateEntryInDatabase(_entryModel);
+                _entryModel.ConsumptationPerHundredKilometer =
+                    EntryCalculator.CalculateAverage(AmountOfFuel, DrivenDistance);
+
+                _entryModel.CostPerHundredKilometer = 
+                    EntryCalculator.CalculateAverage(EntryCalculator.CalculateTotalFuelCosts(AmountOfFuel,PricePerLiter),
+                    DrivenDistance);
+                _entryModel.TotalAmount = EntryCalculator.CalculateTotalFuelCosts(AmountOfFuel, PricePerLiter);
+
+                SqLiteDataAccessCarRefuelTrackerModule.UpdateEntryInDatabase(_entryModel);
             }
             else
             {
@@ -161,20 +155,16 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
                 _entryModel.PricePerLiter = PricePerLiter;
                 _entryModel.AmountOffuel = AmountOfFuel;
                 _entryModel.DrivenDistance = DrivenDistance;
-                tmpAmountFuel = Convert.ToDouble(AmountOfFuel);
-                tmpPricePerLiter = Convert.ToDouble(PricePerLiter);
-                tmpDrivenDistance = Convert.ToDouble(DrivenDistance);
-                consumption = tmpAmountFuel / tmpDrivenDistance * 100;
-                totalAmount = tmpPricePerLiter * tmpAmountFuel;
-                costPerHundred = totalAmount / tmpDrivenDistance * 100;
-                consumption = Math.Round(consumption, 2);
-                totalAmount = Math.Round(totalAmount, 2);
-                costPerHundred = Math.Round(costPerHundred, 2);
-                _entryModel.ConsumptationPerHundredKilometer = consumption.ToString();
-                _entryModel.CostPerHundredKilometer = costPerHundred.ToString();
-                _entryModel.TotalAmount = totalAmount.ToString();
+                _entryModel.ConsumptationPerHundredKilometer =
+                    EntryCalculator.CalculateAverage(AmountOfFuel, DrivenDistance);
+
+                _entryModel.CostPerHundredKilometer =
+                    EntryCalculator.CalculateAverage(EntryCalculator.CalculateTotalFuelCosts(AmountOfFuel, PricePerLiter),
+                        DrivenDistance);
+                
+                _entryModel.TotalAmount = EntryCalculator.CalculateTotalFuelCosts(AmountOfFuel, PricePerLiter);
                 _entryModel.CarId = _carModel.Id;
-                SQLiteDataAccess.SaveEntryInDatabase(_entryModel);
+                SqLiteDataAccessCarRefuelTrackerModule.SaveEntryInDatabase(_entryModel);
             }
             
             _eventAggregator.GetEvent<NewsEvent>().Publish("EntryClosed");

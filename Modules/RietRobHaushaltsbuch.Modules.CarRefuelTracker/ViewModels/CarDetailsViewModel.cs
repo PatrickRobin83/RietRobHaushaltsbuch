@@ -18,9 +18,10 @@ using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using RietRobHaushaltbuch.Core;
+using RietRobHaushaltbuch.Core.DataAccess;
+using RietRobHaushaltbuch.Core.Events;
 using RietRobHaushaltbuch.Core.Interfaces;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models;
+using RietRobHaushaltbuch.Core.Models;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
@@ -136,7 +137,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             if (parameter.Equals("EntryClosed"))
             {
-                Entries = new ObservableCollection<EntryModel>(SQLiteDataAccess.LoadEntrysForCar(Id));
+                Entries = new ObservableCollection<EntryModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadEntrysForCar(Id));
             }
         }
 
@@ -201,24 +202,28 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         
         private void AddModelType()
         {
-            AddModelTypeView addModelTypeView = new AddModelTypeView();
-            addModelTypeView.DataContext = new AddModelTypeViewModel(_eventAggregator, SelectedBrand);
+            AddModelTypeView addModelTypeView = new AddModelTypeView
+            {
+                DataContext = new AddModelTypeViewModel(_eventAggregator, SelectedBrand)
+            };
             addModelTypeView.ShowDialog();
         }
         private void RemoveModelType()
         {
-            SQLiteDataAccess.RemoveModelTypeFromDatabase(SelectedModelType);
+            SqLiteDataAccessCarRefuelTrackerModule.RemoveModelTypeFromDatabase(SelectedModelType);
             RefreshCarModelList();
         }
         private void AddFuelType()
         {
-            AddFuelTypeView addFuelTypeView = new AddFuelTypeView();
-            addFuelTypeView.DataContext = new AddFuelTypeViewModel(_eventAggregator);
+            AddFuelTypeView addFuelTypeView = new AddFuelTypeView
+            {
+                DataContext = new AddFuelTypeViewModel(_eventAggregator)
+            };
             addFuelTypeView.ShowDialog();
         }
         private void RemoveFuelType()
         {
-            SQLiteDataAccess.RemoveFuelTypeFromDatabase(SelectedFuelType);
+            SqLiteDataAccessCarRefuelTrackerModule.RemoveFuelTypeFromDatabase(SelectedFuelType);
             RefreshFuelTypeList();
         }
 
@@ -229,15 +234,17 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void AddBrand()
         {
-            AddBrandView addBrandView = new AddBrandView();
-            addBrandView.DataContext = new AddBrandViewModel(_eventAggregator);
-            addBrandView.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            addBrandView.SaveWindowPosition = true;
+            AddBrandView addBrandView = new AddBrandView
+            {
+                DataContext = new AddBrandViewModel(_eventAggregator),
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                SaveWindowPosition = true
+            };
             addBrandView.ShowDialog();
         }
         private void RemoveBrand()
         {
-            SQLiteDataAccess.RemoveBrandFromDataBase(SelectedBrand);
+            SqLiteDataAccessCarRefuelTrackerModule.RemoveBrandFromDataBase(SelectedBrand);
             RefreshBrandModelList();
         }
 
@@ -250,24 +257,26 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void SaveCar()
         {
-            CarModel carToSave = new CarModel();
-            carToSave.Id = Id;
-            carToSave.IsActive = IsActive;
-            carToSave.Brand = SelectedBrand;
-            carToSave.BrandId = SelectedBrand.Id;
-            carToSave.ModelType = SelectedModelType;
-            carToSave.ModelId = SelectedModelType.Id;
-            carToSave.FuelType = SelectedFuelType;
-            carToSave.TypeoffuelId = SelectedFuelType.Id;
-            carToSave.Entries = Entries;
+            CarModel carToSave = new CarModel
+            {
+                Id = Id,
+                IsActive = IsActive,
+                Brand = SelectedBrand,
+                BrandId = SelectedBrand.Id,
+                ModelType = SelectedModelType,
+                ModelId = SelectedModelType.Id,
+                FuelType = SelectedFuelType,
+                TypeoffuelId = SelectedFuelType.Id,
+                Entries = Entries
+            };
 
             if (carToSave.Id > 0)
             {
-                SQLiteDataAccess.UpdateCar(carToSave);
+                SqLiteDataAccessCarRefuelTrackerModule.UpdateCar(carToSave);
             }
             else
             {
-                SQLiteDataAccess.SaveCar(carToSave);
+                SqLiteDataAccessCarRefuelTrackerModule.SaveCar(carToSave);
             }
 
             _eventAggregator.GetEvent<ObjectEvent>().Publish("CarSaved");
@@ -277,17 +286,17 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void RefreshBrandModelList()
         {
-            AvailableBrands = new ObservableCollection<BrandModel>(SQLiteDataAccess.LoadAllBrands());
+            AvailableBrands = new ObservableCollection<BrandModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadAllBrands());
         }
 
         private void RefreshFuelTypeList()
         {
-            AvailableFuelTypes = new ObservableCollection<FuelTypeModel>(SQLiteDataAccess.LoadAllFuelTypes());
+            AvailableFuelTypes = new ObservableCollection<FuelTypeModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadAllFuelTypes());
         }
 
         private void RefreshCarModelList()
         {
-            AvailableCarModels = new ObservableCollection<ModelTypeModel>(SQLiteDataAccess.ModelsFromBrands(SelectedBrand.Id));
+            AvailableCarModels = new ObservableCollection<ModelTypeModel>(SqLiteDataAccessCarRefuelTrackerModule.ModelsFromBrands(SelectedBrand.Id));
         }
 
         #endregion

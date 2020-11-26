@@ -13,6 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{5000
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RietRobHaushaltsbuch.Modules.OverView", "Modules\RietRobHaushaltsbuch.Modules.OverView\RietRobHaushaltsbuch.Modules.OverView.csproj", "{31B619D7-4A91-4CB2-B79E-88DEFCAF454D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".shared", ".shared", "{DFB2DB84-4EE8-47BA-BD89-F8C522A0164F}"
+	ProjectSection(SolutionItems) = preProject
+		.shared\SharedAssemblyInfo.cs = .shared\SharedAssemblyInfo.cs
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

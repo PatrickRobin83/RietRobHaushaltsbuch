@@ -1,8 +1,8 @@
 ﻿/*
  * -----------------------------------------------------------------------------
  *	 
- *   Filename		:   ViewModelBase.cs
- *   Date			:   2020-11-25 10:57:22
+ *   Filename		:   CarModelSendEventAggregationProvider.cs
+ *   Date			:   2020-11-24 12:25:04
  *   All rights reserved
  * 
  * -----------------------------------------------------------------------------
@@ -10,14 +10,11 @@
  * @Version      1.0.0
  */
 
-using System;
 using Prism.Events;
-using Prism.Mvvm;
-using RietRobHaushaltbuch.Core.Interfaces;
 
-namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
+namespace RietRobHaushaltbuch.Core.Events
 {
-    public class BaseViewModel : BindableBase, ICloseWindows
+    public class ObjectEvent : PubSubEvent<object>
     {
         #region Fields
 
@@ -32,9 +29,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         #endregion
 
         #region Methods
-        public Action Close { get; set; }
+
         #endregion
-
-
     }
 }

@@ -9,9 +9,8 @@
 */
 
 using System.Collections.ObjectModel;
-using Prism.Mvvm;
 
-namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models
+namespace RietRobHaushaltbuch.Core.Models
 
 {
     public class CarModel

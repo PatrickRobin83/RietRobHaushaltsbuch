@@ -3,6 +3,7 @@ using Prism.Ioc;
 using Prism.Modularity;
 using System.Windows;
 using Prism.Unity;
+using RietRobHaushaltbuch.Core.Helper;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker;
 using RietRobHaushaltsbuch.Modules.OverView;
 
@@ -15,6 +16,7 @@ namespace RietRobHaushaltsbuch
     {
         protected override Window CreateShell()
         {
+            LogHelper.WriteLogOnStartup();
             return Container.Resolve<MainWindow>();
         }
 

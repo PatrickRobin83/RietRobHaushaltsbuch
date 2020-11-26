@@ -8,7 +8,7 @@
 * @author Patrick Robin <support@rietrob.de>
 */
 
-namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models
+namespace RietRobHaushaltbuch.Core.Models
 
 {
     public class FuelTypeModel

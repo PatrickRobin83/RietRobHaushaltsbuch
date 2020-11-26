@@ -13,9 +13,11 @@
 using Prism.Commands;
 using Prism.Events;
 using RietRobHaushaltbuch.Core;
+using RietRobHaushaltbuch.Core.DataAccess;
+using RietRobHaushaltbuch.Core.Events;
 using RietRobHaushaltbuch.Core.Interfaces;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.DataAccess;
-using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Models;
+using RietRobHaushaltbuch.Core.Models;
+using RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels.Base;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
@@ -91,9 +93,8 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         }
         private void AddFuelType()
         {
-            FuelTypeModel fuelTypeModelToAdd = new FuelTypeModel();
-            fuelTypeModelToAdd.TypeOfFuel = TxtFuelTypeName;
-            fuelTypeModelToAdd.Id = SQLiteDataAccess.AddFuelType(fuelTypeModelToAdd).Id;
+            FuelTypeModel fuelTypeModelToAdd = new FuelTypeModel {TypeOfFuel = TxtFuelTypeName};
+            fuelTypeModelToAdd.Id = SqLiteDataAccessCarRefuelTrackerModule.AddFuelType(fuelTypeModelToAdd).Id;
             _eventAggregator.GetEvent<ObjectEvent>().Publish(fuelTypeModelToAdd);
             Close?.Invoke();
         }
