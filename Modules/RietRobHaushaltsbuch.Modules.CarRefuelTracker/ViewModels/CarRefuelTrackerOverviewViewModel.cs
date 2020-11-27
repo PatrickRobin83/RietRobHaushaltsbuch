@@ -86,7 +86,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             }
         }
 
-        public override void RegisterCommands()
+        public void RegisterCommands()
         {
             CreateCarCommand = new DelegateCommand(CreateCar);
             CarSelectionChangedCommand = new DelegateCommand(CarSelectionChanged);

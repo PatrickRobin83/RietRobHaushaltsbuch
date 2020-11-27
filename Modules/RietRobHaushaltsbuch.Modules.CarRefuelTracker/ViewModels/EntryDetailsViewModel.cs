@@ -118,7 +118,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             }
         }
 
-        public override void RegisterCommands()
+        public void RegisterCommands()
         {
             SelectedDateTimeChangedCommand = new DelegateCommand(DateChanged).ObservesProperty(() => SelectedDate);
             TextboxChangedCommand = new DelegateCommand<string>(TextChanged);

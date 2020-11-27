@@ -128,6 +128,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             Entries = CarModel.Entries;
             _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleObjectEvent);
             _eventAggregator.GetEvent<NewsEvent>().Subscribe(HandleNewsEvents);
+            RegisterCommands();
         }
 
         private void HandleNewsEvents(string parameter)
@@ -161,6 +162,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             CarModel = new CarModel();
             RefreshFuelTypeList();
             RefreshBrandModelList();
+            RegisterCommands();
 
             if (AvailableBrands != null && AvailableBrands.Count > 0)
             {
@@ -182,7 +184,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         }
 
-        public override void RegisterCommands()
+        public void RegisterCommands()
         {
             SaveCarCommand = new DelegateCommand(SaveCar);
             CloseCarDetailsCommand = new DelegateCommand(CloseCarDetails);

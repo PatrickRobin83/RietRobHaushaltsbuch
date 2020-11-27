@@ -71,7 +71,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         #region Methods
 
-        public override void RegisterCommands()
+        public void RegisterCommands()
         {
             AddBrandCommand = new DelegateCommand(AddBrand).ObservesProperty(() => HasCharacters);
             TextChangedCommand = new DelegateCommand(BrandTextChanged).ObservesProperty(() => HasCharacters);

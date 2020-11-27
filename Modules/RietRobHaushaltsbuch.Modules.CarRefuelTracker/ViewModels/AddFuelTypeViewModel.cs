@@ -69,7 +69,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         #endregion
 
         #region Methods
-        public override void RegisterCommands()
+        public void RegisterCommands()
         {
             AddFuelTypeCommand = new DelegateCommand(AddFuelType).ObservesProperty(() => HasCharacters); ;
             CancelAddFuelTypeCommand = new DelegateCommand(CancelAddFuel);

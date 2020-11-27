@@ -87,7 +87,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         #endregion
 
         #region Methods
-        public override void RegisterCommands()
+        public void RegisterCommands()
         {
            TextChangedCommand = new DelegateCommand(TextChanged).ObservesProperty(() => HasCharacters); ;
            CancelAddModelCommand = new DelegateCommand(AddModelCanceled);

@@ -15,6 +15,9 @@ using RietRobHaushaltbuch.Core.Interfaces;
 namespace RietRobHaushaltbuch.Core.Base
 
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public abstract class ViewModelBase : BindableBase, ICloseWindows
     {
 

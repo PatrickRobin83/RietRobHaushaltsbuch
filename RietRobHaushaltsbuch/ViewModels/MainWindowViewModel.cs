@@ -45,6 +45,7 @@ namespace RietRobHaushaltsbuch.ViewModels
         public MainWindowViewModel(IRegionManager regionManager)
         {
             _regionManager = regionManager;
+            RegisterCommands();
         }
         private void OpenFlyOut()
         {
@@ -53,7 +54,7 @@ namespace RietRobHaushaltsbuch.ViewModels
 
         #region Overrides of ViewModelBase
 
-        public override void RegisterCommands()
+        public void RegisterCommands()
         {
             OpenFlyOutCommand = new DelegateCommand(OpenFlyOut);
             OpenViewCommand = new DelegateCommand<string>(OpenView);

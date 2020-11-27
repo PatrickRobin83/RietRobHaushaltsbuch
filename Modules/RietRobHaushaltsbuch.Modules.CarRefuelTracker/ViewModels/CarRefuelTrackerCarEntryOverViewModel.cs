@@ -113,6 +113,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             _eventAggregator = ea;
             _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleCarModelSelection);
             _eventAggregator.GetEvent<NewsEvent>().Subscribe(HandleEntryEvent);
+            RegisterCommands();
         }
         #endregion
 
@@ -152,7 +153,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             AverageCostsOfHundredKilometer = AverageCalculator.CalculateTotalAverageCostsOfHundredKilometer(AllEntrysForSelectedCar);
         }
 
-        public override void RegisterCommands()
+        public void RegisterCommands()
         {
             AddEntryCommand = new DelegateCommand(AddEntry);
             EditEntryCommand = new DelegateCommand(EditEntry).ObservesCanExecute(() => IsEntryModelSelected);
