@@ -7,10 +7,31 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:prism="http://prismlibrary.com/"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              prism:ViewModelLocator.AutoWireViewModel="True" >
     <Grid>
-        <TextBlock Text="{Binding Message}"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" />
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" Text="{Binding HeadLine}" FontSize="28" FontWeight="Bold" FontFamily="Arial" TextAlignment="Center"/>
+        <DataGrid Grid.Row="2"  Margin="5,10,5,0"
+                  ItemsSource="{Binding Path=AvailableCars}"
+                  AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" 
+                  CanUserResizeRows="False" SelectedItem="{Binding Path=SelectedCar, Mode=TwoWay}"  
+                  SelectionMode="Single" CanUserSortColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header=" Fahrzeuge " IsReadOnly="True" Binding="{Binding Car}"/>
+                
+            </DataGrid.Columns>
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="SelectionChanged">
+                    <b:InvokeCommandAction Command="{Binding CarSelectionChangedCommand}"/>
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
+        </DataGrid>
     </Grid>
 </UserControl>

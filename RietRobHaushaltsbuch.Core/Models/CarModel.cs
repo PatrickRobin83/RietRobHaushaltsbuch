@@ -59,6 +59,7 @@ namespace RietRobHaushaltbuch.Core.Models
         /// List of all Entries for the CarModel
         /// </summary>
         public ObservableCollection<EntryModel> Entries { get; set; }
+        public string Car { get;}
         #endregion
 
         #region Constructor
@@ -71,6 +72,7 @@ namespace RietRobHaushaltbuch.Core.Models
             Brand.Id = BrandId;
             ModelType.Id = ModelId;
             FuelType.Id = TypeoffuelId;
+            Car = $"{Brand.BrandName} {ModelType.ModelName}";
         }
         #endregion
 
