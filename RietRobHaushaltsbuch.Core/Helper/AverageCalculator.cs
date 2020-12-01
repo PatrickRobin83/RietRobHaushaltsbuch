@@ -45,11 +45,11 @@ namespace RietRobHaushaltbuch.Core.Helper
             }
             if (!double.IsNaN(Math.Round(tmpPricePerLiter / entryModels.Count, 3)))
             {
-                _averagePricePerLiter = Convert.ToString(Math.Round(tmpPricePerLiter / entryModels.Count, 3));
+                _averagePricePerLiter = Convert.ToString(Math.Round(tmpPricePerLiter / entryModels.Count, 3) + " €");
             }
             else
             {
-                _averagePricePerLiter = "0";
+                _averagePricePerLiter = "0 €";
             }
             return _averagePricePerLiter;
         }
@@ -64,11 +64,11 @@ namespace RietRobHaushaltbuch.Core.Helper
             }
             if (!double.IsNaN(Math.Round(tmpTotalFuelAmount, 2)))
             {
-                totalFuelAmount = Convert.ToString(Math.Round(tmpTotalFuelAmount, 2));
+                totalFuelAmount = Convert.ToString(Math.Round(tmpTotalFuelAmount, 2) +" l");
             }
             else
             {
-                totalFuelAmount = "0";
+                totalFuelAmount = "0 l";
             }
 
             return totalFuelAmount;
@@ -84,11 +84,11 @@ namespace RietRobHaushaltbuch.Core.Helper
             }
             if (!double.IsNaN(Math.Round(tmpRefuelCosts, 2)))
             {
-                totalRefuelCosts = Convert.ToString(Math.Round(tmpRefuelCosts, 2));
+                totalRefuelCosts = Convert.ToString(Math.Round(tmpRefuelCosts, 2) + " €");
             }
             else
             {
-                totalRefuelCosts = "0";
+                totalRefuelCosts = "0 €";
             }
 
             return totalRefuelCosts;
@@ -104,11 +104,11 @@ namespace RietRobHaushaltbuch.Core.Helper
             }
             if (!double.IsNaN(Math.Round(tmpDrivenDistance, 2)))
             {
-                totalDrivenDistance = Convert.ToString(Math.Round(tmpDrivenDistance, 0));
+                totalDrivenDistance = Convert.ToString(Math.Round(tmpDrivenDistance, 0) + " km");
             }
             else
             {
-                totalDrivenDistance = "0";
+                totalDrivenDistance = "0 km";
             }
 
             return totalDrivenDistance;
@@ -124,11 +124,11 @@ namespace RietRobHaushaltbuch.Core.Helper
             }
             if (!double.IsNaN(Math.Round(tmpConsumption / allEntrysForSelectedCar.Count, 2)))
             {
-                averageConsumption = Convert.ToString(Math.Round(tmpConsumption / allEntrysForSelectedCar.Count, 1));
+                averageConsumption = Convert.ToString(Math.Round(tmpConsumption / allEntrysForSelectedCar.Count, 1) + " l");
             }
             else
             {
-                averageConsumption = "0";
+                averageConsumption = "0 l";
             }
 
             return averageConsumption;
@@ -143,12 +143,12 @@ namespace RietRobHaushaltbuch.Core.Helper
             }
             if (!double.IsNaN(Math.Round(tmpCostsPerHundredKilometer / allEntrysForSelectedCar.Count, 2)))
             {
-                averageCostsOfHundredKilometer = Convert.ToString(Math.Round(tmpCostsPerHundredKilometer / allEntrysForSelectedCar.Count, 2).ToString("N2"));
+                averageCostsOfHundredKilometer = Convert.ToString(Math.Round(tmpCostsPerHundredKilometer / allEntrysForSelectedCar.Count, 2).ToString("N2") + " €");
 
             }
             else
             {
-                averageCostsOfHundredKilometer = "0";
+                averageCostsOfHundredKilometer = "0 €";
             }
             return averageCostsOfHundredKilometer;
         }

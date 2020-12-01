@@ -2,10 +2,12 @@
 using System.Collections;
 using System.Windows.Media;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 using RietRobHaushaltbuch.Core;
 using RietRobHaushaltbuch.Core.Base;
+using RietRobHaushaltbuch.Core.Events;
 
 namespace RietRobHaushaltsbuch.ViewModels
 {
@@ -16,7 +18,7 @@ namespace RietRobHaushaltsbuch.ViewModels
         private int _width = 1200;
         private readonly IRegionManager _regionManager;
         private bool _flyOutOpen;
-
+        private IEventAggregator _eventAggregator;
         public string Title
         {
             get { return _title; }
@@ -42,9 +44,10 @@ namespace RietRobHaushaltsbuch.ViewModels
         public DelegateCommand<string> OpenViewCommand { get; set; }
         public DelegateCommand CloseApplicationCommand { get; set; }
 
-        public MainWindowViewModel(IRegionManager regionManager)
+        public MainWindowViewModel(IRegionManager regionManager, IEventAggregator eventAggragator)
         {
             _regionManager = regionManager;
+            _eventAggregator = eventAggragator;
             RegisterCommands();
         }
         private void OpenFlyOut()
@@ -71,6 +74,10 @@ namespace RietRobHaushaltsbuch.ViewModels
             if(string.IsNullOrEmpty(parameter))
                 throw new ArgumentNullException();
             _regionManager.RequestNavigate(RegionNames.MainRegion, parameter);
+            if (parameter.Equals("OverView"))
+            {
+                _eventAggregator.GetEvent<NewsEvent>().Publish(parameter);
+            }
             FlyOutOpen = false;
         }
 

@@ -4,8 +4,9 @@
              xmlns:local="clr-namespace:RietRobHaushaltsbuch.Modules.OverView.Views"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm ="clr-namespace:RietRobHaushaltsbuch.Modules.OverView.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="300" d:DesignWidth="800"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              prism:ViewModelLocator.AutoWireViewModel="True" >
@@ -18,14 +19,25 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="1" Text="{Binding HeadLine}" FontSize="28" FontWeight="Bold" FontFamily="Arial" TextAlignment="Center"/>
-        <DataGrid Grid.Row="2"  Margin="5,10,5,0"
+        <TextBlock Grid.Row="2" Margin="5,10,0,10" Text="Fahrzeugübersicht" FontSize="24" FontWeight="Bold" FontFamily="Arial" TextAlignment="Center"/>
+        <DataGrid Grid.Row="3"  Margin="5,10,5,0"
                   ItemsSource="{Binding Path=AvailableCars}"
                   AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeColumns="False" 
                   CanUserResizeRows="False" SelectedItem="{Binding Path=SelectedCar, Mode=TwoWay}"  
                   SelectionMode="Single" CanUserSortColumns="False">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="TextBlock.TextAlignment" Value="Right"/>
+                </Style>
+            </DataGrid.CellStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header=" Fahrzeuge " IsReadOnly="True" Binding="{Binding Car}"/>
-                
+                <DataGridTextColumn Header=" Fahrzeuge " IsReadOnly="True" Binding="{Binding CarName}"/>
+                <DataGridTextColumn Header=" Ø Preis/Liter " IsReadOnly="True" Binding="{Binding AveragePricePerLiter }"/>
+                <DataGridTextColumn Header=" Getankte Menge " IsReadOnly="True" Binding="{Binding TotalFuelAmount }"/>
+                <DataGridTextColumn Header=" Kosten " IsReadOnly="True" Binding="{Binding TotalRefuelCosts }"/>
+                <DataGridTextColumn Header=" gefahrene km " IsReadOnly="True" Binding="{Binding TotalDrivenDistance }"/>
+                <DataGridTextColumn Header=" Ø Verbrauch " IsReadOnly="True" Binding="{Binding AverageConsumption }"/>
+                <DataGridTextColumn Header=" Ø Kosten / 100km " IsReadOnly="True" Binding="{Binding AverageCostsOfHundredKilometer }"/>
             </DataGrid.Columns>
             <b:Interaction.Triggers>
                 <b:EventTrigger EventName="SelectionChanged">
