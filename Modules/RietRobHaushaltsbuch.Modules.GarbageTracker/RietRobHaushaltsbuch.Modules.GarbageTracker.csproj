@@ -4,20 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{21656D2E-CB30-46E5-ACC6-A94E48EA2400}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{8294639D-BD49-43E1-B11E-70354C0D8811}</ProjectGuid>
+    <OutputType>library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RietRobHaushaltsbuch</RootNamespace>
-    <AssemblyName>RietRobHaushaltsbuch</AssemblyName>
+    <RootNamespace>RietRobHaushaltsbuch.Modules.GarbageTracker</RootNamespace>
+    <AssemblyName>RietRobHaushaltsbuch.Modules.GarbageTracker</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -27,7 +25,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -52,32 +49,10 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Page Include="Style\MahBindings.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="..\.shared\SharedAssemblyInfo.cs">
+    <Compile Include="..\..\.shared\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="GarbageTrackerModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -95,47 +70,36 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="App.config" />
-    <None Include="CarRefuelTracker.sqlite3">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Modules\RietRobHaushaltsbuch.Modules.CarRefuelTracker\RietRobHaushaltsbuch.Modules.CarRefuelTracker.csproj">
-      <Project>{14FD534A-FC79-443F-92E7-2B658F415C22}</Project>
-      <Name>RietRobHaushaltsbuch.Modules.CarRefuelTracker</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modules\RietRobHaushaltsbuch.Modules.GarbageTracker\RietRobHaushaltsbuch.Modules.GarbageTracker.csproj">
-      <Project>{8294639D-BD49-43E1-B11E-70354C0D8811}</Project>
-      <Name>RietRobHaushaltsbuch.Modules.GarbageTracker</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Modules\RietRobHaushaltsbuch.Modules.OverView\RietRobHaushaltsbuch.Modules.OverView.csproj">
-      <Project>{31B619D7-4A91-4CB2-B79E-88DEFCAF454D}</Project>
-      <Name>RietRobHaushaltsbuch.Modules.OverView</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RietRobHaushaltsbuch.Core\RietRobHaushaltsbuch.Core.csproj">
-      <Project>{C96ED1FA-E594-4E9D-8596-CE499F1710BD}</Project>
-      <Name>RietRobHaushaltsbuch.Core</Name>
-    </ProjectReference>
+    <Folder Include="ViewModels\" />
+    <Folder Include="Views\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Dapper">
+      <Version>2.0.78</Version>
+    </PackageReference>
     <PackageReference Include="FontAwesome.WPF">
       <Version>4.7.0.9</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro">
-      <Version>2.3.4</Version>
+      <Version>2.4.1</Version>
     </PackageReference>
-    <PackageReference Include="Prism.Unity">
-      <Version>8.0.0.1909</Version>
-    </PackageReference>
-    <PackageReference Include="Prism.Wpf">
-      <Version>8.0.0.1909</Version>
+    <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
+    <PackageReference Include="System.Data.SQLite">
+      <Version>1.0.113.6</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\RietRobHaushaltsbuch.Core\RietRobHaushaltsbuch.Core.csproj">
+      <Project>{c96ed1fa-e594-4e9d-8596-ce499f1710bd}</Project>
+      <Name>RietRobHaushaltsbuch.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

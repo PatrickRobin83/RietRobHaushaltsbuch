@@ -3,8 +3,10 @@ using Prism.Ioc;
 using Prism.Modularity;
 using System.Windows;
 using Prism.Unity;
+using RietRobHaushaltbuch.Core.Enum;
 using RietRobHaushaltbuch.Core.Helper;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker;
+using RietRobHaushaltsbuch.Modules.GarbageTracker;
 using RietRobHaushaltsbuch.Modules.OverView;
 
 namespace RietRobHaushaltsbuch
@@ -26,10 +28,13 @@ namespace RietRobHaushaltsbuch
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {
-
             //ToDo: Register the Modules here!
             moduleCatalog.AddModule<OverViewModule>();
+            LogHelper.WriteToLog("Module OverView loaded",LogState.Debug);
             moduleCatalog.AddModule<CarRefuelTrackerModule>();
+            LogHelper.WriteToLog("Module CarRefuelTracker loaded", LogState.Debug);
+            moduleCatalog.AddModule<GarbageTrackerModule>();
+            LogHelper.WriteToLog("Module GarbageTracker loaded", LogState.Debug);
         }
     }
 }
