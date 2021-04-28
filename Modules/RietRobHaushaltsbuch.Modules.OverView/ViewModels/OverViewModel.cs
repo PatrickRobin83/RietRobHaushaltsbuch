@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -17,6 +18,8 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
         private string _headLine;
         private ObservableCollection<CarModel> _availableCars;
         private CarModel _selectedCar;
+        private string _selectedYear;
+        private ObservableCollection<string> _yearToSelect = new ObservableCollection<string>();
 
 
         public CarModel SelectedCar
@@ -37,12 +40,26 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
             set { SetProperty(ref _headLine, value); }
         }
 
+        public string SelectedYear
+        {
+            get { return _selectedYear; }
+            set { SetProperty(ref _selectedYear, value); }
+        }
+
+        public ObservableCollection<string> YearToSelect
+        {
+            get { return _yearToSelect; }
+            set { SetProperty(ref _yearToSelect, value); }
+        }
+
         public OverViewModel(IEventAggregator eventaggregator)
         {
             eventaggregator.GetEvent<NewsEvent>().Subscribe(LoadOverView);
-            HeadLine = "Übersicht der Gesamtkosten";
+            HeadLine = "Übersicht der Gesamtkosten für das Jahr: ";
             RegisterCommands();
-           LoadCars();
+            YearToSelect = CreateYearEntrysForComboBoxSelection.AddYearsToComboBox();
+            SelectedYear = YearToSelect.FirstOrDefault();
+            LoadCars();
         }
 
         private void LoadOverView(string parameter)
@@ -55,7 +72,7 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
 
         public void LoadCars()
         {
-            AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars());
+            AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars(SelectedYear));
             foreach (CarModel car in AvailableCars)
             {
                 car.CarName = $"{car.Brand.BrandName} {car.ModelType.ModelName}";
@@ -72,6 +89,7 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
         public void RegisterCommands()
         {
             CarSelectionChangedCommand = new DelegateCommand(CarSelectionChanged);
+            YearSelectionChangedCommand = new DelegateCommand(SelectedYearChanged);
         }
         #endregion
 
@@ -79,6 +97,12 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
         {
 
         }
+
+        private void SelectedYearChanged()
+        {
+           LoadCars();
+        }
         public DelegateCommand CarSelectionChangedCommand { get; set; }
+        public DelegateCommand YearSelectionChangedCommand { get; set; }
     }
 }

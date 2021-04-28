@@ -10,6 +10,7 @@
  * @Version      1.0.0
  */
 
+using System;
 using Prism.Commands;
 using Prism.Events;
 using RietRobHaushaltbuch.Core.Base;
@@ -20,6 +21,7 @@ using RietRobHaushaltbuch.Core.Interfaces;
 using RietRobHaushaltbuch.Core.Models;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
@@ -38,6 +40,8 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         private string _averageCostsOfHundredKilometer;
         private EntryModel _selectedEntryModel;
         private bool _isEntryModelSelected;
+        private string _selectedYear;
+        private ObservableCollection<string> _yearsToSelect;
 
         public bool IsEntryModelSelected
         {
@@ -104,6 +108,18 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             set { SetProperty(ref _carModel, value); }
         }
 
+        public string SelectedYear
+        {
+            get { return _selectedYear; }
+            set { SetProperty(ref _selectedYear, value); }
+        }
+
+        public ObservableCollection<string> YearsToSelect
+        {
+            get { return _yearsToSelect; }
+            set { SetProperty(ref _yearsToSelect, value); }
+        }
+
         #endregion
 
         #region Constructor
@@ -113,12 +129,13 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             _eventAggregator = ea;
             _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleCarModelSelection);
             _eventAggregator.GetEvent<NewsEvent>().Subscribe(HandleEntryEvent);
+            YearsToSelect = CreateYearEntrysForComboBoxSelection.AddYearsToComboBox();
+            SelectedYear = YearsToSelect.FirstOrDefault();
             RegisterCommands();
         }
         #endregion
 
         #region Methods
-
         private void HandleEntryEvent(string entryEvent)
         {
             if (entryEvent.Equals("EntryClosed"))
@@ -129,7 +146,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void UpdateEntryList()
         {
-            AllEntrysForSelectedCar = new ObservableCollection<EntryModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadEntrysForCar(CarModel.Id));
+            AllEntrysForSelectedCar = new ObservableCollection<EntryModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadEntrysForCar(CarModel.Id, SelectedYear));
             CalculateAverages();
         }
 
@@ -159,6 +176,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             EditEntryCommand = new DelegateCommand(EditEntry).ObservesCanExecute(() => IsEntryModelSelected);
             DeleteEntryCommand = new DelegateCommand(DeleteEntry).ObservesCanExecute(() => IsEntryModelSelected);
             EntrySelectionChangedCommand = new DelegateCommand(EntrySelectionChanged);
+            YearSelectionChangedCommand = new DelegateCommand(SelectedYearChanged);
         }
 
         private void EntrySelectionChanged()
@@ -196,6 +214,12 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             };
             entryDetailsView.ShowDialog();
         }
+
+        private void SelectedYearChanged()
+        {
+            UpdateEntryList();
+            CalculateAverages();
+        }
         #endregion
 
         #region Commands
@@ -203,6 +227,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         public DelegateCommand EditEntryCommand { get; set; }
         public DelegateCommand DeleteEntryCommand { get; set; }
         public DelegateCommand EntrySelectionChangedCommand { get; set; }
+        public DelegateCommand YearSelectionChangedCommand { get; set; }
 
         #endregion
 

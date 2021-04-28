@@ -40,11 +40,12 @@ namespace RietRobHaushaltbuch.Core.DataAccess
         #region Methods
 
         #region Car Operations
+
         /// <summary>
         /// Gets all CarModels from the Database and return them in a List
         /// </summary>
         /// <returns>List of CarModels</returns>
-        public static List<CarModel> LoadCars()
+        public static List<CarModel> LoadCars(string year)
         {
             List<CarModel> allCarModels = new List<CarModel>();
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -59,7 +60,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
                         carModel.Brand = cnn.QueryFirst<BrandModel>($"SELECT * FROM Brand WHERE {carModel.BrandId} = id");
                         carModel.ModelType = cnn.QueryFirst<ModelTypeModel>($"SELECT * FROM Model WHERE {carModel.ModelId} = id");
                         carModel.FuelType = cnn.QueryFirst<FuelTypeModel>($"SELECT * from TypeOfFuel WHERE {carModel.TypeoffuelId} = id");
-                        allEntriesForCar = cnn.Query<EntryModel>($"SELECT * FROM `Entry` WHERE CarId = {carModel.Id}  ORDER BY Date(Replace(entrydate, '.', '-'));").ToList();
+                        allEntriesForCar = LoadEntrysForCar(carModel.Id, year);
                         carModel.Entries = new ObservableCollection<EntryModel>(allEntriesForCar);
                     }
                     return allCarModels;
@@ -375,15 +376,23 @@ namespace RietRobHaushaltbuch.Core.DataAccess
         /// </summary>
         /// <param name="carId">CarId where the entrys from</param>
         /// <returns>List of EntryModel for the given Car</returns>
-        public static List<EntryModel> LoadEntrysForCar(int carId)
+        public static List<EntryModel> LoadEntrysForCar(int carId, string year)
         {
             List<EntryModel> entryModels = new List<EntryModel>();
             try
             {
                 using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
                 {
-                    entryModels = cnn.Query<EntryModel>($"SELECT * FROM `Entry` WHERE CarId = {carId}  ORDER BY Date(Replace(entrydate, '.', '-'));").ToList();
-
+                    if (!Equals(year, "Show All"))
+                    {
+                        entryModels = cnn.Query<EntryModel>($"SELECT * FROM `Entry` WHERE CarId = {carId} AND  SUBSTR(entrydate, 7 , 4) = '{year}' ORDER BY Date(Replace(entrydate, '.', '-'));").ToList();
+                        // SELECT * FROM `Entry` WHERE CarId = 4 AND substr(entrydate, 7, 4) = '2021'
+                    }
+                    else
+                    {
+                        entryModels = cnn.Query<EntryModel>($"SELECT * FROM `Entry` WHERE CarId = {carId} ORDER BY Date(Replace(entrydate, '.', '-'));").ToList();
+                    }
+                    
                     return entryModels;
                 }
             }

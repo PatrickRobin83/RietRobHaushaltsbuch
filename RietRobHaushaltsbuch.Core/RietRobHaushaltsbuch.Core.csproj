@@ -93,6 +93,7 @@
     <Compile Include="DataAccess\SQLiteDataAccessOverViewModule.cs" />
     <Compile Include="Enum\LogState.cs" />
     <Compile Include="Helper\AverageCalculator.cs" />
+    <Compile Include="Helper\CreateYearEntrysForComboBoxSelection.cs" />
     <Compile Include="Helper\EntryCalculator.cs" />
     <Compile Include="Helper\LogHelper.cs" />
     <Compile Include="Interfaces\IViewModelHelper.cs" />
