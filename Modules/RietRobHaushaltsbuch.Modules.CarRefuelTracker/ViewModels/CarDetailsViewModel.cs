@@ -298,6 +298,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         #endregion
 
+        #region Commands
         public DelegateCommand SaveCarCommand { get; set; }
         public DelegateCommand CloseCarDetailsCommand { get; set; }
         public DelegateCommand RemoveBrandCommand { get; set; }
@@ -307,6 +308,6 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         public DelegateCommand RemoveModelTypeCommand { get; set; }
         public DelegateCommand AddFuelTypeCommand { get; set; }
         public DelegateCommand RemoveFuelTypeCommand { get; set; }
-
+        #endregion
     }
 }

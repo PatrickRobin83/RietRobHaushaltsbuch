@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
-using MahApps.Metro.Controls;
 using Prism.Commands;
 using Prism.Events;
-using Prism.Mvvm;
-using Prism.Regions;
-using RietRobHaushaltbuch.Core;
 using RietRobHaushaltbuch.Core.Base;
 using RietRobHaushaltbuch.Core.DataAccess;
 using RietRobHaushaltbuch.Core.Events;
@@ -138,7 +133,6 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             carDetailsView.ShowDialog();
         }
         #endregion
-
 
         #region Commands
 

@@ -12,7 +12,6 @@
 
 using Prism.Commands;
 using Prism.Events;
-using RietRobHaushaltbuch.Core;
 using RietRobHaushaltbuch.Core.Base;
 using RietRobHaushaltbuch.Core.DataAccess;
 using RietRobHaushaltbuch.Core.Events;
@@ -23,14 +22,13 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
     public class AddBrandViewModel : ViewModelBase, IViewModelHelper
     {
-        private readonly IEventAggregator _eventAggregator;
-
         #region Fields
 
         private int _height = 180;
         private int _width = 380;
         private string _txtBrandName;
         private bool _hasCharacters = false;
+        private readonly IEventAggregator _eventAggregator;
 
         #endregion
 

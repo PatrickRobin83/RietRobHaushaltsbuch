@@ -13,12 +13,16 @@ namespace RietRobHaushaltsbuch.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private string _title = "Prism Application";
+        #region Fields
+        private string _title = "RietRob Haushalts-Buch";
         private int _height = 600;
         private int _width = 1200;
         private readonly IRegionManager _regionManager;
         private bool _flyOutOpen;
         private IEventAggregator _eventAggregator;
+        #endregion
+
+        #region Properties
         public string Title
         {
             get { return _title; }
@@ -32,7 +36,7 @@ namespace RietRobHaushaltsbuch.ViewModels
 
         public int Height
         {
-            get{ return _height; }
+            get { return _height; }
         }
 
         public int Width
@@ -40,20 +44,47 @@ namespace RietRobHaushaltsbuch.ViewModels
             get { return _width; }
         }
 
+        #endregion
+
+        #region Commands
         public DelegateCommand OpenFlyOutCommand { get; set; }
         public DelegateCommand<string> OpenViewCommand { get; set; }
         public DelegateCommand CloseApplicationCommand { get; set; }
 
+        #endregion
+
+        #region Constructor
         public MainWindowViewModel(IRegionManager regionManager, IEventAggregator eventAggragator)
         {
             _regionManager = regionManager;
             _eventAggregator = eventAggragator;
             RegisterCommands();
         }
+        #endregion
+
+        #region Methods
+        private void CloseApplication()
+        {
+            Environment.Exit(0);
+        }
         private void OpenFlyOut()
         {
             FlyOutOpen = true;
         }
+
+
+        private void OpenView(string parameter)
+        {
+            if (string.IsNullOrEmpty(parameter))
+                throw new ArgumentNullException();
+            _regionManager.RequestNavigate(RegionNames.MainRegion, parameter);
+            if (parameter.Equals("OverView"))
+            {
+                _eventAggregator.GetEvent<NewsEvent>().Publish(parameter);
+            }
+            FlyOutOpen = false;
+        }
+        #endregion
 
         #region Overrides of ViewModelBase
 
@@ -62,23 +93,6 @@ namespace RietRobHaushaltsbuch.ViewModels
             OpenFlyOutCommand = new DelegateCommand(OpenFlyOut);
             OpenViewCommand = new DelegateCommand<string>(OpenView);
             CloseApplicationCommand = new DelegateCommand(CloseApplication);
-        }
-
-        private void CloseApplication()
-        {
-            Environment.Exit(0);
-        }
-
-        private void OpenView(string parameter)
-        {
-            if(string.IsNullOrEmpty(parameter))
-                throw new ArgumentNullException();
-            _regionManager.RequestNavigate(RegionNames.MainRegion, parameter);
-            if (parameter.Equals("OverView"))
-            {
-                _eventAggregator.GetEvent<NewsEvent>().Publish(parameter);
-            }
-            FlyOutOpen = false;
         }
 
         #endregion

@@ -20,10 +20,11 @@
                 <Label Content="Fahrzeug Einträge für das Jahr: " 
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center" 
-                       FontSize="20"/>
+                       FontSize="20" FontFamily="Arial"/>
 
                 <ComboBox ItemsSource="{Binding YearsToSelect, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding SelectedYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                          SelectedItem="{Binding SelectedYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                          FontSize="20" FontFamily="Arial" MinWidth="150" Width="150" BorderThickness="1" Background="SlateGray">
 
                     <b:Interaction.Triggers>
                         <b:EventTrigger EventName="SelectionChanged">

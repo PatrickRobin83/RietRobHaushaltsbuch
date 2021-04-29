@@ -10,15 +10,20 @@
  * @Version      1.0.0
  */
 
+using NLog;
 using RietRobHaushaltbuch.Core.Base;
+using RietRobHaushaltbuch.Core.Enum;
+using RietRobHaushaltbuch.Core.Helper;
+using RietRobHaushaltbuch.Core.Interfaces;
 
 namespace RietRobHaushaltsbuch.Modules.GarbageTracker.ViewModels
 {
-    public class GarbageTrackerOverViewModel :ViewModelBase
+    public class GarbageTrackerOverViewModel :ViewModelBase, IViewModelHelper
     {
         #region Fields
 
         private string _message;
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         #endregion
 
         #region Properties
@@ -35,6 +40,7 @@ namespace RietRobHaushaltsbuch.Modules.GarbageTracker.ViewModels
         public GarbageTrackerOverViewModel()
         {
             Message = "Garbage Tracker";
+            RegisterCommands();
         }
         #endregion
 
@@ -42,5 +48,12 @@ namespace RietRobHaushaltsbuch.Modules.GarbageTracker.ViewModels
 
         #endregion
 
+        #region Implementation of IViewModelHelper
+
+        public void RegisterCommands()
+        {
+        }
+
+        #endregion
     }
 }
