@@ -5,10 +5,12 @@ using Prism.Events;
 using Prism.Mvvm;
 using RietRobHaushaltbuch.Core.Base;
 using RietRobHaushaltbuch.Core.DataAccess;
+using RietRobHaushaltbuch.Core.Enum;
 using RietRobHaushaltbuch.Core.Events;
 using RietRobHaushaltbuch.Core.Helper;
 using RietRobHaushaltbuch.Core.Interfaces;
 using RietRobHaushaltbuch.Core.Models;
+using NLog;
 
 namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
 {
@@ -17,6 +19,7 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
         private string _headLine;
         private ObservableCollection<CarModel> _availableCars;
         private CarModel _selectedCar;
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
 
         public CarModel SelectedCar
@@ -42,6 +45,7 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
             eventaggregator.GetEvent<NewsEvent>().Subscribe(LoadOverView);
             HeadLine = "Übersicht der Gesamtkosten";
             RegisterCommands();
+            LogHelper.WriteToLog("Loaded", logger, LogState.Debug);
            LoadCars();
         }
 

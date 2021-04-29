@@ -8,6 +8,7 @@ using RietRobHaushaltbuch.Core.Helper;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker;
 using RietRobHaushaltsbuch.Modules.GarbageTracker;
 using RietRobHaushaltsbuch.Modules.OverView;
+using NLog;
 
 namespace RietRobHaushaltsbuch
 {
@@ -16,6 +17,7 @@ namespace RietRobHaushaltsbuch
     /// </summary>
     public partial class App : PrismApplication
     {
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         protected override Window CreateShell()
         {
             LogHelper.WriteLogOnStartup();
@@ -30,11 +32,8 @@ namespace RietRobHaushaltsbuch
         {
             //ToDo: Register the Modules here!
             moduleCatalog.AddModule<OverViewModule>();
-            LogHelper.WriteToLog("Module OverView loaded",LogState.Debug);
             moduleCatalog.AddModule<CarRefuelTrackerModule>();
-            LogHelper.WriteToLog("Module CarRefuelTracker loaded", LogState.Debug);
             moduleCatalog.AddModule<GarbageTrackerModule>();
-            LogHelper.WriteToLog("Module GarbageTracker loaded", LogState.Debug);
         }
     }
 }

@@ -10,8 +10,8 @@
 
 using System;
 using System.IO;
-using System.Runtime.CompilerServices;
-using log4net;
+using NLog;
+using NLog.Targets;
 using RietRobHaushaltbuch.Core.Enum;
 
 namespace RietRobHaushaltbuch.Core.Helper
@@ -19,14 +19,7 @@ namespace RietRobHaushaltbuch.Core.Helper
 {
     public class LogHelper
     {
-
         #region Fields
-
-        /// <summary>
-        /// Gets the Logger to Log to
-        /// </summary>
-        private static readonly log4net.ILog Log = LogHelper.GetLogger();
-
         #endregion
 
         #region Properties
@@ -34,7 +27,7 @@ namespace RietRobHaushaltbuch.Core.Helper
         /// LogFileName to Log to
         /// </summary>
         private static string LogFileName { get; } = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments) +
-                                                    @"\RietRobHaushaltsbuch\Logs\" + DateTime.Now.ToShortDateString() + @"_log";
+                                                    @"\RietRobHaushaltsbuch\Logs\" + DateTime.Now.ToShortDateString() + @"_log.txt";
 
         private static string LogDirectory { get; } =
             Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments) +
@@ -47,15 +40,6 @@ namespace RietRobHaushaltbuch.Core.Helper
         #endregion
 
         #region Methods
-        /// <summary>
-        /// Gets the Logger and overgive a filename
-        /// </summary>
-        /// <param name="filename"></param>
-        /// <returns></returns>
-        public static ILog GetLogger([CallerFilePath] string filename = "")
-        {
-            return LogManager.GetLogger(filename);
-        }
 
         /// <summary>
         /// Writes the Logfile and fill some stadard information at startup.
@@ -66,14 +50,15 @@ namespace RietRobHaushaltbuch.Core.Helper
             {
                 Directory.CreateDirectory(LogDirectory);
             }
-            if (!File.Exists(LogFileName + ".txt"))
+            if (!File.Exists(LogFileName))
             {
-                File.Create(LogFileName + "txt");
+                File.Create(LogFileName);
             }
 
-            using (StreamWriter sw = File.AppendText(LogFileName + ".txt"))
+            using (StreamWriter sw = File.AppendText(LogFileName))
             {
                 sw.WriteLine("--------------------------------------------------------------------------------");
+                sw.WriteLine($"Date / Time = {DateTime.Today.ToShortDateString()} / {DateTime.Now.ToShortTimeString()}");
                 sw.WriteLine($"RietRobHaushaltsbuch Version {typeof(LogHelper).Assembly.GetName().Version}");
                 sw.WriteLine($"Installationpath = {Environment.CurrentDirectory}");
                 sw.WriteLine($"Computername = {Environment.MachineName}");
@@ -90,42 +75,52 @@ namespace RietRobHaushaltbuch.Core.Helper
         /// </summary>
         /// <param name="logMessage"></param>
         /// <param name="logState"></param>
-        public static void WriteToLog(string logMessage, LogState logState)
+        public static void WriteToLog(string logMessage, Logger logger, LogState logState)
         {
-            log4net.GlobalContext.Properties["LogFile"] = LogFileName;
-            string s = new Uri(Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.
-                GetExecutingAssembly().CodeBase), "log4net.config")).LocalPath;
-            log4net.Config.XmlConfigurator.Configure();
+            var config = new NLog.Config.LoggingConfiguration();
+
+            // Targets where to log to: File and Console
+            var logfile = new NLog.Targets.FileTarget("logfile") { FileName = LogFileName};
+            var logconsole = new NLog.Targets.ConsoleTarget("logconsole");
+
+            // Rules for mapping loggers to targets            
+            config.AddRule(LogLevel.Info, LogLevel.Fatal, logconsole);
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
+
+            // Apply config           
+            NLog.LogManager.Configuration = config;
+
             switch (logState)
             {
+
                 case LogState.Debug:
                     {
-                        Log.Debug(logMessage);
+                        logger.Debug(logMessage);
                         break;
                     }
                 case LogState.Info:
                     {
-                        Log.Info(logMessage);
+                        logger.Info(logMessage);
                         break;
                     }
                 case LogState.Warn:
                     {
-                        Log.Warn(logMessage);
+                        logger.Warn(logMessage);
                         break;
                     }
                 case LogState.Error:
                     {
-                        Log.Error(logMessage);
+                        logger.Error(logMessage);
                         break;
                     }
                 case LogState.Fatal:
                     {
-                        Log.Fatal(logMessage);
+                        logger.Fatal(logMessage);
                         break;
                     }
                 default:
                     {
-                        Log.Debug(logMessage);
+                        logger.Debug(logMessage);
                         break;
                     }
             }
