@@ -59,6 +59,8 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
         {
             eventaggregator.GetEvent<NewsEvent>().Subscribe(LoadOverView);
             HeadLine = "Übersicht der Gesamtkosten für das Jahr: ";
+            YearToSelect = CreateYearEntrysForComboBoxSelection.AddYearsToComboBox();
+            SelectedYear = YearToSelect.FirstOrDefault();
             RegisterCommands();
            LoadCars();
         }
