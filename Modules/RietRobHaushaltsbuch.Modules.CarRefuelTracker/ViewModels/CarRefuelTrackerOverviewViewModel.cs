@@ -71,7 +71,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             _eventAggregator = eventAggregator;
             Title = "CarRefuelTracker Overview";
-            AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars());
+            AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars("Show All"));
             RegisterCommands();
             _eventAggregator.GetEvent<NewsEvent>().Subscribe(CarCreated);
         }
@@ -82,7 +82,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             if (parameter.Equals("CarSaved") || parameter.Equals("Cancel"))
             {
-                AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars());
+                AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars("Show All"));
             }
         }
 
@@ -123,7 +123,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         private void DeleteCar()
         {
             SqLiteDataAccessCarRefuelTrackerModule.DeleteCar(SelectedCarModel);
-            AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars());
+            AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars("Show All"));
             SelectedCarModel = AvailableCars.FirstOrDefault();
         }
 

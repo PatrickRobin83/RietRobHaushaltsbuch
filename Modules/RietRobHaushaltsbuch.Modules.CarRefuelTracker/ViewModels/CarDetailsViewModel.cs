@@ -135,7 +135,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             if (parameter.Equals("EntryClosed"))
             {
-                Entries = new ObservableCollection<EntryModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadEntrysForCar(Id));
+                Entries = new ObservableCollection<EntryModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadEntrysForCar(Id, DateTime.Now.Year.ToString()));
             }
         }
 

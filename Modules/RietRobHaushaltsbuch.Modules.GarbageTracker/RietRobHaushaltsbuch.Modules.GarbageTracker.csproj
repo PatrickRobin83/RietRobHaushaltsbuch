@@ -89,7 +89,7 @@
       <Version>4.7.0.9</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro">
-      <Version>2.4.1</Version>
+      <Version>2.4.2</Version>
     </PackageReference>
     <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
     <PackageReference Include="System.Data.SQLite">
