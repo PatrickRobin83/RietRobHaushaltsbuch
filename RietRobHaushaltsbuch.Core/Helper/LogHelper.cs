@@ -20,6 +20,7 @@ namespace RietRobHaushaltbuch.Core.Helper
     public class LogHelper
     {
         #region Fields
+
         #endregion
 
         #region Properties
@@ -42,7 +43,7 @@ namespace RietRobHaushaltbuch.Core.Helper
         #region Methods
 
         /// <summary>
-        /// Writes the Logfile and fill some stadard information at startup.
+        /// Writes the Logfile and fill some standard information at startup.
         /// </summary>
         public static void WriteLogOnStartup()
         {
@@ -75,16 +76,22 @@ namespace RietRobHaushaltbuch.Core.Helper
         /// </summary>
         /// <param name="logMessage"></param>
         /// <param name="logState"></param>
-        public static void WriteToLog(string logMessage, Logger logger, LogState logState)
+        public static void WriteToLog(NLog.Logger logger, string logMessage, LogState logState)
         {
+
             //ToDO: Configure and Style the LogMessage output in LogFile
             var config = new NLog.Config.LoggingConfiguration();
 
             // Targets where to log to: File and Console
-            var logfile = new NLog.Targets.FileTarget("logfile") { FileName = LogFileName};
+            var logfile = new NLog.Targets.FileTarget("logfile")
+            {
+                FileName = $"{LogFileName}",
+                Layout = "${longdate} || ${level} || ${logger} ||  ${message} ${exception}"
+            };
 
             // Rules for mapping loggers to targets            
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
+
 
             // Apply config           
             NLog.LogManager.Configuration = config;

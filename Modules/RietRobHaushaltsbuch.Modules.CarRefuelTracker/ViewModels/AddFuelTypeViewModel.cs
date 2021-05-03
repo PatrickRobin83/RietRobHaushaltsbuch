@@ -14,7 +14,9 @@ using Prism.Commands;
 using Prism.Events;
 using RietRobHaushaltbuch.Core.Base;
 using RietRobHaushaltbuch.Core.DataAccess;
+using RietRobHaushaltbuch.Core.Enum;
 using RietRobHaushaltbuch.Core.Events;
+using RietRobHaushaltbuch.Core.Helper;
 using RietRobHaushaltbuch.Core.Interfaces;
 using RietRobHaushaltbuch.Core.Models;
 
@@ -29,6 +31,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         private int _width = 380;
         private string _title = "Kraftstoffart hinzufügen";
         private string _txtFuelTypeName;
+        private static NLog.Logger appLogger = NLog.LogManager.GetCurrentClassLogger();
         #endregion
 
         #region Properties
@@ -88,6 +91,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         }
         private void CancelAddFuel()
         {
+            LogHelper.WriteToLog(appLogger, "Add fueltype canceled", LogState.Info);
             Close?.Invoke();
         }
         private void AddFuelType()
@@ -95,6 +99,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             FuelTypeModel fuelTypeModelToAdd = new FuelTypeModel {TypeOfFuel = TxtFuelTypeName};
             fuelTypeModelToAdd.Id = SqLiteDataAccessCarRefuelTrackerModule.AddFuelType(fuelTypeModelToAdd).Id;
             _eventAggregator.GetEvent<ObjectEvent>().Publish(fuelTypeModelToAdd);
+            LogHelper.WriteToLog(appLogger, $"Fueltype {TxtFuelTypeName} added", LogState.Info);
             Close?.Invoke();
         }
         #endregion

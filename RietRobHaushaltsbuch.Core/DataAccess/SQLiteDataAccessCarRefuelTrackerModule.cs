@@ -28,9 +28,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
     {
 
         #region Fields
-
-        private static readonly Logger logger = NLog.LogManager.GetCurrentClassLogger();
-
+        private static NLog.Logger appLogger = NLog.LogManager.GetCurrentClassLogger();
         #endregion
 
         #region Properties
@@ -71,7 +69,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
                 }
                 catch (SQLiteException ex)
                 {
-                    LogHelper.WriteToLog(ex.Message, logger,LogState.Error);
+                    LogHelper.WriteToLog(appLogger, ex.Message,LogState.Error);
                     return new List<CarModel>();
                 }
             }
@@ -95,7 +93,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message,logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
                 return new CarModel();
             }
 
@@ -117,7 +115,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
             }
         }
         /// <summary>
@@ -135,7 +133,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
             }
         }
         #endregion
@@ -159,7 +157,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
                 return new List<BrandModel>();
             }
         }
@@ -186,7 +184,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
                 return new BrandModel();
             }
         }
@@ -223,7 +221,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
             }
         }
         #endregion
@@ -248,7 +246,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
                 return new List<ModelTypeModel>();
             }
         }
@@ -275,7 +273,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
                 return new ModelTypeModel();
             }
         }
@@ -295,7 +293,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
             }
         }
         #endregion
@@ -320,7 +318,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
                 return new List<FuelTypeModel>();
             }
         }
@@ -349,7 +347,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
                 return new FuelTypeModel();
             }
         }
@@ -369,7 +367,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
             }
         }
         #endregion
@@ -402,7 +400,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
                 return new List<EntryModel>();
             }
         }
@@ -427,7 +425,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
                 return new EntryModel();
             }
         }
@@ -449,7 +447,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger,  LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message,  LogState.Error);
             }
         }
         /// <summary>
@@ -467,7 +465,7 @@ namespace RietRobHaushaltbuch.Core.DataAccess
             }
             catch (SQLiteException ex)
             {
-                LogHelper.WriteToLog(ex.Message, logger, LogState.Error);
+                LogHelper.WriteToLog(appLogger, ex.Message, LogState.Error);
             }
         }
         #endregion

@@ -9,6 +9,7 @@
 */
 
 using System.Configuration;
+using NLog;
 
 namespace RietRobHaushaltbuch.Core.DataAccess.Base
 
@@ -17,11 +18,9 @@ namespace RietRobHaushaltbuch.Core.DataAccess.Base
     {
 
         #region Fields
-
         #endregion
 
         #region Properties
-
         #endregion
 
         #region Constructor

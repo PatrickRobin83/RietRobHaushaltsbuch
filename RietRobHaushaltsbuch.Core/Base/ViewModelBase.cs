@@ -9,6 +9,7 @@
 */
 
 using System;
+using NLog;
 using Prism.Mvvm;
 using RietRobHaushaltbuch.Core.Interfaces;
 
@@ -22,11 +23,9 @@ namespace RietRobHaushaltbuch.Core.Base
     {
 
         #region Fields
-
         #endregion
 
         #region Properties
-
         #endregion
 
         #region Constructor

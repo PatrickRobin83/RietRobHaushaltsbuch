@@ -14,7 +14,9 @@ using Prism.Commands;
 using Prism.Events;
 using RietRobHaushaltbuch.Core.Base;
 using RietRobHaushaltbuch.Core.DataAccess;
+using RietRobHaushaltbuch.Core.Enum;
 using RietRobHaushaltbuch.Core.Events;
+using RietRobHaushaltbuch.Core.Helper;
 using RietRobHaushaltbuch.Core.Interfaces;
 using RietRobHaushaltbuch.Core.Models;
 
@@ -29,6 +31,9 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         private string _txtBrandName;
         private bool _hasCharacters = false;
         private readonly IEventAggregator _eventAggregator;
+        private static NLog.Logger appLogger = NLog.LogManager.GetCurrentClassLogger();
+
+
 
         #endregion
 
@@ -78,6 +83,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         private void CancelAddBrand()
         {
             Close?.Invoke();
+            LogHelper.WriteToLog(appLogger, "Add Brand canceled", LogState.Info);
         }
         public void BrandTextChanged()
         {
@@ -95,6 +101,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             BrandModel modelToAdd = new BrandModel {BrandName = TxtBrandName};
             modelToAdd.Id = SqLiteDataAccessCarRefuelTrackerModule.AddBrand(modelToAdd).Id;
             _eventAggregator.GetEvent<ObjectEvent>().Publish(modelToAdd);
+            LogHelper.WriteToLog(appLogger, $"Brand {TxtBrandName} added", LogState.Info);
             Close?.Invoke();
         }
         #endregion

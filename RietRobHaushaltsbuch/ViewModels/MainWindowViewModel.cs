@@ -7,7 +7,10 @@ using Prism.Mvvm;
 using Prism.Regions;
 using RietRobHaushaltbuch.Core;
 using RietRobHaushaltbuch.Core.Base;
+using RietRobHaushaltbuch.Core.Enum;
 using RietRobHaushaltbuch.Core.Events;
+using RietRobHaushaltbuch.Core.Helper;
+using Unity.Injection;
 
 namespace RietRobHaushaltsbuch.ViewModels
 {
@@ -20,6 +23,7 @@ namespace RietRobHaushaltsbuch.ViewModels
         private readonly IRegionManager _regionManager;
         private bool _flyOutOpen;
         private IEventAggregator _eventAggregator;
+        private static NLog.Logger appLogger = NLog.LogManager.GetCurrentClassLogger();
         #endregion
 
         #region Properties
@@ -65,6 +69,7 @@ namespace RietRobHaushaltsbuch.ViewModels
         #region Methods
         private void CloseApplication()
         {
+            LogHelper.WriteToLog(appLogger,"Exit Application", LogState.Debug);
             Environment.Exit(0);
         }
         private void OpenFlyOut()
@@ -83,6 +88,7 @@ namespace RietRobHaushaltsbuch.ViewModels
                 _eventAggregator.GetEvent<NewsEvent>().Publish(parameter);
             }
             FlyOutOpen = false;
+            LogHelper.WriteToLog(appLogger, $"{parameter} loaded", LogState.Debug);
         }
         #endregion
 
