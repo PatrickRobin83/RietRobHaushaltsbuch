@@ -10,6 +10,8 @@
 
 using System;
 using System.IO;
+using System.Runtime.CompilerServices;
+using System.Threading;
 using NLog;
 using NLog.Targets;
 using RietRobHaushaltbuch.Core.Enum;
@@ -21,18 +23,21 @@ namespace RietRobHaushaltbuch.Core.Helper
     {
         #region Fields
 
-        #endregion
-
-        #region Properties
         /// <summary>
         /// LogFileName to Log to
         /// </summary>
         private static string LogFileName { get; } = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments) +
-                                                    @"\RietRobHaushaltsbuch\Logs\" + DateTime.Now.ToShortDateString() + @"_log.txt";
-
+                                                     @"\RietRobHaushaltsbuch\Logs\" + DateTime.Now.ToShortDateString() + @"_log.txt";
         private static string LogDirectory { get; } =
             Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments) +
             @"\RietRobHaushaltsbuch\Logs\";
+
+        private static FileSystemWatcher watcher = new FileSystemWatcher();
+
+        #endregion
+
+        #region Properties
+
 
         #endregion
 
@@ -47,28 +52,61 @@ namespace RietRobHaushaltbuch.Core.Helper
         /// </summary>
         public static void WriteLogOnStartup()
         {
-            if (!Directory.Exists(LogDirectory))
+            try
             {
-                Directory.CreateDirectory(LogDirectory);
+                if (!Directory.Exists(LogDirectory))
+                {
+                    Directory.CreateDirectory(LogDirectory);
+                }
+
+                if (!File.Exists(LogFileName))
+                {
+                    using (FileStream fs = new FileStream(LogFileName, FileMode.Create, FileAccess.ReadWrite))
+                    {
+                        fs.Close();
+                        fs.Dispose();
+                    }
+                }
             }
-            if (!File.Exists(LogFileName))
+            catch (FileNotFoundException fnfe)
             {
-                File.Create(LogFileName);
+                Console.WriteLine(fnfe.Message);
+            }
+
+            bool notLocked = false;
+            while (!notLocked)
+            {
+                try
+                {
+                    FileStream fs = File.Open(LogFileName, FileMode.OpenOrCreate,
+                        FileAccess.ReadWrite, FileShare.None);
+                    fs.Close();
+
+                    notLocked = true;
+                }
+                catch (IOException ex)
+                {
+                    notLocked = false;
+                    throw new IOException(ex.StackTrace);
+                }
             }
 
             using (StreamWriter sw = File.AppendText(LogFileName))
             {
-                sw.WriteLine("--------------------------------------------------------------------------------");
-                sw.WriteLine($"Date / Time = {DateTime.Today.ToShortDateString()} / {DateTime.Now.ToShortTimeString()}");
-                sw.WriteLine($"RietRobHaushaltsbuch Version {typeof(LogHelper).Assembly.GetName().Version}");
-                sw.WriteLine($"Installationpath = {Environment.CurrentDirectory}");
-                sw.WriteLine($"Computername = {Environment.MachineName}");
-                sw.WriteLine($"OS Version = {Environment.OSVersion}");
-                sw.WriteLine($"Username LoggedIn = {Environment.UserName}");
-                sw.WriteLine($"OS is 64 Bit = {Environment.Is64BitOperatingSystem}");
-                sw.WriteLine("--------------------------------------------------------------------------------");
-                sw.Close();
+                    sw.WriteLine("--------------------------------------------------------------------------------");
+                    sw.WriteLine(
+                        $"Date / Time = {DateTime.Today.ToShortDateString()} / {DateTime.Now.ToShortTimeString()}");
+                    sw.WriteLine($"RietRobHaushaltsbuch Version {typeof(LogHelper).Assembly.GetName().Version}");
+                    sw.WriteLine($"Installationpath = {Environment.CurrentDirectory}");
+                    sw.WriteLine($"Computername = {Environment.MachineName}");
+                    sw.WriteLine($"OS Version = {Environment.OSVersion}");
+                    sw.WriteLine($"Username LoggedIn = {Environment.UserName}");
+                    sw.WriteLine($"OS is 64 Bit = {Environment.Is64BitOperatingSystem}");
+                    sw.WriteLine("--------------------------------------------------------------------------------");
+                    sw.Close();
+                    sw.Dispose();
             }
+
         }
 
         /// <summary>

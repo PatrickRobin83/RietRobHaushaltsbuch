@@ -112,16 +112,16 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CommonServiceLocator">
-      <Version>2.0.5</Version>
+      <Version>2.0.6</Version>
     </PackageReference>
     <PackageReference Include="Dapper">
-      <Version>2.0.78</Version>
+      <Version>2.0.90</Version>
     </PackageReference>
     <PackageReference Include="FontAwesome.WPF">
       <Version>4.7.0.9</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro">
-      <Version>2.3.4</Version>
+      <Version>2.4.5</Version>
     </PackageReference>
     <PackageReference Include="MahApps.Metro.IconPacks">
       <Version>4.8.0</Version>
@@ -136,7 +136,7 @@
       <Version>8.0.0.1909</Version>
     </PackageReference>
     <PackageReference Include="System.Data.SQLite">
-      <Version>1.0.113.6</Version>
+      <Version>1.0.113.7</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
