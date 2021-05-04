@@ -22,15 +22,15 @@ namespace RietRobHaushaltsbuch.Modules.GarbageTracker.ViewModels
     {
         #region Fields
 
-        private string _message;
+        private string _title;
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         #endregion
 
         #region Properties
-        public string Message
+        public string Title
         {
-            get { return _message; }
-            set { SetProperty(ref _message, value); }
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
         }
 
         #endregion
@@ -39,21 +39,16 @@ namespace RietRobHaushaltsbuch.Modules.GarbageTracker.ViewModels
 
         public GarbageTrackerOverViewModel()
         {
-            Message = "Garbage Tracker";
+            Title = "Garbage Tracker";
             RegisterCommands();
         }
         #endregion
 
         #region Methods
-
-        #endregion
-
-        #region Implementation of IViewModelHelper
-
         public void RegisterCommands()
         {
-        }
 
+        }
         #endregion
     }
 }

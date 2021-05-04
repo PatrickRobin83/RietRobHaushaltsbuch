@@ -16,10 +16,11 @@ using RietRobHaushaltbuch.Core.Models;
 
 namespace RietRobHaushaltbuch.Core.Helper
 {
+    /// <summary>
+    /// Calculates averages
+    /// </summary>
     public static class AverageCalculator
     {
-        
-
         #region Fields
 
         #endregion
@@ -34,6 +35,11 @@ namespace RietRobHaushaltbuch.Core.Helper
 
         #region Methods
 
+        /// <summary>
+        /// Calculates the average price per liter for the given entryModels Collection
+        /// </summary>
+        /// <param name="entryModels"></param>
+        /// <returns></returns>
         public static string CalculateAveragePricePerLiter(ObservableCollection<EntryModel> entryModels)
         {
             string _averagePricePerLiter = "";
@@ -53,6 +59,12 @@ namespace RietRobHaushaltbuch.Core.Helper
             }
             return _averagePricePerLiter;
         }
+
+        /// <summary>
+        /// Calculates the total amount of fuel for the given entrymodels collection
+        /// </summary>
+        /// <param name="entryModels"></param>
+        /// <returns></returns>
         public static string CalculateTotalFuelAmount(ObservableCollection<EntryModel> entryModels)
         {
             string totalFuelAmount = "";
@@ -73,6 +85,11 @@ namespace RietRobHaushaltbuch.Core.Helper
 
             return totalFuelAmount;
         }
+        /// <summary>
+        /// Calculates the total refuel costs for the given entryModels Collection
+        /// </summary>
+        /// <param name="entryModels"></param>
+        /// <returns></returns>
         public static string CalculateTotalRefuelCosts(ObservableCollection<EntryModel> entryModels)
         {
             double tmpRefuelCosts = 0;
@@ -93,6 +110,12 @@ namespace RietRobHaushaltbuch.Core.Helper
 
             return totalRefuelCosts;
         }
+
+        /// <summary>
+        /// Calculates the total driven distance for the given entrys collection from selected car 
+        /// </summary>
+        /// <param name="allEntrysForSelectedCar"></param>
+        /// <returns></returns>
         public static string CalculateTotalDrivenDistance(ObservableCollection<EntryModel> allEntrysForSelectedCar)
         {
             double tmpDrivenDistance = 0;
@@ -113,6 +136,12 @@ namespace RietRobHaushaltbuch.Core.Helper
 
             return totalDrivenDistance;
         }
+
+        /// <summary>
+        /// Calculates the total average consumption from the entrys collection for the selected car
+        /// </summary>
+        /// <param name="allEntrysForSelectedCar"></param>
+        /// <returns></returns>
         public static string CalculateTotalAverageConsumption(ObservableCollection<EntryModel> allEntrysForSelectedCar)
         {
             double tmpConsumption = 0;
@@ -133,6 +162,12 @@ namespace RietRobHaushaltbuch.Core.Helper
 
             return averageConsumption;
         }
+
+        /// <summary>
+        /// Calculate the total average costs of hundred kilometer for the entrys collection for the selected car
+        /// </summary>
+        /// <param name="allEntrysForSelectedCar"></param>
+        /// <returns></returns>
         public static string CalculateTotalAverageCostsOfHundredKilometer(ObservableCollection<EntryModel> allEntrysForSelectedCar)
         {
             double tmpCostsPerHundredKilometer = 0;

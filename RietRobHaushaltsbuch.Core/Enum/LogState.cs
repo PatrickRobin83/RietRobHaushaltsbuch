@@ -10,6 +10,9 @@
 
 namespace RietRobHaushaltbuch.Core.Enum
 {
+    /// <summary>
+    /// Enum Collection for the logging mechanism.
+    /// </summary>
     public enum LogState
     {
         Debug,

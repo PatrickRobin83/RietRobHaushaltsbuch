@@ -31,7 +31,10 @@ namespace RietRobHaushaltbuch.Core.Helper
         #endregion
 
         #region Methods
-
+        /// <summary>
+        /// Creates a list of strings with the Year from now back to 100 Years
+        /// </summary>
+        /// <returns></returns>
         public static ObservableCollection<string> AddYearsToComboBox()
         {
             ObservableCollection<string> YearsToSelect = new ObservableCollection<string>();

@@ -12,6 +12,9 @@
 
 namespace RietRobHaushaltbuch.Core.Interfaces
 {
+    /// <summary>
+    /// Interface every ViewModel should implement to get the RegisterCommands method
+    /// </summary>
     public interface IViewModelHelper
     {
         void  RegisterCommands();

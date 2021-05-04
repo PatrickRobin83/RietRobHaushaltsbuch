@@ -29,22 +29,32 @@ namespace RietRobHaushaltbuch.Core.Helper
         #endregion
 
         #region Methods
-
-        public static string CalculateAverage(string dividend, string divisor)
+        /// <summary>
+        /// Calculates the average consumption of fuel in l for 100 kilometer
+        /// </summary>
+        /// <param name="amountOfFuel"></param>
+        /// <param name="totalDrivenDistance"></param>
+        /// <returns></returns>
+        public static string CalculateAverageForHundredKilometer(string amountOfFuel, string totalDrivenDistance)
         {
-            double tmpDividend;
-            double tmpDivisor;
+            double dbAmountOfFuel;
+            double dbTotalDrivenDistance;
             double result;
 
-            tmpDividend = Convert.ToDouble(dividend);
-            tmpDivisor = Convert.ToDouble(divisor);
+            dbAmountOfFuel = Convert.ToDouble(amountOfFuel);
+            dbTotalDrivenDistance = Convert.ToDouble(totalDrivenDistance);
 
-            result = tmpDividend / tmpDivisor * 100;
+            result = dbAmountOfFuel / dbTotalDrivenDistance * 100;
             result = Math.Round(result, 2);
             
             return result.ToString("N2");
         }
-
+        /// <summary>
+        /// Calculates the total fuel costs from the given amount of fuel in liter and price per liter €
+        /// </summary>
+        /// <param name="amountOfFuel"></param>
+        /// <param name="pricePerLiter"></param>
+        /// <returns></returns>
         public static string CalculateTotalFuelCosts(string amountOfFuel, string pricePerLiter)
         {
             double tmpAmountOfFuel;

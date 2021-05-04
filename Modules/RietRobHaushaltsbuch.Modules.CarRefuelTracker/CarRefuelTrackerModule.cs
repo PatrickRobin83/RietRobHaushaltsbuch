@@ -10,12 +10,22 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker
 {
     public class CarRefuelTrackerModule : IModule
     {
+        #region Fields
         private readonly IRegionManager _regionManager;
+        #endregion
 
+        #region Properties
+
+        #endregion
+
+        #region Constructor
         public CarRefuelTrackerModule(IRegionManager regionManager)
         {
             _regionManager = regionManager;
         }
+        #endregion
+
+        #region Methods
 
         public void OnInitialized(IContainerProvider containerProvider)
         {
@@ -25,15 +35,24 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker
 
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
-           ViewModelLocationProvider.Register<CarRefuelTrackerOverView, CarRefuelTrackerOverviewViewModel>();
-           ViewModelLocationProvider.Register<CarRefuelTrackerCarEntryOverView, CarRefuelTrackerCarEntryOverViewModel>();
-           ViewModelLocationProvider.Register<CarDetailsView, CarDetailsViewModel>();
-           ViewModelLocationProvider.Register<AddBrandView, AddBrandViewModel>();
-           ViewModelLocationProvider.Register<AddModelTypeView, AddModelTypeViewModel>();
-           ViewModelLocationProvider.Register<AddFuelTypeView, AddFuelTypeViewModel>();
-           ViewModelLocationProvider.Register<EntryDetailsView, EntryDetailsViewModel>();
+            ViewModelLocationProvider.Register<CarRefuelTrackerOverView, CarRefuelTrackerOverviewViewModel>();
+            ViewModelLocationProvider.Register<CarRefuelTrackerCarEntryOverView, CarRefuelTrackerCarEntryOverViewModel>();
+            ViewModelLocationProvider.Register<CarDetailsView, CarDetailsViewModel>();
+            ViewModelLocationProvider.Register<AddBrandView, AddBrandViewModel>();
+            ViewModelLocationProvider.Register<AddModelTypeView, AddModelTypeViewModel>();
+            ViewModelLocationProvider.Register<AddFuelTypeView, AddFuelTypeViewModel>();
+            ViewModelLocationProvider.Register<EntryDetailsView, EntryDetailsViewModel>();
             containerRegistry.RegisterForNavigation<CarRefuelTrackerCarEntryOverView>();
 
         }
+
+        #endregion
+
+        #region Commands
+
+        #endregion
+
+        #region Events
+        #endregion
     }
 }

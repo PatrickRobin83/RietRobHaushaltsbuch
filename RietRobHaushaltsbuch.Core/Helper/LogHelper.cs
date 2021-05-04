@@ -10,10 +10,7 @@
 
 using System;
 using System.IO;
-using System.Runtime.CompilerServices;
-using System.Threading;
 using NLog;
-using NLog.Targets;
 using RietRobHaushaltbuch.Core.Enum;
 
 namespace RietRobHaushaltbuch.Core.Helper
@@ -26,13 +23,14 @@ namespace RietRobHaushaltbuch.Core.Helper
         /// <summary>
         /// LogFileName to Log to
         /// </summary>
-        private static string LogFileName { get; } = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments) +
+        private static string LogFileName { get; } = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments) + 
                                                      @"\RietRobHaushaltsbuch\Logs\" + DateTime.Now.ToShortDateString() + @"_log.txt";
+        /// <summary>
+        /// Path to the LogFile
+        /// </summary>
         private static string LogDirectory { get; } =
             Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments) +
             @"\RietRobHaushaltsbuch\Logs\";
-
-        private static FileSystemWatcher watcher = new FileSystemWatcher();
 
         #endregion
 
@@ -48,7 +46,7 @@ namespace RietRobHaushaltbuch.Core.Helper
         #region Methods
 
         /// <summary>
-        /// Writes the Logfile and fill some standard information at startup.
+        /// Writes the Logfile and fill some standard information at startup. The LogFile will be created if it is existent 
         /// </summary>
         public static void WriteLogOnStartup()
         {

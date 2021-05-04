@@ -8,18 +8,16 @@
 * @author Patrick Robin <support@rietrob.de>
 */
 
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Data;
-using System.Data.SQLite;
-using System.Linq;
 using Dapper;
-using NLog;
 using RietRobHaushaltbuch.Core.DataAccess.Base;
 using RietRobHaushaltbuch.Core.Enum;
 using RietRobHaushaltbuch.Core.Helper;
 using RietRobHaushaltbuch.Core.Models;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Data;
+using System.Data.SQLite;
+using System.Linq;
 
 namespace RietRobHaushaltbuch.Core.DataAccess
 
@@ -28,6 +26,9 @@ namespace RietRobHaushaltbuch.Core.DataAccess
     {
 
         #region Fields
+        /// <summary>
+        /// Logger for the logging mechanism
+        /// </summary>
         private static NLog.Logger appLogger = NLog.LogManager.GetCurrentClassLogger();
         #endregion
 

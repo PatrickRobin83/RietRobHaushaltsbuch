@@ -138,10 +138,10 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
                 _entryModel.DrivenDistance = DrivenDistance;
 
                 _entryModel.ConsumptationPerHundredKilometer =
-                    EntryCalculator.CalculateAverage(AmountOfFuel, DrivenDistance);
+                    EntryCalculator.CalculateAverageForHundredKilometer(AmountOfFuel, DrivenDistance);
 
                 _entryModel.CostPerHundredKilometer = 
-                    EntryCalculator.CalculateAverage(EntryCalculator.CalculateTotalFuelCosts(AmountOfFuel,PricePerLiter),
+                    EntryCalculator.CalculateAverageForHundredKilometer(EntryCalculator.CalculateTotalFuelCosts(AmountOfFuel,PricePerLiter),
                     DrivenDistance);
                 _entryModel.TotalAmount = EntryCalculator.CalculateTotalFuelCosts(AmountOfFuel, PricePerLiter);
 
@@ -154,10 +154,10 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
                 _entryModel.AmountOffuel = AmountOfFuel;
                 _entryModel.DrivenDistance = DrivenDistance;
                 _entryModel.ConsumptationPerHundredKilometer =
-                    EntryCalculator.CalculateAverage(AmountOfFuel, DrivenDistance);
+                    EntryCalculator.CalculateAverageForHundredKilometer(AmountOfFuel, DrivenDistance);
 
                 _entryModel.CostPerHundredKilometer =
-                    EntryCalculator.CalculateAverage(EntryCalculator.CalculateTotalFuelCosts(AmountOfFuel, PricePerLiter),
+                    EntryCalculator.CalculateAverageForHundredKilometer(EntryCalculator.CalculateTotalFuelCosts(AmountOfFuel, PricePerLiter),
                         DrivenDistance);
                 
                 _entryModel.TotalAmount = EntryCalculator.CalculateTotalFuelCosts(AmountOfFuel, PricePerLiter);

@@ -17,6 +17,8 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
 {
     public class OverViewModel : ViewModelBase, IViewModelHelper
     {
+        #region Fields
+
         private string _headLine;
         private ObservableCollection<CarModel> _availableCars;
         private CarModel _selectedCar;
@@ -24,6 +26,9 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
         private ObservableCollection<string> _yearToSelect = new ObservableCollection<string>();
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
+        #endregion
+
+        #region Properties
 
         public CarModel SelectedCar
         {
@@ -55,6 +60,10 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
             set { SetProperty(ref _yearToSelect, value); }
         }
 
+        #endregion
+
+        #region Constructor
+
         public OverViewModel(IEventAggregator eventaggregator)
         {
             eventaggregator.GetEvent<NewsEvent>().Subscribe(LoadOverView);
@@ -62,17 +71,12 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
             YearToSelect = CreateYearEntrysForComboBoxSelection.AddYearsToComboBox();
             SelectedYear = YearToSelect.FirstOrDefault();
             RegisterCommands();
-           LoadCars();
+            LoadCars();
         }
 
-        private void LoadOverView(string parameter)
-        {
-            if (parameter.Equals("OverView"))
-            {
-                LoadCars();
-            }
-        }
+        #endregion
 
+        #region Methods
         public void LoadCars()
         {
             AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars(SelectedYear));
@@ -95,17 +99,27 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
             YearSelectionChangedCommand = new DelegateCommand(SelectedYearChanged);
         }
         #endregion
-
         private void CarSelectionChanged()
         {
 
         }
-
         private void SelectedYearChanged()
         {
-           LoadCars();
+            LoadCars();
         }
+        private void LoadOverView(string parameter)
+        {
+            if (parameter.Equals("OverView"))
+            {
+                LoadCars();
+            }
+        }
+        #endregion
+
+        #region Commands
         public DelegateCommand CarSelectionChangedCommand { get; set; }
         public DelegateCommand YearSelectionChangedCommand { get; set; }
+        #endregion
+
     }
 }

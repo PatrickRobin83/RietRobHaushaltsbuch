@@ -24,6 +24,8 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
     public class AddBrandViewModel : ViewModelBase, IViewModelHelper
     {
+        //ToDo: Add Comments for all Fields Methods and if necessary also for classes
+
         #region Fields
 
         private int _height = 180;

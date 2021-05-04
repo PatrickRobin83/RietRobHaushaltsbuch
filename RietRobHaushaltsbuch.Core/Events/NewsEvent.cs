@@ -1,7 +1,7 @@
 ﻿/*
  * -----------------------------------------------------------------------------
  *	 
- *   Filename		:   EditCarEvent.cs
+ *   Filename		:   NewsEvent.cs
  *   Date			:   2020-11-24 13:24:20
  *   All rights reserved
  * 
@@ -14,6 +14,9 @@ using Prism.Events;
 
 namespace RietRobHaushaltbuch.Core.Events
 {
+    /// <summary>
+    /// Messages only for news
+    /// </summary>
     public class NewsEvent : PubSubEvent<string>
     {
         #region Fields

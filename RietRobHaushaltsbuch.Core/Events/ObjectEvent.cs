@@ -14,6 +14,9 @@ using Prism.Events;
 
 namespace RietRobHaushaltbuch.Core.Events
 {
+    /// <summary>
+    /// Needed for Messages by passing around objects
+    /// </summary>
     public class ObjectEvent : PubSubEvent<object>
     {
         #region Fields

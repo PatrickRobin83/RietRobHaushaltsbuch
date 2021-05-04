@@ -10,7 +10,6 @@
  * @Version      1.0.0
  */
 
-using System;
 using Prism.Commands;
 using Prism.Events;
 using RietRobHaushaltbuch.Core.Base;

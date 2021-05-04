@@ -1,31 +1,28 @@
 ﻿/*
 *----------------------------------------------------------------------------------
-*          Filename:	ViewModelBase.cs
-*          Date:        2020.11.22 23:26:55
+*          Filename:	DemoClass.cs
+*          Date:        2021.05.05 00:20:06
 *          All rights reserved
 *
 *----------------------------------------------------------------------------------
 * @author Patrick Robin <support@rietrob.de>
 */
 
-using System;
-using NLog;
-using Prism.Mvvm;
-using RietRobHaushaltbuch.Core.Interfaces;
-
-namespace RietRobHaushaltbuch.Core.Base
+namespace RietRobHaushaltbuch.Core
 
 {
     /// <summary>
-    /// Base Class for every ViewModel
+    /// Just as Template if forgotten to use the resharper class create template
     /// </summary>
-    public abstract class ViewModelBase : BindableBase, ICloseWindows
+    public class DemoClass
     {
 
         #region Fields
+
         #endregion
 
         #region Properties
+
         #endregion
 
         #region Constructor
@@ -36,8 +33,10 @@ namespace RietRobHaushaltbuch.Core.Base
 
         #endregion
 
-        #region Implementation of ICloseWindows
-        public Action Close { get; set; }
+        #region EventHandler
+
         #endregion
+
+
     }
 }

@@ -34,6 +34,10 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         private string _txtBrandName;
         private string _txtModelName;
         private bool _hasCharacters = false;
+
+        #endregion
+
+        #region Properties
         public bool HasCharacters
         {
             get { return _hasCharacters; }
@@ -60,16 +64,12 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             get { return _width; }
             set { SetProperty(ref _width, value); }
-        }   
+        }
         public int Height
         {
             get { return _height; }
             set { SetProperty(ref _height, value); }
         }
-        #endregion
-
-        #region Properties
-
         #endregion
 
         #region Constructor

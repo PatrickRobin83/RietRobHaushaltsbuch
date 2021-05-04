@@ -10,13 +10,16 @@ namespace RietRobHaushaltsbuch.Modules.OverView
 {
     public class OverViewModule : IModule
     {
+        #region Fields
+
         private readonly IRegionManager _regionManager;
 
-        public OverViewModule(IRegionManager regionManager)
-        {
-            _regionManager = regionManager;
-        }
+        #endregion
 
+        #region Properties
+        #endregion
+
+        #region Methods
         public void OnInitialized(IContainerProvider containerProvider)
         {
             _regionManager.RegisterViewWithRegion(RegionNames.MainRegion, typeof(Views.OverView));
@@ -26,7 +29,19 @@ namespace RietRobHaushaltsbuch.Modules.OverView
         {
             ViewModelLocationProvider.Register<Views.OverView, OverViewModel>();
         }
+        #endregion
 
+        #region Constructor
+        public OverViewModule(IRegionManager regionManager)
+        {
+            _regionManager = regionManager;
+        }
+        #endregion
 
+        #region Commands
+        #endregion
+
+        #region Events
+        #endregion
     }
 }

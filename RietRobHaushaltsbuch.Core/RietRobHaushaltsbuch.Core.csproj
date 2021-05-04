@@ -95,6 +95,7 @@
     <Compile Include="DataAccess\Base\BaseSqLiteDataAccess.cs" />
     <Compile Include="DataAccess\SQLiteDataAccessCarRefuelTrackerModule.cs" />
     <Compile Include="DataAccess\SQLiteDataAccessOverViewModule.cs" />
+    <Compile Include="DemoClass.cs" />
     <Compile Include="Enum\LogState.cs" />
     <Compile Include="Helper\AverageCalculator.cs" />
     <Compile Include="Helper\CreateYearEntrysForComboBoxSelection.cs" />

@@ -110,7 +110,10 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             CarDetailsView carDetailsView = new CarDetailsView
             {
-                DataContext = new CarDetailsViewModel(SelectedCarModel, _eventAggregator), SaveWindowPosition = true
+                DataContext = new CarDetailsViewModel(SelectedCarModel, _eventAggregator), 
+                SaveWindowPosition = true,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner
+
             };
             carDetailsView.ShowDialog();
         }
