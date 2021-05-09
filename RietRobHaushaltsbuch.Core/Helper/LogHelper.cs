@@ -114,8 +114,6 @@ namespace RietRobHaushaltbuch.Core.Helper
         /// <param name="logState"></param>
         public static void WriteToLog(NLog.Logger logger, string logMessage, LogState logState)
         {
-
-            //ToDO: Configure and Style the LogMessage output in LogFile
             var config = new NLog.Config.LoggingConfiguration();
 
             // Targets where to log to: File and Console

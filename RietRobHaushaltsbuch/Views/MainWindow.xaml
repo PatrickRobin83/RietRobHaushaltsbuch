@@ -6,7 +6,12 @@
         xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:core="clr-namespace:RietRobHaushaltbuch.Core;assembly=RietRobHaushaltbuch.Core"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:LocalizeDictionary.DesignCulture="en"
+        lex:ResxLocalizationProvider.DefaultAssembly="RietRobHaushaltsbuch"
+        lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         prism:ViewModelLocator.AutoWireViewModel="True"
+
         Title="{Binding Title}" Height="{Binding Height}" Width="{Binding Width}">
 
     <Grid x:Name="LayoutRoot">
@@ -18,15 +23,15 @@
         </Button>
         <ContentControl  prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" HorizontalAlignment="Stretch"  
                          VerticalAlignment="Top" Margin="100,20,0,0"/>
-        <mah:Flyout Width="200" Position="Left" IsOpen="{Binding FlyOutOpen}" Theme="Adapt" CloseButtonVisibility="Visible">
+        <mah:Flyout Width="220" Position="Left" IsOpen="{Binding FlyOutOpen}" Theme="Adapt" CloseButtonVisibility="Visible">
             <StackPanel>
                 <Button Command="{Binding OpenViewCommand}" CommandParameter="OverView"
-                        HorizontalContentAlignment="Left">
+                        HorizontalContentAlignment="Left" >
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <fa:ImageAwesome Icon="Tachometer" Height="40" Margin="0,0,20,0" Foreground="White" Width="40"/>
-                            <Label FontSize="14" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
-                                   Content="OverView"/>
+                            <Label Name="BtnOverView" FontSize="14" VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
+                                   Content="{lex:Loc}"/>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -35,8 +40,8 @@
                     <Button.Content>
                         <StackPanel Orientation="Horizontal">
                             <fa:ImageAwesome Icon="Car" Height="40" Margin="0,0,20,0" Foreground="White" Width="40"/>
-                            <Label FontSize="14"  VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
-                                   Content="CarRefuelTracker"></Label>
+                            <Label Name="BtnCarRefuelTracker" FontSize="14"  VerticalAlignment="Center" FontWeight="Bold" Foreground="White"
+                                   Content="{lex:Loc}"></Label>
                         </StackPanel>
                     </Button.Content>
                 </Button>
@@ -62,5 +67,7 @@
                 </Button>
             </StackPanel>
         </mah:Flyout>
+        <Button Height="50" Width="50" Content="Ger" Command="{Binding SetLanguageCommand}" CommandParameter="de-DE"/>
+        <Button  Height="50" Width="50" Content="EN" Command="{Binding SetLanguageCommand}" CommandParameter="en-EN" Margin="421,227,289,227"/>
     </Grid>
 </mah:MetroWindow>

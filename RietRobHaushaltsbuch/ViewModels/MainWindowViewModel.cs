@@ -7,7 +7,9 @@ using RietRobHaushaltbuch.Core.Enum;
 using RietRobHaushaltbuch.Core.Events;
 using RietRobHaushaltbuch.Core.Helper;
 using System;
+using System.Globalization;
 using RietRobHaushaltbuch.Core.Interfaces;
+using WPFLocalizeExtension.Engine;
 
 namespace RietRobHaushaltsbuch.ViewModels
 {
@@ -24,11 +26,11 @@ namespace RietRobHaushaltsbuch.ViewModels
         /// <summary>
         /// Height of the application window
         /// </summary>
-        private int _height = 600;
+        private readonly int _height = 600;
         /// <summary>
         /// Width of the application window
         /// </summary>
-        private int _width = 1200;
+        private readonly int _width = 1200;
         /// <summary>
         /// RegionManager for Prism functionality
         /// </summary>
@@ -40,11 +42,11 @@ namespace RietRobHaushaltsbuch.ViewModels
         /// <summary>
         /// Needed to recieve messages from other parts of the application
         /// </summary>
-        private IEventAggregator _eventAggregator;
+        private readonly IEventAggregator _eventAggregator;
         /// <summary>
         /// Needed for logging functionality
         /// </summary>
-        private static NLog.Logger appLogger = NLog.LogManager.GetCurrentClassLogger();
+        private static readonly NLog.Logger appLogger = NLog.LogManager.GetCurrentClassLogger();
         #endregion
 
         #region Properties
@@ -84,6 +86,8 @@ namespace RietRobHaushaltsbuch.ViewModels
         /// Command to Exit the whole application
         /// </summary>
         public DelegateCommand CloseApplicationCommand { get; set; }
+
+        public DelegateCommand<string> SetLanguageCommand { get; set; }
 
         #endregion
 
@@ -134,6 +138,24 @@ namespace RietRobHaushaltsbuch.ViewModels
             FlyOutOpen = false;
             LogHelper.WriteToLog(appLogger, $"{parameter} loaded", LogState.Debug);
         }
+
+        private void SetLanguage(string param)
+        {
+            switch (param)
+            {
+                case "de-DE": 
+                    LocalizeDictionary.Instance.Culture = new CultureInfo("de-DE");
+                    break;
+                case "en-EN":
+                    LocalizeDictionary.Instance.Culture = new CultureInfo("en-EN");
+                    break;
+                default:
+                    LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;
+                    break;
+            }
+            
+        }
+
         #endregion
 
         #region Overrides of ViewModelBase
@@ -146,6 +168,7 @@ namespace RietRobHaushaltsbuch.ViewModels
             OpenFlyOutCommand = new DelegateCommand(OpenFlyOut);
             OpenViewCommand = new DelegateCommand<string>(OpenView);
             CloseApplicationCommand = new DelegateCommand(CloseApplication);
+            SetLanguageCommand = new DelegateCommand<string>(SetLanguage);
         }
 
         #endregion

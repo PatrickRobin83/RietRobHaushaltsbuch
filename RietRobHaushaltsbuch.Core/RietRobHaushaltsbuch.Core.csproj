@@ -101,6 +101,7 @@
     <Compile Include="Helper\CreateYearEntrysForComboBoxSelection.cs" />
     <Compile Include="Helper\EntryCalculator.cs" />
     <Compile Include="Helper\LogHelper.cs" />
+    <Compile Include="Helper\CultureManager.cs" />
     <Compile Include="Interfaces\IViewModelHelper.cs" />
     <Compile Include="Models\BrandModel.cs" />
     <Compile Include="Models\CarModel.cs" />
