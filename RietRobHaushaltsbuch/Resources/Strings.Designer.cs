@@ -70,6 +70,24 @@ namespace RietRobHaushaltsbuch.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Close ähnelt.
+        /// </summary>
+        public static string BtnClose {
+            get {
+                return ResourceManager.GetString("BtnClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die GarbageTracker ähnelt.
+        /// </summary>
+        public static string BtnGarbageTracker {
+            get {
+                return ResourceManager.GetString("BtnGarbageTracker", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die OverView ähnelt.
         /// </summary>
         public static string BtnOverView {

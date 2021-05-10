@@ -120,6 +120,12 @@
   <data name="BtnCarRefuelTracker" xml:space="preserve">
     <value>CarRefuelTracker</value>
   </data>
+  <data name="BtnClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="BtnGarbageTracker" xml:space="preserve">
+    <value>GarbageTracker</value>
+  </data>
   <data name="BtnOverView" xml:space="preserve">
     <value>OverView</value>
   </data>

@@ -102,6 +102,7 @@ namespace RietRobHaushaltsbuch.ViewModels
             _regionManager = regionManager;
             _eventAggregator = eventAggragator;
             RegisterCommands();
+            ConfigXMLWriter.CreateXMLFile();
         }
         #endregion
 
