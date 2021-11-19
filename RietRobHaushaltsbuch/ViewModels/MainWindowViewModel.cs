@@ -103,6 +103,8 @@ namespace RietRobHaushaltsbuch.ViewModels
             _eventAggregator = eventAggragator;
             RegisterCommands();
             ConfigXMLWriter.CreateXMLFile();
+            SetLanguage("de-DE");
+            LocalizeDictionary.Instance.Culture = ConfigXMLWriter.GetCulture();
         }
         #endregion
 
@@ -146,12 +148,14 @@ namespace RietRobHaushaltsbuch.ViewModels
             {
                 case "de-DE": 
                     LocalizeDictionary.Instance.Culture = new CultureInfo("de-DE");
+                    ConfigXMLWriter.SaveLanguageSettings(CultureInfo.CurrentCulture);
                     break;
                 case "en-EN":
                     LocalizeDictionary.Instance.Culture = new CultureInfo("en-EN");
+                    ConfigXMLWriter.SaveLanguageSettings(CultureInfo.CurrentCulture);
                     break;
                 default:
-                    LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;
+                    //LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;
                     break;
             }
             

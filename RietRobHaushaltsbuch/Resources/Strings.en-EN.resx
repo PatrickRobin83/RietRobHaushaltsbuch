@@ -129,4 +129,7 @@
   <data name="BtnOverView" xml:space="preserve">
     <value>OverView</value>
   </data>
+  <data name="lblLanguageSettings" xml:space="preserve">
+    <value>Choose language</value>
+  </data>
 </root>

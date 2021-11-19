@@ -15,6 +15,7 @@ using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace RietRobHaushaltbuch.Core.Helper
 {
@@ -63,29 +64,18 @@ namespace RietRobHaushaltbuch.Core.Helper
                         fs.Dispose();
                     }
                 }
+                //TODO: XDocument instead of XmlDocument;
 
                 XmlDocument doc = new XmlDocument();
                 XmlNode rootNode = doc.CreateElement("root");
                 XmlNode configNode = doc.CreateElement("configsettings");
                 XmlNode languageNode = doc.CreateElement("language");
-                languageNode.InnerText = CultureInfo.CurrentCulture.Name;
+                languageNode.InnerText = SaveLanguageSettings(CultureInfo.CurrentCulture);
                 rootNode.AppendChild(configNode);
                 configNode.AppendChild(languageNode);
                 doc.AppendChild(rootNode);
                 doc.Save(_configFileName);
 
-
-
-                //XmlTextWriter xmlWriter = new XmlTextWriter(_configFileName, Encoding.UTF8);
-                //xmlWriter.WriteStartDocument(true);
-                //xmlWriter.WriteStartElement("root");
-                //xmlWriter.WriteStartElement("configsection");
-                //xmlWriter.WriteElementString("language", "de-DE");
-                //xmlWriter.WriteEndElement();
-                //xmlWriter.WriteEndElement();
-                //xmlWriter.WriteEndDocument();
-                //xmlWriter.Dispose();
-                //xmlWriter.Close();
             }
             catch (FileNotFoundException fnfe)
             {
@@ -93,11 +83,46 @@ namespace RietRobHaushaltbuch.Core.Helper
             }
         }
 
-        public static void WriteToXmlFile()
+        public static string SaveLanguageSettings(CultureInfo cutlure)
         {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(_configFileName);
+            XmlNode languageNode = doc.SelectSingleNode("root/configsettings/language");
+            string language = languageNode.InnerText;
 
+            
+            if (language != null && !language.Equals(cutlure.ToString()))
+            {
+                language = cutlure.ToString();
+                languageNode.InnerText = language;
+                doc.Save(_configFileName);
+            }
+
+            return language;
         }
 
+
+        public static CultureInfo GetCulture()
+        {
+            CultureInfo culture = null;
+            using (XmlReader reader = XmlReader.Create(_configFileName))
+            {
+                while (reader.Read())
+                {
+                    if (reader.IsStartElement())
+                    {
+                        switch (reader.Name.ToString())
+                        {
+                            case "language":
+                                culture = new CultureInfo(reader.ReadElementContentAsString());
+                                break;
+                        }
+                    }
+                }
+            }
+
+            return culture;
+        }
         #endregion
 
     }
