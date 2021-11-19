@@ -103,8 +103,8 @@ namespace RietRobHaushaltsbuch.ViewModels
             _eventAggregator = eventAggragator;
             RegisterCommands();
             ConfigXMLWriter.CreateXMLFile();
-            SetLanguage("de-DE");
-            LocalizeDictionary.Instance.Culture = ConfigXMLWriter.GetCulture();
+            SetLanguage(ConfigXMLWriter.GetCulture().ToString());
+
         }
         #endregion
 

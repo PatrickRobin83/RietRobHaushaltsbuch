@@ -69,8 +69,8 @@
                     <Label Name="lblLanguageSettings" Content="{lex:Loc}" Margin="0,10,0,0" HorizontalAlignment="Center" FontSize="24">
                     </Label>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <RadioButton Height="50" Width="50" Content="Ger" Command="{Binding SetLanguageCommand}" CommandParameter="de-DE"/>
-                        <RadioButton  Height="50" Width="50" Content="EN" Command="{Binding SetLanguageCommand}" CommandParameter="en-EN"/>
+                        <RadioButton Height="50" Width="50" Content="Ger" Command="{Binding SetLanguageCommand, Mode=TwoWay}" CommandParameter="de-DE"/>
+                        <RadioButton  Height="50" Width="50" Content="EN" Command="{Binding SetLanguageCommand, Mode=TwoWay}" CommandParameter="en-EN"/>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>
