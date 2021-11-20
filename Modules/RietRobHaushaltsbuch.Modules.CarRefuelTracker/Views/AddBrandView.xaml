@@ -7,17 +7,20 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="de"
+             lex:ResxLocalizationProvider.DefaultAssembly="RietRobHaushaltsbuch.Modules.CarRefuelTracker"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Height="{Binding Height}"
-             Width="{Binding Width}"
-             Title="{Binding Title}">
+             Width="{Binding Width}">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="Fahrezugmarke hinzufügen" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Name="txtBlockHeadline" Text="{lex:Loc}" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <DockPanel Margin="20">
-                <TextBlock Margin="0,0,15,0" FontSize="20" VerticalAlignment="Center" Text="Fahrzeugmarke: "/>
+                <TextBlock Name="txtBlockBrandLabel" Margin="0,0,15,0" FontSize="20" VerticalAlignment="Center" Text="{lex:Loc}"/>
                 <TextBox Height="38" FontSize="20" VerticalContentAlignment="Center" 
                          Text="{Binding TxtBrandName, UpdateSourceTrigger=PropertyChanged}"
                          BorderThickness="0.5" BorderBrush="Silver">
@@ -29,8 +32,8 @@
                 </TextBox>
             </DockPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Command="{Binding CancelAddBrandCommand}" Content="Abbrechen" Margin="0,0,15,0"/>
-                <Button Command="{Binding AddBrandCommand}" IsEnabled="{Binding HasCharacters}" Content="Speichern"/>
+                <Button Name="btnCancel" Command="{Binding CancelAddBrandCommand}" Content="{lex:Loc}" Margin="0,0,15,0"/>
+                <Button Name="btnSave" Command="{Binding AddBrandCommand}" IsEnabled="{Binding HasCharacters}" Content="{lex:Loc}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

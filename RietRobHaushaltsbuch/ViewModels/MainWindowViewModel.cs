@@ -39,6 +39,10 @@ namespace RietRobHaushaltsbuch.ViewModels
         /// Indicates the state of the FlyOut Menu Open = true, Closed = false
         /// </summary>
         private bool _flyOutOpen;
+
+        private bool _languageGerIsSelected;
+        private bool _languageEnIsSelected;
+
         /// <summary>
         /// Needed to recieve messages from other parts of the application
         /// </summary>
@@ -59,6 +63,18 @@ namespace RietRobHaushaltsbuch.ViewModels
         {
             get { return _flyOutOpen; }
             set { SetProperty(ref _flyOutOpen, value); }
+        }
+
+        public bool LanguageGerIsSelected
+        {
+            get { return _languageGerIsSelected; }
+            set { SetProperty(ref _languageGerIsSelected, value); }
+        }
+
+        public bool LanguageEnIsSelected
+        {
+            get { return _languageEnIsSelected; }
+            set { SetProperty(ref _languageEnIsSelected, value); }
         }
 
         public int Height
@@ -104,10 +120,7 @@ namespace RietRobHaushaltsbuch.ViewModels
             ConfigXMLWriter.CreateXMLFile();
             RegisterCommands();
             SetLanguage(ConfigXMLWriter.GetCulture().ToString());
-
-            //ToDo: How to check the right language RadionButton on startup?
-
-
+            SelectLanguageAtStartup(ConfigXMLWriter.GetCulture());
         }
         #endregion
 
@@ -126,6 +139,21 @@ namespace RietRobHaushaltsbuch.ViewModels
         private void OpenFlyOut()
         {
             FlyOutOpen = true;
+        }
+
+        private void SelectLanguageAtStartup(CultureInfo cultureFromConfig)
+        {
+            switch (cultureFromConfig.Name)
+            {
+                case "de-DE":
+                    LanguageGerIsSelected = true;
+                    LanguageEnIsSelected = false;
+                    break;
+                case "en-EN":
+                    LanguageGerIsSelected = false;
+                    LanguageEnIsSelected = true;
+                    break;
+            }
         }
 
         /// <summary>

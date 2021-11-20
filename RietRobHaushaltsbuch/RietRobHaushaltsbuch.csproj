@@ -72,19 +72,19 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Resources\Strings.de-DE.Designer.cs">
+      <DependentUpon>Strings.de-DE.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.de-DE.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Strings.Designer.cs">
+      <DependentUpon>Strings.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Strings.en-EN.Designer.cs">
+      <DependentUpon>Strings.en-EN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Strings.en-EN.resx</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -169,7 +169,7 @@
       <Version>8.0.0.1909</Version>
     </PackageReference>
     <PackageReference Include="WPFLocalizeExtension">
-      <Version>3.8.0</Version>
+      <Version>3.9.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup />
