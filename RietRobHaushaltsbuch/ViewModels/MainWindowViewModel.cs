@@ -101,9 +101,12 @@ namespace RietRobHaushaltsbuch.ViewModels
         {
             _regionManager = regionManager;
             _eventAggregator = eventAggragator;
-            RegisterCommands();
             ConfigXMLWriter.CreateXMLFile();
+            RegisterCommands();
             SetLanguage(ConfigXMLWriter.GetCulture().ToString());
+
+            //ToDo: How to check the right language RadionButton on startup?
+
 
         }
         #endregion

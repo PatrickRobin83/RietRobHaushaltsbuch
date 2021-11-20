@@ -26,8 +26,10 @@ namespace RietRobHaushaltbuch.Core.Helper
         /// <summary>
         /// ConfigFileName
         /// </summary>
-        private static string _configFileName { get; } = Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments) +
-                                                     @"\RietRobHaushaltsbuch\config.xml";
+        private static string _configFileName { get; } =
+            Environment.GetFolderPath(Environment.SpecialFolder.CommonDocuments) +
+            @"\RietRobHaushaltsbuch\config.xml";
+
         /// <summary>
         /// Path to the LogFile
         /// </summary>
@@ -60,21 +62,21 @@ namespace RietRobHaushaltbuch.Core.Helper
                 {
                     using (FileStream fs = new FileStream(_configFileName, FileMode.Create, FileAccess.ReadWrite))
                     {
+
+                        XmlDocument doc = new XmlDocument();
+                        XmlDeclaration xmlDec = doc.CreateXmlDeclaration("1.0", "utf-8", "");
+                        XmlNode rootNode = doc.CreateElement("root");
+                        XmlNode configNode = doc.CreateElement("configsettings");
+                        XmlNode languageNode = doc.CreateElement("language");
+                        doc.AppendChild(xmlDec);
+                        rootNode.AppendChild(configNode);
+                        configNode.AppendChild(languageNode);
+                        doc.AppendChild(rootNode);
                         fs.Close();
                         fs.Dispose();
+                        doc.Save(_configFileName);
                     }
                 }
-                //TODO: XDocument instead of XmlDocument;
-
-                XmlDocument doc = new XmlDocument();
-                XmlNode rootNode = doc.CreateElement("root");
-                XmlNode configNode = doc.CreateElement("configsettings");
-                XmlNode languageNode = doc.CreateElement("language");
-                languageNode.InnerText = SaveLanguageSettings(CultureInfo.CurrentCulture);
-                rootNode.AppendChild(configNode);
-                configNode.AppendChild(languageNode);
-                doc.AppendChild(rootNode);
-                doc.Save(_configFileName);
 
             }
             catch (FileNotFoundException fnfe)
@@ -90,7 +92,7 @@ namespace RietRobHaushaltbuch.Core.Helper
             XmlNode languageNode = doc.SelectSingleNode("root/configsettings/language");
             string language = languageNode.InnerText;
 
-            
+
             if (language != null && !language.Equals(cutlure.ToString()))
             {
                 language = cutlure.ToString();
@@ -104,26 +106,30 @@ namespace RietRobHaushaltbuch.Core.Helper
 
         public static CultureInfo GetCulture()
         {
-            CultureInfo culture = null;
-            using (XmlReader reader = XmlReader.Create(_configFileName))
+            CultureInfo culture = CultureInfo.CurrentCulture;
+            string tempCulture = "";
+            XmlReader reader = XmlReader.Create(_configFileName);
+            while (reader.Read())
             {
-                while (reader.Read())
+                switch (reader.Name.ToString())
                 {
-                    if (reader.IsStartElement())
-                    {
-                        switch (reader.Name.ToString())
+                    case "language":
+                        tempCulture = reader.ReadElementContentAsString();
+                        if (!tempCulture.Equals(culture.ToString()))
                         {
-                            case "language":
-                                culture = new CultureInfo(reader.ReadElementContentAsString());
-                                break;
+                            culture = new CultureInfo(tempCulture);
                         }
-                    }
+
+                        break;
                 }
             }
+            reader.Close();
+            reader.Dispose();
 
             return culture;
         }
-        #endregion
 
+        #endregion
     }
+
 }
