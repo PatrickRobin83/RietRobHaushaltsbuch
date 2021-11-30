@@ -20,7 +20,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Grid.Row="1">
             <TextBlock Name="txtBlockOverViewHeadLine" Text="{lex:Loc}" FontSize="28" FontWeight="Bold" FontFamily="Arial"/>
@@ -44,17 +46,51 @@
                   SelectionMode="Single" CanUserSortColumns="False">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
-                    <Setter Property="TextBlock.TextAlignment" Value="Right"/>
+                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
                 </Style>
             </DataGrid.CellStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Header=" Fahrzeuge " IsReadOnly="True" Binding="{Binding CarName}"/>
-                <DataGridTextColumn Header=" Ø Preis/Liter " IsReadOnly="True" Binding="{Binding AveragePricePerLiter }"/>
-                <DataGridTextColumn Header=" Getankte Menge " IsReadOnly="True" Binding="{Binding TotalFuelAmount }"/>
-                <DataGridTextColumn Header=" Kosten " IsReadOnly="True" Binding="{Binding TotalRefuelCosts }"/>
-                <DataGridTextColumn Header=" gefahrene km " IsReadOnly="True" Binding="{Binding TotalDrivenDistance }"/>
-                <DataGridTextColumn Header=" Ø Verbrauch " IsReadOnly="True" Binding="{Binding AverageConsumption }"/>
-                <DataGridTextColumn Header=" Ø Kosten / 100km " IsReadOnly="True" Binding="{Binding AverageCostsOfHundredKilometer }"/>
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding CarName}">
+                    <DataGridTextColumn.Header >
+                        <TextBlock Name="txtVehicleOverView" Text="{lex:Loc}" Margin="30,0,0,0"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding AveragePricePerLiter }">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Name="txtAveragePricePerLiter" Text="{lex:Loc}" Margin="0,0,0,0"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding TotalFuelAmount }">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Name="txtTotalAmountFuel" Margin="2,0,0,0" Text="{lex:Loc}" />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding TotalRefuelCosts }">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Name="txtTotalCost" Text="{lex:Loc}" Margin="2,0,0,0"/>
+                    </DataGridTextColumn.Header> 
+                </DataGridTextColumn>
+
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding TotalDrivenDistance }"> 
+                    <DataGridTextColumn.Header>
+                        <TextBlock Name="txtDrivenDistance" Text="{lex:Loc}" Margin="2,0,0,0"  />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding AverageConsumption }">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Name="txtAverageConsumption"  Text="{lex:Loc}" Margin="2,0,0,0"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn IsReadOnly="True" Binding="{Binding AverageCostsOfHundredKilometer }">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Name="txtAverageCostOfHundredKilometer" Text="{lex:Loc}" Margin="2,0,0,0"  />
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
             </DataGrid.Columns>
             <b:Interaction.Triggers>
                 <b:EventTrigger EventName="SelectionChanged">
@@ -62,9 +98,5 @@
                 </b:EventTrigger>
             </b:Interaction.Triggers>
         </DataGrid>
-
-        <!-- Row 4 Begin -->
-
-
     </Grid>
 </UserControl>

@@ -120,7 +120,28 @@
   <data name="lblOverViewHeadline" xml:space="preserve">
     <value>Vehicle OverView</value>
   </data>
+  <data name="txtAverageConsumption" xml:space="preserve">
+    <value>Ø Consumption</value>
+  </data>
+  <data name="txtAverageCostOfHundredKilometer" xml:space="preserve">
+    <value>Ø Costs / 100km</value>
+  </data>
+  <data name="txtAveragePricePerLiter" xml:space="preserve">
+    <value>Ø Price/Liter</value>
+  </data>
   <data name="txtBlockOverViewHeadLine" xml:space="preserve">
     <value>Year Overview</value>
+  </data>
+  <data name="txtDrivenDistance" xml:space="preserve">
+    <value>Driven distance</value>
+  </data>
+  <data name="txtTotalAmountFuel" xml:space="preserve">
+    <value>Fuel Amount</value>
+  </data>
+  <data name="txtTotalCost" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="txtVehicleOverView" xml:space="preserve">
+    <value>Vehicle</value>
   </data>
 </root>

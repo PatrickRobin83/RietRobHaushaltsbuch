@@ -12,6 +12,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using RietRobHaushaltbuch.Core.Models;
 
 namespace RietRobHaushaltbuch.Core.Helper
@@ -47,7 +48,10 @@ namespace RietRobHaushaltbuch.Core.Helper
             double tmpPricePerLiter = 0;
             foreach (EntryModel entryModel in entryModels)
             {
-                tmpPricePerLiter += Convert.ToDouble(entryModel.PricePerLiter);
+                string tmp = entryModel.PricePerLiter;
+                tmp = tmp.Replace(",", ".");
+                double tmpPrice = Convert.ToDouble(tmp);
+                tmpPricePerLiter += tmpPrice;
             }
             if (!double.IsNaN(Math.Round(tmpPricePerLiter / entryModels.Count, 3)))
             {
@@ -57,6 +61,9 @@ namespace RietRobHaushaltbuch.Core.Helper
             {
                 _averagePricePerLiter = "0 €";
             }
+
+            _averagePricePerLiter = _averagePricePerLiter.Replace(".", ",");
+
             return _averagePricePerLiter;
         }
 
@@ -68,11 +75,14 @@ namespace RietRobHaushaltbuch.Core.Helper
         public static string CalculateTotalFuelAmount(ObservableCollection<EntryModel> entryModels)
         {
             string totalFuelAmount = "";
-
+            
             double tmpTotalFuelAmount = 0;
             foreach (EntryModel entryModel in entryModels)
             {
-                tmpTotalFuelAmount += Convert.ToDouble(entryModel.AmountOffuel);
+                string tmp = entryModel.AmountOffuel; 
+                tmp = tmp.Replace(",", ".");
+                double tmpAmount = Convert.ToDouble(tmp);
+                tmpTotalFuelAmount += Convert.ToDouble(tmpAmount);
             }
             if (!double.IsNaN(Math.Round(tmpTotalFuelAmount, 2)))
             {
@@ -82,6 +92,8 @@ namespace RietRobHaushaltbuch.Core.Helper
             {
                 totalFuelAmount = "0 l";
             }
+
+            totalFuelAmount = totalFuelAmount.Replace(".", ",");
 
             return totalFuelAmount;
         }

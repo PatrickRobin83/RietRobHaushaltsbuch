@@ -70,11 +70,74 @@ namespace RietRobHaushaltsbuch.Modules.OverView.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ø Consumption ähnelt.
+        /// </summary>
+        public static string txtAverageConsumption {
+            get {
+                return ResourceManager.GetString("txtAverageConsumption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ø Costs / 100km ähnelt.
+        /// </summary>
+        public static string txtAverageCostOfHundredKilometer {
+            get {
+                return ResourceManager.GetString("txtAverageCostOfHundredKilometer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ø Price/Liter ähnelt.
+        /// </summary>
+        public static string txtAveragePricePerLiter {
+            get {
+                return ResourceManager.GetString("txtAveragePricePerLiter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Year Overview ähnelt.
         /// </summary>
         public static string txtBlockOverViewHeadLine {
             get {
                 return ResourceManager.GetString("txtBlockOverViewHeadLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Driven distance ähnelt.
+        /// </summary>
+        public static string txtDrivenDistance {
+            get {
+                return ResourceManager.GetString("txtDrivenDistance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fuel Amount ähnelt.
+        /// </summary>
+        public static string txtTotalAmountFuel {
+            get {
+                return ResourceManager.GetString("txtTotalAmountFuel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Total ähnelt.
+        /// </summary>
+        public static string txtTotalCost {
+            get {
+                return ResourceManager.GetString("txtTotalCost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Vehicle ähnelt.
+        /// </summary>
+        public static string txtVehicleOverView {
+            get {
+                return ResourceManager.GetString("txtVehicleOverView", resourceCulture);
             }
         }
     }

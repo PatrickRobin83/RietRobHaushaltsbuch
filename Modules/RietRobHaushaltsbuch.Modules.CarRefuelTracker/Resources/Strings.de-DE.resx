@@ -120,8 +120,23 @@
   <data name="btnCancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
+  <data name="btnCreateCar" xml:space="preserve">
+    <value>Anlegen</value>
+  </data>
+  <data name="btnDeleteCar" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="btnEditCar" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
   <data name="btnSave" xml:space="preserve">
     <value>Speichern</value>
+  </data>
+  <data name="TitleCarRefuelTrackerOverView" xml:space="preserve">
+    <value>Fahrzeugbetankungsbuch</value>
+  </data>
+  <data name="txtAvailableCars" xml:space="preserve">
+    <value>Angelegte Fahrzeuge</value>
   </data>
   <data name="txtBlockBrandLabel" xml:space="preserve">
     <value>Fahrzeigmarke:</value>

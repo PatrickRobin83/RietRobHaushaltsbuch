@@ -120,8 +120,20 @@
   <data name="btnCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="btnCreateCar" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="btnDeleteCar" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="btnEditCar" xml:space="preserve">
+    <value>Edit</value>
+  </data>
   <data name="btnSave" xml:space="preserve">
     <value>Save</value>
+  </data>
+  <data name="TitleCarRefuelTrackerOverView" xml:space="preserve">
+    <value>Car Refuel Tracker</value>
   </data>
   <data name="txtBlockBrandLabel" xml:space="preserve">
     <value>Brand:</value>

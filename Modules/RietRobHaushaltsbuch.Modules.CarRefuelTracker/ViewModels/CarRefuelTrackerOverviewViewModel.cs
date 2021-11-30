@@ -17,7 +17,6 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         #region Fields
 
         private IEventAggregator _eventAggregator;
-        private string _title;
         private CarModel _selectedCarModel;
         private ObservableCollection<CarModel> _availableCars;
         private bool _isCarModelSelected = false;
@@ -37,11 +36,6 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         {
             get { return _selectedCarModel; }
             set { SetProperty(ref _selectedCarModel, value); }
-        }
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
         }
         public bool IsCarModelSelected
         {
@@ -65,7 +59,6 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         public CarRefuelTrackerOverviewViewModel(IEventAggregator eventAggregator)
         {
             _eventAggregator = eventAggregator;
-            Title = "CarRefuelTracker Overview";
             AvailableCars = new ObservableCollection<CarModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadCars("Show All"));
             RegisterCommands();
             _eventAggregator.GetEvent<NewsEvent>().Subscribe(CarCreated);

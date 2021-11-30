@@ -70,11 +70,47 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create ähnelt.
+        /// </summary>
+        public static string btnCreateCar {
+            get {
+                return ResourceManager.GetString("btnCreateCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete ähnelt.
+        /// </summary>
+        public static string btnDeleteCar {
+            get {
+                return ResourceManager.GetString("btnDeleteCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit ähnelt.
+        /// </summary>
+        public static string btnEditCar {
+            get {
+                return ResourceManager.GetString("btnEditCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Save ähnelt.
         /// </summary>
         public static string btnSave {
             get {
                 return ResourceManager.GetString("btnSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Car Refuel Tracker ähnelt.
+        /// </summary>
+        public static string TitleCarRefuelTrackerOverView {
+            get {
+                return ResourceManager.GetString("TitleCarRefuelTrackerOverView", resourceCulture);
             }
         }
         
