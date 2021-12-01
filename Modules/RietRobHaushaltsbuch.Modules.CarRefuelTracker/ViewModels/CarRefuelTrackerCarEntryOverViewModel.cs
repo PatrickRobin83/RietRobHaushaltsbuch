@@ -128,10 +128,21 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             _eventAggregator = ea;
             _eventAggregator.GetEvent<ObjectEvent>().Subscribe(HandleCarModelSelection);
             _eventAggregator.GetEvent<NewsEvent>().Subscribe(HandleEntryEvent);
+            _eventAggregator.GetEvent<NewsEvent>().Subscribe(HandleUiReloadEvent);
             YearsToSelect = CreateYearEntrysForComboBoxSelection.AddYearsToComboBox();
             SelectedYear = YearsToSelect.FirstOrDefault();
             RegisterCommands();
         }
+
+        private void HandleUiReloadEvent(string uiReloadEvent)
+        {
+            if (uiReloadEvent.Equals("UIReload"))
+            {
+                UpdateEntryList();
+            }
+            
+        }
+
         #endregion
 
         #region Methods
@@ -183,6 +194,8 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             if (SelectedEntryModel != null)
             {
                 IsEntryModelSelected = true;
+                UpdateEntryList();
+                CalculateAverages();
             }
             else
             {

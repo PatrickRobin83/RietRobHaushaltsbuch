@@ -68,7 +68,7 @@
                          Width="50" TextAlignment="Right" />
                     <TextBlock Margin="10,0,0,0" Text="gefahrene km: "/>
                     <TextBox IsReadOnly="True" Text="{Binding TotalDrivenDistance}" 
-                         Width="55" TextAlignment="Right" />
+                         Width="80" TextAlignment="Right" />
                     <TextBlock Margin="10,0,0,0" Text="Ø Verbrauch: "/>
                     <TextBox IsReadOnly="True" Text="{Binding AverageConsumption}" 
                          Width="50" TextAlignment="Right" />

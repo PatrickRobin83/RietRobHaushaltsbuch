@@ -45,12 +45,11 @@ namespace RietRobHaushaltbuch.Core.Helper
         {
             string _averagePricePerLiter = "";
 
-            double tmpPricePerLiter = 0;
+            float tmpPricePerLiter = 0;
             foreach (EntryModel entryModel in entryModels)
             {
                 string tmp = entryModel.PricePerLiter;
-                tmp = tmp.Replace(",", ".");
-                double tmpPrice = Convert.ToDouble(tmp);
+                float tmpPrice = (float)Convert.ToDouble(tmp, CultureInfo.GetCultureInfo("de-DE").NumberFormat);
                 tmpPricePerLiter += tmpPrice;
             }
             if (!double.IsNaN(Math.Round(tmpPricePerLiter / entryModels.Count, 3)))
@@ -79,10 +78,9 @@ namespace RietRobHaushaltbuch.Core.Helper
             double tmpTotalFuelAmount = 0;
             foreach (EntryModel entryModel in entryModels)
             {
-                string tmp = entryModel.AmountOffuel; 
-                tmp = tmp.Replace(",", ".");
-                double tmpAmount = Convert.ToDouble(tmp);
-                tmpTotalFuelAmount += Convert.ToDouble(tmpAmount);
+                string tmp = entryModel.AmountOffuel;
+                double tmpAmount = Convert.ToDouble(tmp, CultureInfo.GetCultureInfo("de-DE").NumberFormat);
+                tmpTotalFuelAmount += tmpAmount;
             }
             if (!double.IsNaN(Math.Round(tmpTotalFuelAmount, 2)))
             {
@@ -109,7 +107,7 @@ namespace RietRobHaushaltbuch.Core.Helper
 
             foreach (EntryModel entryModel in entryModels)
             {
-                tmpRefuelCosts += Convert.ToDouble(entryModel.TotalAmount);
+                tmpRefuelCosts += Convert.ToDouble(entryModel.TotalAmount, CultureInfo.GetCultureInfo("de-DE").NumberFormat);
             }
             if (!double.IsNaN(Math.Round(tmpRefuelCosts, 2)))
             {
@@ -119,6 +117,8 @@ namespace RietRobHaushaltbuch.Core.Helper
             {
                 totalRefuelCosts = "0 €";
             }
+
+            totalRefuelCosts = totalRefuelCosts.Replace(".", ",");
 
             return totalRefuelCosts;
         }
@@ -135,16 +135,18 @@ namespace RietRobHaushaltbuch.Core.Helper
 
             foreach (EntryModel entryModel in allEntrysForSelectedCar)
             {
-                tmpDrivenDistance += Convert.ToDouble(entryModel.DrivenDistance);
+                tmpDrivenDistance += Convert.ToDouble(entryModel.DrivenDistance, CultureInfo.GetCultureInfo("de-DE").NumberFormat);
             }
             if (!double.IsNaN(Math.Round(tmpDrivenDistance, 2)))
             {
-                totalDrivenDistance = Convert.ToString(Math.Round(tmpDrivenDistance, 0) + " km");
+                totalDrivenDistance = Convert.ToString(Math.Round(tmpDrivenDistance, 2) + " km");
             }
             else
             {
                 totalDrivenDistance = "0 km";
             }
+
+            totalDrivenDistance = totalDrivenDistance.Replace(".", ",");
 
             return totalDrivenDistance;
         }
@@ -161,7 +163,7 @@ namespace RietRobHaushaltbuch.Core.Helper
 
             foreach (EntryModel entryModel in allEntrysForSelectedCar)
             {
-                tmpConsumption += Convert.ToDouble(entryModel.ConsumptationPerHundredKilometer);
+                tmpConsumption += Convert.ToDouble(entryModel.ConsumptationPerHundredKilometer, CultureInfo.GetCultureInfo("de-DE").NumberFormat);
             }
             if (!double.IsNaN(Math.Round(tmpConsumption / allEntrysForSelectedCar.Count, 2)))
             {
@@ -171,6 +173,8 @@ namespace RietRobHaushaltbuch.Core.Helper
             {
                 averageConsumption = "0 l";
             }
+
+            averageConsumption = averageConsumption.Replace(".", ",");
 
             return averageConsumption;
         }
@@ -186,7 +190,7 @@ namespace RietRobHaushaltbuch.Core.Helper
             string averageCostsOfHundredKilometer = "";
             foreach (EntryModel entryModel in allEntrysForSelectedCar)
             {
-                tmpCostsPerHundredKilometer += Convert.ToDouble(entryModel.CostPerHundredKilometer);
+                tmpCostsPerHundredKilometer += Convert.ToDouble(entryModel.CostPerHundredKilometer, CultureInfo.GetCultureInfo("de-DE").NumberFormat);
             }
             if (!double.IsNaN(Math.Round(tmpCostsPerHundredKilometer / allEntrysForSelectedCar.Count, 2)))
             {
@@ -197,6 +201,8 @@ namespace RietRobHaushaltbuch.Core.Helper
             {
                 averageCostsOfHundredKilometer = "0 €";
             }
+
+            averageCostsOfHundredKilometer = averageCostsOfHundredKilometer.Replace(".", ",");
             return averageCostsOfHundredKilometer;
         }
         #endregion

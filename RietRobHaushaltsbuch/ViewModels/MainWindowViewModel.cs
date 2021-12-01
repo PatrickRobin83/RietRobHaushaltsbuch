@@ -180,10 +180,12 @@ namespace RietRobHaushaltsbuch.ViewModels
                 case "de-DE": 
                     LocalizeDictionary.Instance.Culture = new CultureInfo("de-DE");
                     ConfigXMLWriter.SaveLanguageSettings(CultureInfo.CurrentCulture);
+                    _eventAggregator.GetEvent<NewsEvent>().Publish("UIReload");
                     break;
                 case "en-EN":
                     LocalizeDictionary.Instance.Culture = new CultureInfo("en-EN");
                     ConfigXMLWriter.SaveLanguageSettings(CultureInfo.CurrentCulture);
+                    _eventAggregator.GetEvent<NewsEvent>().Publish("UIReload");
                     break;
                 default:
                     //LocalizeDictionary.Instance.Culture = CultureInfo.CurrentCulture;

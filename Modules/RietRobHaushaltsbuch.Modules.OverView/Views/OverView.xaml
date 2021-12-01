@@ -29,7 +29,8 @@
             <ComboBox ItemsSource="{Binding YearToSelect, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
                       SelectedItem="{Binding SelectedYear, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       FontSize="28" FontWeight="Bold" FontFamily="Arial" MinWidth="150" Width="150" Height="40" MinHeight="40"
-                      BorderThickness="1" Background="SlateGray">
+                      BorderThickness="1" Background="SlateGray"
+                      Margin="25,0,0,0">
 
                 <b:Interaction.Triggers>
                     <b:EventTrigger EventName="SelectionChanged">
