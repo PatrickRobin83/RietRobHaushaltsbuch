@@ -6,6 +6,10 @@
              xmlns:local="clr-namespace:RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views"
              xmlns:prism="http://prismlibrary.com/"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="de"
+             lex:ResxLocalizationProvider.DefaultAssembly="RietRobHaushaltsbuch.Modules.CarRefuelTracker"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="850">
@@ -45,13 +49,56 @@
                         </b:EventTrigger>
                     </b:Interaction.Triggers>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header=" Datum " IsReadOnly="True" Binding="{Binding EntryDate}" SortDirection="Descending"/>
-                        <DataGridTextColumn Header=" Preis pro Liter in € " IsReadOnly="True" Binding="{Binding PricePerLiter}" />
-                        <DataGridTextColumn Header=" Abgabemenge in Liter " IsReadOnly="True" Binding="{Binding AmountOffuel}"/>
-                        <DataGridTextColumn Header=" Gesasmtkosten in € " IsReadOnly="True" Binding="{Binding TotalAmount}"/>
-                        <DataGridTextColumn Header=" Gefahrene Kiolometer " IsReadOnly="True" Binding="{Binding DrivenDistance}"/>
-                        <DataGridTextColumn Header=" Ø Verbrauch / 100km " IsReadOnly="True" Binding="{Binding ConsumptationPerHundredKilometer}"/>
-                        <DataGridTextColumn Header=" Ø Kosten / 100km" IsReadOnly="True" Binding="{Binding CostPerHundredKilometer}"/>
+
+                        <!--<DataGridTextColumn IsReadOnly="True" Binding="{Binding FuelType}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Name="txtFuelTypeFuelTrackerOverView" Text="{lex:Loc}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>-->
+
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding EntryDate}" SortDirection="Descending">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Name="txtDateHeaderCarEntryOverView" Text="{lex:Loc}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding PricePerLiter}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Name="txtPricePerLiterHeaderCarEntryOverView" Text="{lex:Loc}" />
+                            </DataGridTextColumn.Header>    
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding AmountOffuel}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Name="txtAmountOfFuelHeaderCarEntryOverView" Text="{lex:Loc}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding TotalAmount}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Name="txtTotalCostsHeaderCarEntryOverView" Text="{lex:Loc}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding DrivenDistance}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Name="txtDrivenDistanceHeaderCarEntryOverView" Text="{lex:Loc}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding ConsumptationPerHundredKilometer}">
+                            <!--Header=" Ø Verbrauch / 100km "-->
+                            <DataGridTextColumn.Header>
+                                <TextBlock Name="txtAverageConsumptionHeaderCarEntryOverView" Text="{lex:Loc}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding CostPerHundredKilometer}">
+                            <!--Header=" Ø Kosten / 100km"-->
+                            <DataGridTextColumn.Header>
+                                <TextBlock Name="txtAverageCostHeaderCarEntryOverView" Text="{lex:Loc}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
@@ -60,21 +107,27 @@
                     <TextBlock Margin="10,0,0,0" Text="Ø Preis/Liter: "/>
                     <TextBox IsReadOnly="True" Text="{Binding AveragePricePerLiter}" 
                          Width="40" TextAlignment="Right" />
+
                     <TextBlock Margin="10,0,0,0" Text="getankte Menge: "/>
                     <TextBox IsReadOnly="True" Text="{Binding TotalFuelAmount}" 
                          Width="50" TextAlignment="Right" />
+
                     <TextBlock Margin="10,0,0,0" Text="Kosten: "/>
                     <TextBox IsReadOnly="True" Text="{Binding TotalRefuelCosts}" 
                          Width="50" TextAlignment="Right" />
+
                     <TextBlock Margin="10,0,0,0" Text="gefahrene km: "/>
                     <TextBox IsReadOnly="True" Text="{Binding TotalDrivenDistance}" 
                          Width="80" TextAlignment="Right" />
+
                     <TextBlock Margin="10,0,0,0" Text="Ø Verbrauch: "/>
                     <TextBox IsReadOnly="True" Text="{Binding AverageConsumption}" 
                          Width="50" TextAlignment="Right" />
+
                     <TextBlock Margin="10,0,0,0" Text="Ø Kosten: "/>
                     <TextBox IsReadOnly="True" Text="{Binding AverageCostsOfHundredKilometer}" 
                          Width="50" TextAlignment="Right" />
+
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,20,0,0">
                     <Button Height="25" Command="{Binding AddEntryCommand}" Content="Eintrag anlegen" Margin="10,5,0,5"/>

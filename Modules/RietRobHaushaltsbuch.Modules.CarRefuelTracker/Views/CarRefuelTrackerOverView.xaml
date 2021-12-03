@@ -48,10 +48,38 @@
                           CanUserResizeRows="False" SelectedItem="{Binding Path=SelectedCarModel, Mode=TwoWay}"  
                           SelectionMode="Single" CanUserSortColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header=" Marke " IsReadOnly="True" Binding="{Binding Brand}"/>
-                        <DataGridTextColumn Header=" Model " IsReadOnly="True" Binding="{Binding ModelType}"/>
-                        <DataGridTextColumn Header=" Treibstoffart " IsReadOnly="True" Binding="{Binding FuelType}"/>
-                        <DataGridCheckBoxColumn Header="Ist Aktiv" IsReadOnly="True"  Binding="{Binding IsActive}"/>
+
+                        <!--<DataGridTextColumn IsReadOnly="True" Binding="{Binding CarName}">
+                            <DataGridTextColumn.Header >
+                                <TextBlock Name="txtVehicleOverView" Text="{lex:Loc}" Margin="30,0,0,0"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>-->
+
+
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding Brand}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Name="txtBrandHeaderFuelTrackerOverView" Text="{lex:Loc}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding ModelType}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Name="txtModelHeaderFuelTrackerOverView" Text="{lex:Loc}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn IsReadOnly="True" Binding="{Binding FuelType}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Name="txtFuelTypeFuelTrackerOverView" Text="{lex:Loc}" />
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridCheckBoxColumn IsReadOnly="True"  Binding="{Binding IsActive}">
+                            <DataGridCheckBoxColumn.Header>
+                                <TextBlock Name="txtIsActiveFuelTrackerOverView" Text="{lex:Loc}" />
+                            </DataGridCheckBoxColumn.Header>
+                        </DataGridCheckBoxColumn>
+
                     </DataGrid.Columns>
                     <b:Interaction.Triggers>
                         <b:EventTrigger EventName="SelectionChanged">

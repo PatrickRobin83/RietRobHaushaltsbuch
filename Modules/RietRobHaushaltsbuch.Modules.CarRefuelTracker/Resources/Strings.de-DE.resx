@@ -135,13 +135,46 @@
   <data name="TitleCarRefuelTrackerOverView" xml:space="preserve">
     <value>Fahrzeugbetankungsbuch</value>
   </data>
+  <data name="txtAmountOfFuelHeaderCarEntryOverView" xml:space="preserve">
+    <value>Getankte Menge</value>
+  </data>
   <data name="txtAvailableCars" xml:space="preserve">
     <value>Angelegte Fahrzeuge</value>
+  </data>
+  <data name="txtAverageConsumptionHeaderCarEntryOverView" xml:space="preserve">
+    <value>Ø Verbrauch / 100km</value>
+  </data>
+  <data name="txtAverageCostHeaderCarEntryOverView" xml:space="preserve">
+    <value>Ø Kosten / 100km</value>
   </data>
   <data name="txtBlockBrandLabel" xml:space="preserve">
     <value>Fahrzeigmarke:</value>
   </data>
   <data name="txtBlockHeadline" xml:space="preserve">
     <value>Fahrzeigmarke hinzufügen</value>
+  </data>
+  <data name="txtBrandHeaderFuelTrackerOverView" xml:space="preserve">
+    <value>Marke</value>
+  </data>
+  <data name="txtDateHeaderCarEntryOverView" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="txtDrivenDistanceHeaderCarEntryOverView" xml:space="preserve">
+    <value>gefahrene Strecke</value>
+  </data>
+  <data name="txtFuelTypeFuelTrackerOverView" xml:space="preserve">
+    <value>Kraftstoffart</value>
+  </data>
+  <data name="txtIsActiveFuelTrackerOverView" xml:space="preserve">
+    <value>Ist Aktiv</value>
+  </data>
+  <data name="txtModelHeaderFuelTrackerOverView" xml:space="preserve">
+    <value>Modell</value>
+  </data>
+  <data name="txtPricePerLiterHeaderCarEntryOverView" xml:space="preserve">
+    <value>Preis pro L in €</value>
+  </data>
+  <data name="txtTotalCostsHeaderCarEntryOverView" xml:space="preserve">
+    <value>Kosten</value>
   </data>
 </root>

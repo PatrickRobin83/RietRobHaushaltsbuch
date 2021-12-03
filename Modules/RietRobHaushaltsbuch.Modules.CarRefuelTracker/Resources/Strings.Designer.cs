@@ -115,6 +115,33 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Amount of Fuel ähnelt.
+        /// </summary>
+        public static string txtAmountOfFuelHeaderCarEntryOverView {
+            get {
+                return ResourceManager.GetString("txtAmountOfFuelHeaderCarEntryOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Averrage Consumption / 100km ähnelt.
+        /// </summary>
+        public static string txtAverageConsumptionHeaderCarEntryOverView {
+            get {
+                return ResourceManager.GetString("txtAverageConsumptionHeaderCarEntryOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Averrage Cost / 100km ähnelt.
+        /// </summary>
+        public static string txtAverageCostHeaderCarEntryOverView {
+            get {
+                return ResourceManager.GetString("txtAverageCostHeaderCarEntryOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Brand: ähnelt.
         /// </summary>
         public static string txtBlockBrandLabel {
@@ -129,6 +156,78 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         public static string txtBlockHeadline {
             get {
                 return ResourceManager.GetString("txtBlockHeadline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  Brand  ähnelt.
+        /// </summary>
+        public static string txtBrandHeaderFuelTrackerOverView {
+            get {
+                return ResourceManager.GetString("txtBrandHeaderFuelTrackerOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Date ähnelt.
+        /// </summary>
+        public static string txtDateHeaderCarEntryOverView {
+            get {
+                return ResourceManager.GetString("txtDateHeaderCarEntryOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Driven Distance ähnelt.
+        /// </summary>
+        public static string txtDrivenDistanceHeaderCarEntryOverView {
+            get {
+                return ResourceManager.GetString("txtDrivenDistanceHeaderCarEntryOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fueltype ähnelt.
+        /// </summary>
+        public static string txtFuelTypeFuelTrackerOverView {
+            get {
+                return ResourceManager.GetString("txtFuelTypeFuelTrackerOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die is Active ähnelt.
+        /// </summary>
+        public static string txtIsActiveFuelTrackerOverView {
+            get {
+                return ResourceManager.GetString("txtIsActiveFuelTrackerOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Model ähnelt.
+        /// </summary>
+        public static string txtModelHeaderFuelTrackerOverView {
+            get {
+                return ResourceManager.GetString("txtModelHeaderFuelTrackerOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Price per l in € ähnelt.
+        /// </summary>
+        public static string txtPricePerLiterHeaderCarEntryOverView {
+            get {
+                return ResourceManager.GetString("txtPricePerLiterHeaderCarEntryOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Total Costs ähnelt.
+        /// </summary>
+        public static string txtTotalCostsHeaderCarEntryOverView {
+            get {
+                return ResourceManager.GetString("txtTotalCostsHeaderCarEntryOverView", resourceCulture);
             }
         }
     }
