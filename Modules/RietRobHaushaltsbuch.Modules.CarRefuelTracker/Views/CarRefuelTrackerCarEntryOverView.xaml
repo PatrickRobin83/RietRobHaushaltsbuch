@@ -21,7 +21,7 @@
             </Grid.RowDefinitions>
             <StackPanel Orientation="Vertical" Grid.Row="0">
                 <StackPanel Orientation="Horizontal">
-                <Label Content="Fahrzeug Einträge für das Jahr: " 
+                <Label Name="txtEntrysForYear" Content="{lex:Loc}" 
                        VerticalAlignment="Center" 
                        HorizontalAlignment="Center" 
                        FontSize="20" FontFamily="Arial"/>
@@ -104,35 +104,35 @@
             </StackPanel>
             <StackPanel Orientation="Vertical" Grid.Row="1" VerticalAlignment="Bottom" Margin="0,30,0,0">
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
-                    <TextBlock Margin="10,0,0,0" Text="Ø Preis/Liter: "/>
+                    <TextBlock Name="txtAveragePriceTotal" Margin="10,0,5,0" Text="{lex:Loc}"/>
                     <TextBox IsReadOnly="True" Text="{Binding AveragePricePerLiter}" 
                          Width="40" TextAlignment="Right" />
 
-                    <TextBlock Margin="10,0,0,0" Text="getankte Menge: "/>
+                    <TextBlock Name="txtAmountOfFuelTotal" Margin="10,0,5,0" Text="{lex:Loc}"/>
                     <TextBox IsReadOnly="True" Text="{Binding TotalFuelAmount}" 
                          Width="50" TextAlignment="Right" />
 
-                    <TextBlock Margin="10,0,0,0" Text="Kosten: "/>
+                    <TextBlock Name="txtCostsTotal" Margin="10,0,5,0" Text="{lex:Loc}"/>
                     <TextBox IsReadOnly="True" Text="{Binding TotalRefuelCosts}" 
                          Width="50" TextAlignment="Right" />
 
-                    <TextBlock Margin="10,0,0,0" Text="gefahrene km: "/>
+                    <TextBlock Name="txtDrivenDistanceTotal" Margin="10,0,5,0" Text="{lex:Loc}"/>
                     <TextBox IsReadOnly="True" Text="{Binding TotalDrivenDistance}" 
                          Width="80" TextAlignment="Right" />
 
-                    <TextBlock Margin="10,0,0,0" Text="Ø Verbrauch: "/>
+                    <TextBlock Name="txtAverageConsumptionTotal" Margin="10,0,5,0" Text="{lex:Loc}"/>
                     <TextBox IsReadOnly="True" Text="{Binding AverageConsumption}" 
                          Width="50" TextAlignment="Right" />
 
-                    <TextBlock Margin="10,0,0,0" Text="Ø Kosten: "/>
+                    <TextBlock Name="txtAverageCostsTotal" Margin="10,0,5,0" Text="{lex:Loc}"/>
                     <TextBox IsReadOnly="True" Text="{Binding AverageCostsOfHundredKilometer}" 
                          Width="50" TextAlignment="Right" />
 
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" Margin="0,20,0,0">
-                    <Button Height="25" Command="{Binding AddEntryCommand}" Content="Eintrag anlegen" Margin="10,5,0,5"/>
-                    <Button Height="25" Command="{Binding EditEntryCommand}" Content="Eintrag ändern" Margin="10,5,0,5"/>
-                    <Button Height="25" Command="{Binding DeleteEntryCommand}" Content="Eintrag löschen" Margin="10,5,0,5"/>
+                    <Button Name="btnAddEntry" Height="25" Command="{Binding AddEntryCommand}" Content="{lex:Loc}" Margin="10,5,0,5"/>
+                    <Button Name="btnEditEntry" Height="25" Command="{Binding EditEntryCommand}" Content="{lex:Loc}" Margin="10,5,0,5"/>
+                    <Button Name="btnDeleteEntry" Height="25" Command="{Binding DeleteEntryCommand}" Content="{lex:Loc}" Margin="10,5,0,5"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

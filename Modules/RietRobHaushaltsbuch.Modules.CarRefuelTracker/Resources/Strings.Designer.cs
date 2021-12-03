@@ -61,6 +61,33 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Create Entry ähnelt.
+        /// </summary>
+        public static string btnAddEntry {
+            get {
+                return ResourceManager.GetString("btnAddEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Brand - ähnelt.
+        /// </summary>
+        public static string btnBrandMinus {
+            get {
+                return ResourceManager.GetString("btnBrandMinus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Brand + ähnelt.
+        /// </summary>
+        public static string btnBrandPlus {
+            get {
+                return ResourceManager.GetString("btnBrandPlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Cancel ähnelt.
         /// </summary>
         public static string btnCancel {
@@ -88,11 +115,65 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Delete Entry ähnelt.
+        /// </summary>
+        public static string btnDeleteEntry {
+            get {
+                return ResourceManager.GetString("btnDeleteEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Edit ähnelt.
         /// </summary>
         public static string btnEditCar {
             get {
                 return ResourceManager.GetString("btnEditCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Edit Entry ähnelt.
+        /// </summary>
+        public static string btnEditEntry {
+            get {
+                return ResourceManager.GetString("btnEditEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fueltype - ähnelt.
+        /// </summary>
+        public static string btnFuelTypeMinus {
+            get {
+                return ResourceManager.GetString("btnFuelTypeMinus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fueltype + ähnelt.
+        /// </summary>
+        public static string btnFuelTypePlus {
+            get {
+                return ResourceManager.GetString("btnFuelTypePlus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Model - ähnelt.
+        /// </summary>
+        public static string btnModelMinus {
+            get {
+                return ResourceManager.GetString("btnModelMinus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Model + ähnelt.
+        /// </summary>
+        public static string btnModelPlus {
+            get {
+                return ResourceManager.GetString("btnModelPlus", resourceCulture);
             }
         }
         
@@ -106,11 +187,38 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fueltype ähnelt.
+        /// </summary>
+        public static string FuelType {
+            get {
+                return ResourceManager.GetString("FuelType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Car Refuel Tracker ähnelt.
         /// </summary>
         public static string TitleCarRefuelTrackerOverView {
             get {
                 return ResourceManager.GetString("TitleCarRefuelTrackerOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add Car Model ähnelt.
+        /// </summary>
+        public static string txtAddCarModel {
+            get {
+                return ResourceManager.GetString("txtAddCarModel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Add Fueltype ähnelt.
+        /// </summary>
+        public static string txtAddFuelType {
+            get {
+                return ResourceManager.GetString("txtAddFuelType", resourceCulture);
             }
         }
         
@@ -124,6 +232,15 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Total Amount Of Fuel: ähnelt.
+        /// </summary>
+        public static string txtAmountOfFuelTotal {
+            get {
+                return ResourceManager.GetString("txtAmountOfFuelTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Averrage Consumption / 100km ähnelt.
         /// </summary>
         public static string txtAverageConsumptionHeaderCarEntryOverView {
@@ -133,11 +250,38 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ø Fuel Consumption: ähnelt.
+        /// </summary>
+        public static string txtAverageConsumptionTotal {
+            get {
+                return ResourceManager.GetString("txtAverageConsumptionTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Averrage Cost / 100km ähnelt.
         /// </summary>
         public static string txtAverageCostHeaderCarEntryOverView {
             get {
                 return ResourceManager.GetString("txtAverageCostHeaderCarEntryOverView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ø Costs / 100km: ähnelt.
+        /// </summary>
+        public static string txtAverageCostsTotal {
+            get {
+                return ResourceManager.GetString("txtAverageCostsTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ø Price/Liter: ähnelt.
+        /// </summary>
+        public static string txtAveragePriceTotal {
+            get {
+                return ResourceManager.GetString("txtAveragePriceTotal", resourceCulture);
             }
         }
         
@@ -162,9 +306,27 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die  Brand  ähnelt.
         /// </summary>
-        public static string txtBrandHeaderFuelTrackerOverView {
+        public static string txtBrand {
             get {
-                return ResourceManager.GetString("txtBrandHeaderFuelTrackerOverView", resourceCulture);
+                return ResourceManager.GetString("txtBrand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Vehicle ID: ähnelt.
+        /// </summary>
+        public static string txtCarId {
+            get {
+                return ResourceManager.GetString("txtCarId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Costs Total: ähnelt.
+        /// </summary>
+        public static string txtCostsTotal {
+            get {
+                return ResourceManager.GetString("txtCostsTotal", resourceCulture);
             }
         }
         
@@ -187,29 +349,38 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fueltype ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Total Driven Distance: ähnelt.
         /// </summary>
-        public static string txtFuelTypeFuelTrackerOverView {
+        public static string txtDrivenDistanceTotal {
             get {
-                return ResourceManager.GetString("txtFuelTypeFuelTrackerOverView", resourceCulture);
+                return ResourceManager.GetString("txtDrivenDistanceTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Car entrys for the Year: ähnelt.
+        /// </summary>
+        public static string txtEntrysForYear {
+            get {
+                return ResourceManager.GetString("txtEntrysForYear", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die is Active ähnelt.
         /// </summary>
-        public static string txtIsActiveFuelTrackerOverView {
+        public static string txtIsActive {
             get {
-                return ResourceManager.GetString("txtIsActiveFuelTrackerOverView", resourceCulture);
+                return ResourceManager.GetString("txtIsActive", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Model ähnelt.
         /// </summary>
-        public static string txtModelHeaderFuelTrackerOverView {
+        public static string txtModel {
             get {
-                return ResourceManager.GetString("txtModelHeaderFuelTrackerOverView", resourceCulture);
+                return ResourceManager.GetString("txtModel", resourceCulture);
             }
         }
         

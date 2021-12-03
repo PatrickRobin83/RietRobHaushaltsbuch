@@ -8,6 +8,10 @@
                   xmlns:viewModels="clr-namespace:RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels"
                   xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
                   xmlns:prism="http://prismlibrary.com/"
+                  xmlns:lex="http://wpflocalizeextension.codeplex.com"
+                  lex:LocalizeDictionary.DesignCulture="de"
+                  lex:ResxLocalizationProvider.DefaultAssembly="RietRobHaushaltsbuch.Modules.CarRefuelTracker"
+                  lex:ResxLocalizationProvider.DefaultDictionary="Strings"
                   mc:Ignorable="d" 
                   d:DesignHeight="450" d:DesignWidth="800"
                   Height="250" Width="500"
@@ -22,18 +26,18 @@
             <StackPanel Orientation="Vertical" Width="460" HorizontalAlignment="Left">
 
                 <StackPanel Orientation="Horizontal">
-                    <Label FontSize="14" Width="110" Content="Fahrzeug Id: "/>
+                    <Label Name="txtCarID" FontSize="14" Width="110" Content="{lex:Loc}"/>
                     <TextBox Width="40" Height="20" IsReadOnly="True" Text="{Binding Id}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
-                    <Label FontSize="14" Width="110" Content="Ist Aktiv "/>
+                    <Label Name="txtIsActive" FontSize="14" Width="110" Content="{lex:Loc}"/>
                     <CheckBox VerticalAlignment="Center"  IsChecked="{Binding IsActive}"/>
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
 
-                    <Label FontSize="14" Width="110" Content="Fahrzeugmarke: "/>
+                    <Label Name="txtBrand" FontSize="14" Width="110" Content="{lex:Loc}"/>
 
                     <ComboBox ItemsSource="{Binding AvailableBrands, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
                               SelectedItem="{Binding SelectedBrand, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
@@ -47,30 +51,30 @@
                         </b:Interaction.Triggers>
                     </ComboBox>
 
-                    <Button Command="{Binding AddBrandCommand}" Margin="5,0,0,0" Width="80" 
-                            Content="Marke +" VerticalAlignment="Center"/>
-                    <Button Command="{Binding RemoveBrandCommand}" Margin="5,0,0,0" Width="80" 
-                            Content="Marke -" VerticalAlignment="Center"/>
+                    <Button Name="btnBrandPlus" Command="{Binding AddBrandCommand}" Margin="5,0,0,0" Width="100" 
+                            Content="{lex:Loc}" VerticalAlignment="Center"/>
+                    <Button Name="btnBrandMinus" Command="{Binding RemoveBrandCommand}" Margin="5,0,0,0" Width="100" 
+                            Content="{lex:Loc}" VerticalAlignment="Center"/>
 
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
 
-                    <Label FontSize="14" Width="110" Content="Fahrzeugmodel: "/>
+                    <Label Name="txtModel" FontSize="14" Width="110" Content="{lex:Loc}"/>
                     <ComboBox ItemsSource="{Binding Path=AvailableCarModels, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" 
                               SelectedValue="{Binding SelectedModelType.Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                               SelectedItem="{Binding SelectedModelType, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                               SelectedValuePath="Id" DisplayMemberPath="ModelName" IsSynchronizedWithCurrentItem="True"
                               VerticalAlignment="Center" Width="140"/>
 
-                    <Button Command="{Binding AddModelTypeCommand}" Margin="5,0,0,0" Width="80" 
-                            Content="Model +" VerticalAlignment="Center" />
-                    <Button Command="{Binding RemoveModelTypeCommand}" Margin="5,0,0,0" Width="80" 
-                            Content="Model -" VerticalAlignment="Center" />
+                    <Button Name="btnModelPlus" Command="{Binding AddModelTypeCommand}" Margin="5,0,0,0" Width="100" 
+                            Content="{lex:Loc}" VerticalAlignment="Center" />
+                    <Button Name="btnModelMinus" Command="{Binding RemoveModelTypeCommand}" Margin="5,0,0,0" Width="100" 
+                            Content="{lex:Loc}" VerticalAlignment="Center" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
 
-                    <Label Width="110" FontSize="14" Content="Kraftstoffart: "/>
+                    <Label Name="txtFuelType" Width="110" FontSize="14" Content="{lex:Loc}"/>
                     <ComboBox Margin="0,0,0,0" VerticalAlignment="Center" 
                               ItemsSource="{Binding Path=AvailableFuelTypes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                               SelectedValue="{Binding SelectedFuelType.Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
@@ -78,18 +82,18 @@
                               SelectedValuePath="Id" DisplayMemberPath="TypeOfFuel" IsSynchronizedWithCurrentItem="True"
                               Width="140"/>
 
-                    <Button Command="{Binding AddFuelTypeCommand}" Margin="5,0,0,0" Width="80" 
-                            Content="Kraftstoff +" VerticalAlignment="Center" />
-                    <Button Command="{Binding RemoveFuelTypeCommand}" Margin="5,0,0,0" Width="80" 
-                            Content="Kraftstoff -" VerticalAlignment="Center" />
+                    <Button Name="btnFuelTypePlus" Command="{Binding AddFuelTypeCommand}" Margin="5,0,0,0" Width="100" 
+                            Content="{lex:Loc}" VerticalAlignment="Center" />
+                    <Button Name="btnFuelTypeMinus" Command="{Binding RemoveFuelTypeCommand}" Margin="5,0,0,0" Width="100" 
+                            Content="{lex:Loc}" VerticalAlignment="Center" />
                 </StackPanel>
             </StackPanel>
 
         </StackPanel>
-        <Button Command="{Binding CloseCarDetailsCommand}" Grid.Row="1" Content="Abbrechen" 
+        <Button Name="btnCancel" Command="{Binding CloseCarDetailsCommand}" Grid.Row="1" Content="{lex:Loc}" 
                 Margin="10,0,0,10" HorizontalAlignment="left" VerticalAlignment="Bottom"/>
 
-        <Button Grid.Row="1" Command="{Binding SaveCarCommand}" Content="Fahrzeug speichern" 
+        <Button Name="btnSave" Grid.Row="1" Command="{Binding SaveCarCommand}" Content="{lex:Loc}" 
                 Margin="0,0,10,10" HorizontalAlignment="right" VerticalAlignment="Bottom"/>
     </Grid>
 </mah:MetroWindow>

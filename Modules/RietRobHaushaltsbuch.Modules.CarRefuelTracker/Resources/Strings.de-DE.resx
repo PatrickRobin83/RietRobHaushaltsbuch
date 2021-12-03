@@ -117,62 +117,116 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnAddEntry" xml:space="preserve">
+    <value>Eintrag erstellen</value>
+  </data>
+  <data name="btnBrandMinus" xml:space="preserve">
+    <value>Marke -</value>
+  </data>
+  <data name="btnBrandPlus" xml:space="preserve">
+    <value>Marke +</value>
+  </data>
   <data name="btnCancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
   <data name="btnCreateCar" xml:space="preserve">
-    <value>Anlegen</value>
+    <value>Erstellen</value>
   </data>
   <data name="btnDeleteCar" xml:space="preserve">
     <value>Löschen</value>
   </data>
+  <data name="btnDeleteEntry" xml:space="preserve">
+    <value>Eintrag löschen</value>
+  </data>
   <data name="btnEditCar" xml:space="preserve">
-    <value>Bearbeiten</value>
+    <value>Ändern</value>
+  </data>
+  <data name="btnEditEntry" xml:space="preserve">
+    <value>Eintrag ändern</value>
+  </data>
+  <data name="btnFuelTypeMinus" xml:space="preserve">
+    <value>Kraftstoffart -</value>
+  </data>
+  <data name="btnFuelTypePlus" xml:space="preserve">
+    <value>Kraftstoffart +</value>
+  </data>
+  <data name="btnModelMinus" xml:space="preserve">
+    <value>Modell -</value>
+  </data>
+  <data name="btnModelPlus" xml:space="preserve">
+    <value>Modell +</value>
   </data>
   <data name="btnSave" xml:space="preserve">
     <value>Speichern</value>
   </data>
-  <data name="TitleCarRefuelTrackerOverView" xml:space="preserve">
-    <value>Fahrzeugbetankungsbuch</value>
-  </data>
-  <data name="txtAmountOfFuelHeaderCarEntryOverView" xml:space="preserve">
-    <value>Getankte Menge</value>
-  </data>
-  <data name="txtAvailableCars" xml:space="preserve">
-    <value>Angelegte Fahrzeuge</value>
-  </data>
-  <data name="txtAverageConsumptionHeaderCarEntryOverView" xml:space="preserve">
-    <value>Ø Verbrauch / 100km</value>
-  </data>
-  <data name="txtAverageCostHeaderCarEntryOverView" xml:space="preserve">
-    <value>Ø Kosten / 100km</value>
-  </data>
-  <data name="txtBlockBrandLabel" xml:space="preserve">
-    <value>Fahrzeigmarke:</value>
-  </data>
-  <data name="txtBlockHeadline" xml:space="preserve">
-    <value>Fahrzeigmarke hinzufügen</value>
-  </data>
-  <data name="txtBrandHeaderFuelTrackerOverView" xml:space="preserve">
-    <value>Marke</value>
-  </data>
-  <data name="txtDateHeaderCarEntryOverView" xml:space="preserve">
-    <value>Date</value>
-  </data>
-  <data name="txtDrivenDistanceHeaderCarEntryOverView" xml:space="preserve">
-    <value>gefahrene Strecke</value>
-  </data>
-  <data name="txtFuelTypeFuelTrackerOverView" xml:space="preserve">
+  <data name="FuelType" xml:space="preserve">
     <value>Kraftstoffart</value>
   </data>
-  <data name="txtIsActiveFuelTrackerOverView" xml:space="preserve">
+  <data name="TitleCarRefuelTrackerOverView" xml:space="preserve">
+    <value>Car Refuel Tracker</value>
+  </data>
+  <data name="txtAddCarModel" xml:space="preserve">
+    <value>Modell hinzufügen</value>
+  </data>
+  <data name="txtAddFuelType" xml:space="preserve">
+    <value>Kraftstoffart hinzufügen</value>
+  </data>
+  <data name="txtAmountOfFuelHeaderCarEntryOverView" xml:space="preserve">
+    <value>Kraftstoffmenge</value>
+  </data>
+  <data name="txtAmountOfFuelTotal" xml:space="preserve">
+    <value>Gesamtmenge:</value>
+  </data>
+  <data name="txtAverageConsumptionHeaderCarEntryOverView" xml:space="preserve">
+    <value>Ø Verbrauch auf 100km</value>
+  </data>
+  <data name="txtAverageConsumptionTotal" xml:space="preserve">
+    <value>Ø Verbrauch</value>
+  </data>
+  <data name="txtAverageCostHeaderCarEntryOverView" xml:space="preserve">
+    <value>Ø Kosten auf 100km</value>
+  </data>
+  <data name="txtAverageCostsTotal" xml:space="preserve">
+    <value>Ø Kosten / 100km:</value>
+  </data>
+  <data name="txtAveragePriceTotal" xml:space="preserve">
+    <value>Ø Preis/Liter:</value>
+  </data>
+  <data name="txtBlockBrandLabel" xml:space="preserve">
+    <value>Marke:</value>
+  </data>
+  <data name="txtBlockHeadline" xml:space="preserve">
+    <value>Marke hinzufügen</value>
+  </data>
+  <data name="txtBrand" xml:space="preserve">
+    <value>Marke</value>
+  </data>
+  <data name="txtCarId" xml:space="preserve">
+    <value>Fahrzeug ID:</value>
+  </data>
+  <data name="txtCostsTotal" xml:space="preserve">
+    <value>Gesamtkosten:</value>
+  </data>
+  <data name="txtDateHeaderCarEntryOverView" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="txtDrivenDistanceHeaderCarEntryOverView" xml:space="preserve">
+    <value>Gefahrene Km</value>
+  </data>
+  <data name="txtDrivenDistanceTotal" xml:space="preserve">
+    <value>Gsamte Strecke</value>
+  </data>
+  <data name="txtEntrysForYear" xml:space="preserve">
+    <value>Fahrzeugeinträge für das Jahr:</value>
+  </data>
+  <data name="txtIsActive" xml:space="preserve">
     <value>Ist Aktiv</value>
   </data>
-  <data name="txtModelHeaderFuelTrackerOverView" xml:space="preserve">
+  <data name="txtModel" xml:space="preserve">
     <value>Modell</value>
   </data>
   <data name="txtPricePerLiterHeaderCarEntryOverView" xml:space="preserve">
-    <value>Preis pro L in €</value>
+    <value>Preis pro l in €</value>
   </data>
   <data name="txtTotalCostsHeaderCarEntryOverView" xml:space="preserve">
     <value>Kosten</value>

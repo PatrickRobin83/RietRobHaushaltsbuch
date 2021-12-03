@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnAddEntry" xml:space="preserve">
+    <value>Create Entry</value>
+  </data>
+  <data name="btnBrandMinus" xml:space="preserve">
+    <value>Brand -</value>
+  </data>
+  <data name="btnBrandPlus" xml:space="preserve">
+    <value>Brand +</value>
+  </data>
   <data name="btnCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
@@ -126,23 +135,62 @@
   <data name="btnDeleteCar" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="btnDeleteEntry" xml:space="preserve">
+    <value>Delete Entry</value>
+  </data>
   <data name="btnEditCar" xml:space="preserve">
     <value>Edit</value>
+  </data>
+  <data name="btnEditEntry" xml:space="preserve">
+    <value>Edit Entry</value>
+  </data>
+  <data name="btnFuelTypeMinus" xml:space="preserve">
+    <value>Fueltype -</value>
+  </data>
+  <data name="btnFuelTypePlus" xml:space="preserve">
+    <value>Fueltype +</value>
+  </data>
+  <data name="btnModelMinus" xml:space="preserve">
+    <value>Model -</value>
+  </data>
+  <data name="btnModelPlus" xml:space="preserve">
+    <value>Model +</value>
   </data>
   <data name="btnSave" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="FuelType" xml:space="preserve">
+    <value>Fueltype</value>
+  </data>
   <data name="TitleCarRefuelTrackerOverView" xml:space="preserve">
     <value>Car Refuel Tracker</value>
+  </data>
+  <data name="txtAddCarModel" xml:space="preserve">
+    <value>Add Car Model</value>
+  </data>
+  <data name="txtAddFuelType" xml:space="preserve">
+    <value>Add Fueltype</value>
   </data>
   <data name="txtAmountOfFuelHeaderCarEntryOverView" xml:space="preserve">
     <value>Amount of Fuel</value>
   </data>
+  <data name="txtAmountOfFuelTotal" xml:space="preserve">
+    <value>Total Amount Of Fuel:</value>
+  </data>
   <data name="txtAverageConsumptionHeaderCarEntryOverView" xml:space="preserve">
     <value>Averrage Consumption / 100km</value>
   </data>
+  <data name="txtAverageConsumptionTotal" xml:space="preserve">
+    <value>Ø Fuel Consumption:</value>
+  </data>
   <data name="txtAverageCostHeaderCarEntryOverView" xml:space="preserve">
     <value>Averrage Cost / 100km</value>
+  </data>
+  <data name="txtAverageCostsTotal" xml:space="preserve">
+    <value>Ø Costs / 100km:</value>
+  </data>
+  <data name="txtAveragePriceTotal" xml:space="preserve">
+    <value>Ø Price/Liter:</value>
   </data>
   <data name="txtBlockBrandLabel" xml:space="preserve">
     <value>Brand:</value>
@@ -150,8 +198,14 @@
   <data name="txtBlockHeadline" xml:space="preserve">
     <value>Add Car Brand</value>
   </data>
-  <data name="txtBrandHeaderFuelTrackerOverView" xml:space="preserve">
+  <data name="txtBrand" xml:space="preserve">
     <value> Brand </value>
+  </data>
+  <data name="txtCarId" xml:space="preserve">
+    <value>Vehicle ID:</value>
+  </data>
+  <data name="txtCostsTotal" xml:space="preserve">
+    <value>Costs Total:</value>
   </data>
   <data name="txtDateHeaderCarEntryOverView" xml:space="preserve">
     <value>Date</value>
@@ -159,13 +213,16 @@
   <data name="txtDrivenDistanceHeaderCarEntryOverView" xml:space="preserve">
     <value>Driven Distance</value>
   </data>
-  <data name="txtFuelTypeFuelTrackerOverView" xml:space="preserve">
-    <value>Fueltype</value>
+  <data name="txtDrivenDistanceTotal" xml:space="preserve">
+    <value>Total Driven Distance:</value>
   </data>
-  <data name="txtIsActiveFuelTrackerOverView" xml:space="preserve">
+  <data name="txtEntrysForYear" xml:space="preserve">
+    <value>Car entrys for the Year:</value>
+  </data>
+  <data name="txtIsActive" xml:space="preserve">
     <value>is Active</value>
   </data>
-  <data name="txtModelHeaderFuelTrackerOverView" xml:space="preserve">
+  <data name="txtModel" xml:space="preserve">
     <value>Model</value>
   </data>
   <data name="txtPricePerLiterHeaderCarEntryOverView" xml:space="preserve">

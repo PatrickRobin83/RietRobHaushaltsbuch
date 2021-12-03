@@ -58,25 +58,25 @@
 
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding Brand}">
                             <DataGridTextColumn.Header>
-                                <TextBlock Name="txtBrandHeaderFuelTrackerOverView" Text="{lex:Loc}" />
+                                <TextBlock Name="txtBrand" Text="{lex:Loc}" />
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
 
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding ModelType}">
                             <DataGridTextColumn.Header>
-                                <TextBlock Name="txtModelHeaderFuelTrackerOverView" Text="{lex:Loc}" />
+                                <TextBlock Name="txtModel" Text="{lex:Loc}" />
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
 
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding FuelType}">
                             <DataGridTextColumn.Header>
-                                <TextBlock Name="txtFuelTypeFuelTrackerOverView" Text="{lex:Loc}" />
+                                <TextBlock Name="FuelType" Text="{lex:Loc}" />
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
 
                         <DataGridCheckBoxColumn IsReadOnly="True"  Binding="{Binding IsActive}">
                             <DataGridCheckBoxColumn.Header>
-                                <TextBlock Name="txtIsActiveFuelTrackerOverView" Text="{lex:Loc}" />
+                                <TextBlock Name="txtIsActive" Text="{lex:Loc}" />
                             </DataGridCheckBoxColumn.Header>
                         </DataGridCheckBoxColumn>
 

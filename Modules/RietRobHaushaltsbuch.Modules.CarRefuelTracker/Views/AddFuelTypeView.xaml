@@ -7,6 +7,10 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             lex:LocalizeDictionary.DesignCulture="de"
+             lex:ResxLocalizationProvider.DefaultAssembly="RietRobHaushaltsbuch.Modules.CarRefuelTracker"
+             lex:ResxLocalizationProvider.DefaultDictionary="Strings"
              prism:ViewModelLocator.AutoWireViewModel="True"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
@@ -15,9 +19,9 @@
              Title="{Binding Title}">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBlock Text="Kraftstoffart hinzufügen" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <TextBlock Name="txtAddFuelType" Text="{lex:Loc}" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             <DockPanel Margin="20">
-                <TextBlock Margin="0,0,15,0" FontSize="20" VerticalAlignment="Center" Text="Kraftstoffart: "/>
+                <TextBlock Name="FuelType" Margin="0,0,15,0" FontSize="20" VerticalAlignment="Center" Text="{lex:Loc}"/>
                 <TextBox Height="38" FontSize="20" VerticalContentAlignment="Center" 
                          Text="{Binding TxtFuelTypeName, UpdateSourceTrigger=PropertyChanged}"
                          BorderThickness="0.5" BorderBrush="Silver">
@@ -29,8 +33,8 @@
                 </TextBox>
             </DockPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Command="{Binding CancelAddFuelTypeCommand}" Content="Abbrechen" Margin="0,0,15,0"/>
-                <Button Command="{Binding AddFuelTypeCommand}" IsEnabled="{Binding HasCharacters}" Content="Speichern"/>
+                <Button Name="btnCancel" Command="{Binding CancelAddFuelTypeCommand}" Content="{lex:Loc}" Margin="0,0,15,0"/>
+                <Button Name="btnSave" Command="{Binding AddFuelTypeCommand}" IsEnabled="{Binding HasCharacters}" Content="{lex:Loc}"/>
             </StackPanel>
         </StackPanel>
     </Grid>
