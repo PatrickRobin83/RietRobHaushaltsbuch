@@ -23,6 +23,7 @@
         </Button>
         <ContentControl  prism:RegionManager.RegionName="{x:Static core:RegionNames.MainRegion}" HorizontalAlignment="Stretch"  
                          VerticalAlignment="Top" Margin="100,20,0,0"/>
+
         <mah:Flyout Width="220" Position="Left" IsOpen="{Binding FlyOutOpen}" Theme="Adapt" CloseButtonVisibility="Visible">
             <StackPanel>
                 <Button Command="{Binding OpenViewCommand}" CommandParameter="OverView"

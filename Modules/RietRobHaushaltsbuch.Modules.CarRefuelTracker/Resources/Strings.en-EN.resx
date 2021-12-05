@@ -171,7 +171,7 @@
   <data name="txtAddFuelType" xml:space="preserve">
     <value>Add Fueltype</value>
   </data>
-  <data name="txtAmountOfFuelHeaderCarEntryOverView" xml:space="preserve">
+  <data name="txtAmountOfFuel" xml:space="preserve">
     <value>Amount of Fuel</value>
   </data>
   <data name="txtAmountOfFuelTotal" xml:space="preserve">
@@ -207,14 +207,17 @@
   <data name="txtCostsTotal" xml:space="preserve">
     <value>Costs Total:</value>
   </data>
-  <data name="txtDateHeaderCarEntryOverView" xml:space="preserve">
+  <data name="txtDate" xml:space="preserve">
     <value>Date</value>
   </data>
-  <data name="txtDrivenDistanceHeaderCarEntryOverView" xml:space="preserve">
+  <data name="txtDrivenDistance" xml:space="preserve">
     <value>Driven Distance</value>
   </data>
   <data name="txtDrivenDistanceTotal" xml:space="preserve">
     <value>Total Driven Distance:</value>
+  </data>
+  <data name="txtEntryID" xml:space="preserve">
+    <value>Entry ID</value>
   </data>
   <data name="txtEntrysForYear" xml:space="preserve">
     <value>Car entrys for the Year:</value>
@@ -225,10 +228,10 @@
   <data name="txtModel" xml:space="preserve">
     <value>Model</value>
   </data>
-  <data name="txtPricePerLiterHeaderCarEntryOverView" xml:space="preserve">
+  <data name="txtPricePerLiter" xml:space="preserve">
     <value>Price per l in €</value>
   </data>
-  <data name="txtTotalCostsHeaderCarEntryOverView" xml:space="preserve">
+  <data name="txtTotalCosts" xml:space="preserve">
     <value>Total Costs</value>
   </data>
 </root>

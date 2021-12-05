@@ -19,7 +19,6 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
     {
         #region Fields
 
-        private string _headLine;
         private ObservableCollection<CarModel> _availableCars;
         private CarModel _selectedCar;
         private string _selectedYear;
@@ -42,12 +41,6 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
             set { SetProperty(ref _availableCars, value); }
         }
 
-        public string HeadLine
-        {
-            get { return _headLine; }
-            set { SetProperty(ref _headLine, value); }
-        }
-
         public string SelectedYear
         {
             get { return _selectedYear; }
@@ -67,7 +60,6 @@ namespace RietRobHaushaltsbuch.Modules.OverView.ViewModels
         public OverViewModel(IEventAggregator eventaggregator)
         {
             eventaggregator.GetEvent<NewsEvent>().Subscribe(LoadOverView);
-            HeadLine = "Übersicht der Gesamtkosten für das Jahr: ";
             YearToSelect = CreateYearEntrysForComboBoxSelection.AddYearsToComboBox();
             SelectedYear = YearToSelect.FirstOrDefault();
             RegisterCommands();

@@ -225,9 +225,9 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Amount of Fuel ähnelt.
         /// </summary>
-        public static string txtAmountOfFuelHeaderCarEntryOverView {
+        public static string txtAmountOfFuel {
             get {
-                return ResourceManager.GetString("txtAmountOfFuelHeaderCarEntryOverView", resourceCulture);
+                return ResourceManager.GetString("txtAmountOfFuel", resourceCulture);
             }
         }
         
@@ -333,18 +333,18 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Date ähnelt.
         /// </summary>
-        public static string txtDateHeaderCarEntryOverView {
+        public static string txtDate {
             get {
-                return ResourceManager.GetString("txtDateHeaderCarEntryOverView", resourceCulture);
+                return ResourceManager.GetString("txtDate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Driven Distance ähnelt.
         /// </summary>
-        public static string txtDrivenDistanceHeaderCarEntryOverView {
+        public static string txtDrivenDistance {
             get {
-                return ResourceManager.GetString("txtDrivenDistanceHeaderCarEntryOverView", resourceCulture);
+                return ResourceManager.GetString("txtDrivenDistance", resourceCulture);
             }
         }
         
@@ -354,6 +354,15 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         public static string txtDrivenDistanceTotal {
             get {
                 return ResourceManager.GetString("txtDrivenDistanceTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Entry ID ähnelt.
+        /// </summary>
+        public static string txtEntryID {
+            get {
+                return ResourceManager.GetString("txtEntryID", resourceCulture);
             }
         }
         
@@ -387,18 +396,18 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.Resources {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Price per l in € ähnelt.
         /// </summary>
-        public static string txtPricePerLiterHeaderCarEntryOverView {
+        public static string txtPricePerLiter {
             get {
-                return ResourceManager.GetString("txtPricePerLiterHeaderCarEntryOverView", resourceCulture);
+                return ResourceManager.GetString("txtPricePerLiter", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Total Costs ähnelt.
         /// </summary>
-        public static string txtTotalCostsHeaderCarEntryOverView {
+        public static string txtTotalCosts {
             get {
-                return ResourceManager.GetString("txtTotalCostsHeaderCarEntryOverView", resourceCulture);
+                return ResourceManager.GetString("txtTotalCosts", resourceCulture);
             }
         }
     }

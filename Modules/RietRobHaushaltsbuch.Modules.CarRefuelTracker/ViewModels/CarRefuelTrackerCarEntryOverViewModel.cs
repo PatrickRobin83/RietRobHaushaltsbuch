@@ -194,7 +194,7 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
             if (SelectedEntryModel != null)
             {
                 IsEntryModelSelected = true;
-                UpdateEntryList();
+                //UpdateEntryList();
                 CalculateAverages();
             }
             else

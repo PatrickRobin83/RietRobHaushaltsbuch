@@ -40,8 +40,8 @@
                 </TextBox>
             </DockPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Command="{Binding CancelAddModelCommand}" Content="Abbrechen" Margin="0,0,15,0"/>
-                <Button Command="{Binding AddModelTypeCommand}" IsEnabled="{Binding HasCharacters}" Content="Speichern"/>
+                <Button Name="btnCancel" Command="{Binding CancelAddModelCommand}" Content="{lex:Loc}" Margin="0,0,15,0"/>
+                <Button Name="btnSave" Command="{Binding AddModelTypeCommand}" IsEnabled="{Binding HasCharacters}" Content="{lex:Loc}"/>
             </StackPanel>
         </StackPanel>
     </Grid>

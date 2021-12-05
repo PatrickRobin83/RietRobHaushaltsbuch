@@ -9,7 +9,7 @@
                   xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
                   xmlns:prism="http://prismlibrary.com/"
                   xmlns:lex="http://wpflocalizeextension.codeplex.com"
-                  lex:LocalizeDictionary.DesignCulture="de"
+                  lex:LocalizeDictionary.DesignCulture="deen"
                   lex:ResxLocalizationProvider.DefaultAssembly="RietRobHaushaltsbuch.Modules.CarRefuelTracker"
                   lex:ResxLocalizationProvider.DefaultDictionary="Strings"
                   mc:Ignorable="d" 
@@ -74,7 +74,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
 
-                    <Label Name="txtFuelType" Width="110" FontSize="14" Content="{lex:Loc}"/>
+                    <Label Name="FuelType" Width="110" FontSize="14" Content="{lex:Loc}"/>
                     <ComboBox Margin="0,0,0,0" VerticalAlignment="Center" 
                               ItemsSource="{Binding Path=AvailableFuelTypes, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" 
                               SelectedValue="{Binding SelectedFuelType.Id, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"

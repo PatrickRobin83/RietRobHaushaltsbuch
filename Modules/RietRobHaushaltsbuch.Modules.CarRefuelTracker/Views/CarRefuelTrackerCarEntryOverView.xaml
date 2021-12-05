@@ -58,31 +58,31 @@
 
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding EntryDate}" SortDirection="Descending">
                             <DataGridTextColumn.Header>
-                                <TextBlock Name="txtDateHeaderCarEntryOverView" Text="{lex:Loc}" />
+                                <TextBlock Name="txtDate" Text="{lex:Loc}" />
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
 
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding PricePerLiter}">
                             <DataGridTextColumn.Header>
-                                <TextBlock Name="txtPricePerLiterHeaderCarEntryOverView" Text="{lex:Loc}" />
+                                <TextBlock Name="txtPricePerLiter" Text="{lex:Loc}" />
                             </DataGridTextColumn.Header>    
                         </DataGridTextColumn>
 
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding AmountOffuel}">
                             <DataGridTextColumn.Header>
-                                <TextBlock Name="txtAmountOfFuelHeaderCarEntryOverView" Text="{lex:Loc}" />
+                                <TextBlock Name="txtAmountOfFuel" Text="{lex:Loc}" />
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
 
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding TotalAmount}">
                             <DataGridTextColumn.Header>
-                                <TextBlock Name="txtTotalCostsHeaderCarEntryOverView" Text="{lex:Loc}" />
+                                <TextBlock Name="txtTotalCosts" Text="{lex:Loc}" />
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
 
                         <DataGridTextColumn IsReadOnly="True" Binding="{Binding DrivenDistance}">
                             <DataGridTextColumn.Header>
-                                <TextBlock Name="txtDrivenDistanceHeaderCarEntryOverView" Text="{lex:Loc}" />
+                                <TextBlock Name="txtDrivenDistance" Text="{lex:Loc}" />
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
 
