@@ -156,8 +156,11 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void UpdateEntryList()
         {
-            AllEntrysForSelectedCar = new ObservableCollection<EntryModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadEntrysForCar(CarModel.Id, SelectedYear));
-            CalculateAverages();
+            if(CarModel != null)
+            {
+                AllEntrysForSelectedCar = new ObservableCollection<EntryModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadEntrysForCar(CarModel.Id, SelectedYear));
+                CalculateAverages();
+            }
         }
 
         private void HandleCarModelSelection(object selectedCarModel)
