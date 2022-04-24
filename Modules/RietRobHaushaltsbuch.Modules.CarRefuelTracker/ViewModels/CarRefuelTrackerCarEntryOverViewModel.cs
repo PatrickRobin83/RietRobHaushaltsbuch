@@ -21,6 +21,7 @@ using RietRobHaushaltbuch.Core.Models;
 using RietRobHaushaltsbuch.Modules.CarRefuelTracker.Views;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Web.UI.WebControls;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
@@ -156,8 +157,11 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 
         private void UpdateEntryList()
         {
-            AllEntrysForSelectedCar = new ObservableCollection<EntryModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadEntrysForCar(CarModel.Id, SelectedYear));
-            CalculateAverages();
+            if (CarModel != null)
+            {
+                AllEntrysForSelectedCar = new ObservableCollection<EntryModel>(SqLiteDataAccessCarRefuelTrackerModule.LoadEntrysForCar(CarModel.Id, SelectedYear));
+                CalculateAverages();
+            }
         }
 
         private void HandleCarModelSelection(object selectedCarModel)

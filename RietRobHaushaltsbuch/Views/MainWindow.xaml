@@ -70,8 +70,16 @@
                     <Label Name="lblLanguageSettings" Content="{lex:Loc}" Margin="0,10,0,0" HorizontalAlignment="Center" FontSize="24">
                     </Label>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                        <RadioButton Height="50" Width="50" Content="Ger" Command="{Binding SetLanguageCommand}" IsChecked="{Binding LanguageGerIsSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" CommandParameter="de-DE"/>
-                        <RadioButton  Height="50" Width="50" Content="En" Command="{Binding SetLanguageCommand}" IsChecked="{Binding LanguageEnIsSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" CommandParameter="en-EN"/>
+                        <RadioButton Height="80" Width="80" Margin="0,0,20,0" Command="{Binding SetLanguageCommand}" IsChecked="{Binding LanguageGerIsSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" CommandParameter="de-DE">
+                            <RadioButton.Content>
+                                <Image Source="/Resources/Images/germany-g49faa3128_1920.png" />
+                            </RadioButton.Content>
+                        </RadioButton>
+                            <RadioButton  Height="80" Width="80" Command="{Binding SetLanguageCommand}" IsChecked="{Binding LanguageEnIsSelected, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" CommandParameter="en-EN">
+                                <RadioButton.Content>
+                                    <Image Source="/Resources/Images/union-jack-g8b294130f_1920.png" />
+                                </RadioButton.Content>
+                            </RadioButton>
                     </StackPanel>
                 </StackPanel>
             </StackPanel>

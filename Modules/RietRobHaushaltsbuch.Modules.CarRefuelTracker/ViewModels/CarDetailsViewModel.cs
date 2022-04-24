@@ -22,12 +22,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
+using Prism.Services.Dialogs;
 
 namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
 {
     public class CarDetailsViewModel : ViewModelBase, IViewModelHelper
     {
-
+        //TODo: Implement a Do you really want to delete the xxxx from Database Dialog before Deleting something.
         #region Fields
 
         private CarModel _carModel;
@@ -114,7 +115,6 @@ namespace RietRobHaushaltsbuch.Modules.CarRefuelTracker.ViewModels
         #endregion
 
         #region Methods
-
         private void DataToControls()
         {
             RefreshBrandModelList();

@@ -7,7 +7,7 @@
         xmlns:prism="http://prismlibrary.com/"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
-        lex:LocalizeDictionary.DesignCulture="de"
+        lex:LocalizeDictionary.DesignCulture="En"
         lex:ResxLocalizationProvider.DefaultAssembly="RietRobHaushaltsbuch.Modules.CarRefuelTracker"
         lex:ResxLocalizationProvider.DefaultDictionary="Strings"
         mc:Ignorable="d" d:DesignWidth="800"
